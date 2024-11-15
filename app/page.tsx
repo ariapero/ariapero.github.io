@@ -1,52 +1,14 @@
 'use client'
 
-import { useEffect, useRef } from "react";
 import Link from 'next/link'
 import { ArrowRight, Instagram, Linkedin, GraduationCap, Megaphone, Github } from 'lucide-react'
 import { motion } from 'framer-motion'
+import RadialBackground from '../components/RadialBackground'
 
 export default function Page() {
-  const heroRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const updateMousePosition = (ev: MouseEvent) => {
-      if (!heroRef.current) return;
-      const { clientX, clientY } = ev;
-      heroRef.current.style.setProperty("--x", `${clientX}px`);
-      heroRef.current.style.setProperty("--y", `${clientY}px`);
-    };
-
-    window.addEventListener("mousemove", updateMousePosition);
-
-    return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
-    };
-  }, []);
-
   return (
     <>
-      <style jsx>{`
-        .hero {
-          height: 100vh;
-          width: 100%;
-          background-color: #163734;
-          background-image: radial-gradient(
-            circle farthest-side at var(--x, 100px) var(--y, 100px),
-            #238177 0%,
-            transparent 100%
-          );
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .title {
-          font-size: 80px;
-          text-transform: uppercase;
-          transform: rotate(10deg) translateX(calc(var(--x) / 10, 0px));
-        }
-      `}</style>
-      <div ref={heroRef} className="hero">
+      <RadialBackground baseColor="#163734" highlightColor="#238177">
         <div className="min-h-screen w-full relative overflow-hidden">
           {/* Content */}
           <motion.main 
@@ -95,7 +57,7 @@ export default function Page() {
                 </Link>
                 <Link 
                   href="https://ariapero.myportfolio.com/" 
-                  className="flex items-center gap-2 text-white text-lg sm:text-xl hover:gap-4 transition-all duration-300 font-inter"
+                  className="flex items-center gap-2 text-white text-lg sm:text-xl hover:gap-4 transition-all duration-300 font-inter" target="_blank"
                 >
                   Prev. Portfolio <ArrowRight className="h-5 w-5" />
                 </Link>
@@ -151,9 +113,8 @@ export default function Page() {
               <GraduationCap size={28} />
             </a>
           </motion.div>
-
         </div>
-      </div>
+      </RadialBackground>
     </>
   );
 }
