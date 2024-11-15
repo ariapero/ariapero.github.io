@@ -7,6 +7,7 @@ import { sub } from 'framer-motion/client'
 
 const backgrounds = [
   '/to_man.jpg',
+  '/unsubscribe.png',
   '/body.png',
   '/proj.png',
   '/punky.png',
@@ -37,6 +38,7 @@ const backgrounds = [
 
 const projects = [
   '',
+  '/https://github.com/weblab-class/ariapero-gabrc52-akwon20-cloud',
   '/wip',
   '/wip',
   '/wip',
@@ -54,6 +56,10 @@ const content = [
   {
     title: "Transdisciplinearity",
     subtitle: "scroll down or use the links below to navigate"
+  },
+  {
+    title: "WebDev",
+    subtitle: "ui/ux design and web development (github linked above)"
   },
   {
     title: "Video",
