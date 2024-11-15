@@ -165,16 +165,16 @@ const PipelineBackground: React.FC = () => {
     <>
       <div
         ref={containerRef}
-        className="content--canvas bg-red-500 color-red"
+        className="content--canvas"
         style={{
           position: 'fixed',
           top: 0,
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundColor: 'red',
-          background: 'red',
-          color: 'red',
+          // backgroundColor: 'red',
+          // background: 'red',
+          // color: 'red',
           // opacity: isAnimated ? 1 : 0,
           transition: 'opacity 0.3s ease',
 
@@ -183,7 +183,9 @@ const PipelineBackground: React.FC = () => {
         <canvas ref={canvasBRef} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }} />
       </div>
       <BackgroundToggle onToggle={setIsAnimated} />
-      <div className={`${!isAnimated ? 'left-0 top-0 fixed inset-0 bg-black w-full h-full' : ''}`}></div>
+      {!isAnimated ? (
+        <div className='left-0 top-0 fixed inset-0 bg-black w-full h-full' style={{ opacity: 1, transition: 'opacity 0.3s ease' }}/>
+      ) : null}
     </>
   );
 };
