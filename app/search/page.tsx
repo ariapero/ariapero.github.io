@@ -19,53 +19,53 @@ export default function SearchPage() {
   const [searchIndex, setSearchIndex] = useState<SearchResult[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
-  useEffect(() => {
-    fetch('/search-index.json')
-      .then(response => response.json())
-      .then(data => {
-        setSearchIndex(data)
-        setIsLoading(false)
-      })
-      .catch(error => {
-        console.error('Error loading search index:', error)
-        setIsLoading(false)
-      })
-  }, [])
+//   useEffect(() => {
+//     fetch('/search-index.json')
+//       .then(response => response.json())
+//       .then(data => {
+//         setSearchIndex(data)
+//         setIsLoading(false)
+//       })
+//       .catch(error => {
+//         console.error('Error loading search index:', error)
+//         setIsLoading(false)
+//       })
+//   }, [])
 
 
-  // const handleSearch = async (query: string) => {
-  //   setSearchQuery(query)
-  //   if (query.trim() === '') {
-  //     setSearchResults([])
-  //     return
-  //   }
+//   // const handleSearch = async (query: string) => {
+//   //   setSearchQuery(query)
+//   //   if (query.trim() === '') {
+//   //     setSearchResults([])
+//   //     return
+//   //   }
 
-  //   setIsLoading(true)
-  //   try {
-  //     const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`)
-  //     const data = await response.json()
-  //     setSearchResults(data.results)
-  //   } catch (error) {
-  //     console.error('Search error:', error)
-  //     setSearchResults([])
-  //   } finally {
-  //     setIsLoading(false)
-  //   }
-  // }
+//   //   setIsLoading(true)
+//   //   try {
+//   //     const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`)
+//   //     const data = await response.json()
+//   //     setSearchResults(data.results)
+//   //   } catch (error) {
+//   //     console.error('Search error:', error)
+//   //     setSearchResults([])
+//   //   } finally {
+//   //     setIsLoading(false)
+//   //   }
+//   // }
 
-  useEffect(() => {
-    if (searchQuery.trim() === '') {
-      setSearchResults([])
-      return
-    }
+//   useEffect(() => {
+//     if (searchQuery.trim() === '') {
+//       setSearchResults([])
+//       return
+//     }
 
-    const results = searchIndex.filter(page =>
-      page.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      page.title.toLowerCase().includes(searchQuery.toLowerCase())
-    )
+//     const results = searchIndex.filter(page =>
+//       page.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
+//       page.title.toLowerCase().includes(searchQuery.toLowerCase())
+//     )
 
-    setSearchResults(results)
-  }, [searchQuery, searchIndex])
+//     setSearchResults(results)
+//   }, [searchQuery, searchIndex])
 
   return (
     <RadialBackground baseColor="#163734" highlightColor="#238177">
@@ -76,15 +76,15 @@ export default function SearchPage() {
             <Input
               type="text"
               placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}  // handleSearch(e.target.value)}
+              // value={searchQuery}
+              // onChange={(e) => setSearchQuery(e.target.value)}  // handleSearch(e.target.value)}
               className="pl-10 bg-white focus-visible:ring-offset-1 focus-visible:ring-gray-500 font-zen"
               aria-label="Search"
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
           </div>
           {isLoading && <p className="text-center text-white font-zen font-medium">Loading...</p>}
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             {searchResults.map((result, index) => (
               <Card key={index}>
                 <CardHeader>
@@ -99,7 +99,7 @@ export default function SearchPage() {
                 </CardContent>
               </Card>
             ))}
-          </div>
+          </div> */}
           {searchQuery && searchResults.length === 0 && !isLoading && (
             <p className="text-center text-white mt-6 font-zen font-medium">No results found. Try a different search term.</p>
           )}
