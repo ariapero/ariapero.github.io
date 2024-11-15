@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react' 
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Search } from 'lucide-react'
@@ -16,27 +16,56 @@ type SearchResult = {
 export default function SearchPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
+  const [searchIndex, setSearchIndex] = useState<SearchResult[]>([])
   const [isLoading, setIsLoading] = useState(false)
 
-  const handleSearch = async (query: string) => {
-    setSearchQuery(query)
-    if (query.trim() === '') {
+  useEffect(() => {
+    fetch('/search-index.json')
+      .then(response => response.json())
+      .then(data => {
+        setSearchIndex(data)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        console.error('Error loading search index:', error)
+        setIsLoading(false)
+      })
+  }, [])
+
+
+  // const handleSearch = async (query: string) => {
+  //   setSearchQuery(query)
+  //   if (query.trim() === '') {
+  //     setSearchResults([])
+  //     return
+  //   }
+
+  //   setIsLoading(true)
+  //   try {
+  //     const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`)
+  //     const data = await response.json()
+  //     setSearchResults(data.results)
+  //   } catch (error) {
+  //     console.error('Search error:', error)
+  //     setSearchResults([])
+  //   } finally {
+  //     setIsLoading(false)
+  //   }
+  // }
+
+  useEffect(() => {
+    if (searchQuery.trim() === '') {
       setSearchResults([])
       return
     }
 
-    setIsLoading(true)
-    try {
-      const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`)
-      const data = await response.json()
-      setSearchResults(data.results)
-    } catch (error) {
-      console.error('Search error:', error)
-      setSearchResults([])
-    } finally {
-      setIsLoading(false)
-    }
-  }
+    const results = searchIndex.filter(page =>
+      page.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      page.title.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+
+    setSearchResults(results)
+  }, [searchQuery, searchIndex])
 
   return (
     <RadialBackground baseColor="#163734" highlightColor="#238177">
@@ -48,7 +77,7 @@ export default function SearchPage() {
               type="text"
               placeholder="Search..."
               value={searchQuery}
-              onChange={(e) => handleSearch(e.target.value)}
+              onChange={(e) => setSearchQuery(e.target.value)}  // handleSearch(e.target.value)}
               className="pl-10 bg-white focus-visible:ring-offset-1 focus-visible:ring-gray-500 font-zen"
               aria-label="Search"
             />

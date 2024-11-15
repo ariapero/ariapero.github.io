@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --background: #0f0f0f;
+  --foreground: #0f0f0f;
   --color-primary: #0f766e;
   --color-secondary: #b4d0cb;
 }
@@ -10,6 +12,15 @@
 body {
   /* font-family: Arial, Helvetica, sans-serif; */
   font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+body.animated-bg-off .radial-background,
+body.animated-bg-off .content--canvas {
+  display: none;
+}
+
+body.animated-bg-off {
+  background-color: #0c0c0c; /* Or any color you prefer */
 }
 
 @layer base {

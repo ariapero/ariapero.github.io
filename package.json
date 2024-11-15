@@ -16,6 +16,8 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^6.1.7",
+    "@radix-ui/react-label": "^2.1.0",
+    "@radix-ui/react-switch": "^1.1.1",
     "@types/lodash": "^4.17.13",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

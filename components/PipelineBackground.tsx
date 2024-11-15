@@ -1,9 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import BackgroundToggle from './BackgroundToggle';
 
 const PipelineBackground: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasARef = useRef<HTMLCanvasElement>(null);
   const canvasBRef = useRef<HTMLCanvasElement>(null);
+  const [isAnimated, setIsAnimated] = useState(true);
 
   useEffect(() => {
     if (!containerRef.current || !canvasARef.current || !canvasBRef.current) return;
@@ -136,8 +138,10 @@ const PipelineBackground: React.FC = () => {
     };
 
     const draw = () => {
-      updatePipes();
-      render();
+      if (isAnimated) {
+        updatePipes();
+        render();
+      }
       requestAnimationFrame(draw);
     };
 
@@ -155,13 +159,32 @@ const PipelineBackground: React.FC = () => {
     return () => {
       window.removeEventListener('resize', resize);
     };
-  }, []);
+  }, [isAnimated]);
 
   return (
-    <div ref={containerRef} className="content--canvas" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }}>
-      <canvas ref={canvasARef} style={{ display: 'none' }} />
-      <canvas ref={canvasBRef} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }} />
-    </div>
+    <>
+      <div
+        ref={containerRef}
+        className="content--canvas bg-red-500 color-red"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'red',
+          background: 'red',
+          color: 'red',
+          // opacity: isAnimated ? 1 : 0,
+          transition: 'opacity 0.3s ease',
+
+        }}>
+        <canvas ref={canvasARef} style={{ display: 'none' }} />
+        <canvas ref={canvasBRef} style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%' }} />
+      </div>
+      <BackgroundToggle onToggle={setIsAnimated} />
+      <div className={`${!isAnimated ? 'left-0 top-0 fixed inset-0 bg-black w-full h-full' : ''}`}></div>
+    </>
   );
 };
 
