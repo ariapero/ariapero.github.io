@@ -3,7 +3,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { throttle } from 'lodash'
-import { sub } from 'framer-motion/client'
 
 const backgrounds = [
   '/to_man.jpg',
@@ -149,7 +148,7 @@ export default function WorksPage() {
       event.preventDefault()
       
       if (!tickingRef.current) {
-        let delta: number = -event.deltaY
+        const delta: number = -event.deltaY
         // let delta: number
 
         // if (isFirefox) {

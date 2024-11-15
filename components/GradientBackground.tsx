@@ -37,7 +37,7 @@ const GradientBackground: React.FC = () => {
     const initCircles = () => {
         circleProps = new Float32Array(circlePropsLength);
         // simplex = new SimplexNoise();
-        const noise3D = createNoise3D();
+        // const noise3D = createNoise3D();
         baseHue = 220;
 
         for (let i = 0; i < circlePropsLength; i += circlePropCount) {

@@ -1,9 +1,7 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
 
 const AnimatedBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -299,20 +297,6 @@ const AnimatedBackground: React.FC = () => {
 };
 
 export default function Component() {
-  const [currentSlide, setCurrentSlide] = useState(0)
-  const slides = [
-    "/filter_NRM.jpg?height=3208&width=4537",
-    "/globe.svg?height=2481&width=3508",
-    "/vercel.svg?height=2481&width=3508"
-  ]
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length)
-    }, 3000)
-    return () => clearInterval(timer)
-  }, [])
-
   return (
     <div className="min-h-screen p-8 relative">
       <AnimatedBackground />
