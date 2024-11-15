@@ -20,19 +20,34 @@ const backgrounds = [
   '/textile.png',
 ]
 
+// const projects = [
+//   '',
+//   '/work/video',
+//   '/work/sound',
+//   '/work/design',
+//   '/work/photo',
+//   '/work/voice',
+//   '/work/poetry',
+//   '/work/composition',
+//   '/work/instrumental',
+//   '/work/installation',
+//   '/work/fabrication',
+//   '/work/textile',
+// ]
+
 const projects = [
   '',
-  '/work/video',
-  '/work/sound',
-  '/work/design',
-  '/work/photo',
-  '/work/voice',
-  '/work/poetry',
-  '/work/composition',
-  '/work/instrumental',
-  '/work/installation',
-  '/work/fabrication',
-  '/work/textile',
+  '/wip',
+  '/wip',
+  '/wip',
+  '/wip',
+  '/wip',
+  '/wip',
+  '/wip',
+  '/wip',
+  '/wip',
+  '/wip',
+  '/wip',
 ]
 
 const content = [
