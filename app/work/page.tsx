@@ -37,7 +37,7 @@ const backgrounds = [
 
 const projects = [
   '',
-  '/https://github.com/weblab-class/ariapero-gabrc52-akwon20-cloud',
+  'https://github.com/weblab-class/ariapero-gabrc52-akwon20-cloud',
   '/wip',
   '/wip',
   '/wip',
@@ -57,7 +57,7 @@ const content = [
     subtitle: "scroll down or use the links below to navigate"
   },
   {
-    title: "WebDev",
+    title: "Web",
     subtitle: "ui/ux design and web development (github linked above)"
   },
   {
@@ -149,16 +149,6 @@ export default function WorksPage() {
       
       if (!tickingRef.current) {
         const delta: number = -event.deltaY
-        // let delta: number
-
-        // if (isFirefox) {
-        //   // delta = event.detail * (-120)
-        //   delta = -event.deltaY
-        // // } else if (isIe) {
-        // //   delta = -event.deltaY
-        // } else {
-        //   delta = -event.deltaY
-        // }
 
         if (delta <= -scrollSensitivitySetting) {
           tickingRef.current = true
@@ -200,13 +190,11 @@ export default function WorksPage() {
           `}
           style={{
             backgroundImage: `url(${bg})`,
-            // height: 'calc(100vh + 30vh)',
-            height: 'calc(100vh + 30vh)',
-            // height: '100vh',
+            height: 'calc(100vh + 30vh)',  // '100vh',
             transform: `translateY(${(index - currentSlide) * 100}vh)`,
           }}
         >
-          <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+          <div className="absolute inset-0 bg-black bg-opacity-35"></div>
           <div className={`
             h-screen flex justify-center items-center flex-col text-center text-white font-inter
             transform transition-transform duration-[1700ms] ease-cubic-bezier
@@ -220,21 +208,32 @@ export default function WorksPage() {
               {content[index].title}
             </Link> */}
             {index === 0 ? (
-              <h1 className="text-[20vh] leading-tight font-sloop z-20" style={{ textShadow: '1px 1px 2px rgba(0,0,0, 0.15)' }}>{content[index].title}</h1>
+              <h1
+                className="text-[20vh] leading-tight font-sloop z-20"
+                style={{ textShadow: '1px 1px 2px rgba(0,0,0, 0.15)' }}>
+                  {content[index].title}
+              </h1>
             ) : (
-              <Link href={projects[index]} className="text-[20vh] leading-tight font-sloop z-20 hover:opacity-75 transition-opacity" style={{ textShadow: '1px 1px 2px rgba(0,0,0, 0.15)' }}>
+              <Link
+                href={projects[index]}
+                className="text-[20vh] leading-tight font-sloop z-20 hover:opacity-75 transition-opacity"
+                style={{ textShadow: '1px 1px 2px rgba(0,0,0, 0.15)' }}>
                 {content[index].title}
               </Link>
             )}
-            <p className="text-2xl mt-4">{content[index].subtitle}</p>
+            <p className="text-2xl mt-4 font-zen font-medium">{content[index].subtitle}</p>
             {index === 0 && (
               <div className="mt-12 flex flex-col items-center">
-                <p className="text-xl mb-0 font-bold uppercase font-inter" style={{ textShadow: '1px 1px 1px rgba(0,0,0, 0.5)' }}>Table of Contents</p>
+                <p
+                  className="text-xl mb-0 font-bold uppercase font-zen"
+                  style={{ textShadow: '1px 1px 1px rgba(0,0,0, 0.5)' }}>
+                    Table of Contents
+                </p>
                 {content.slice(1).map((item, i) => (
                   <button
                     key={i}
                     onClick={() => navigateToSlide(i + 1)}
-                    className="text-sm my-0 hover:underline focus:outline-none font-inter lowercase"
+                    className="text-sm my-0 hover:underline focus:outline-none font-zen font-medium lowercase"
                     style={{ textShadow: '1px 1px 2px rgba(0,0,0, 0.5)' }}
                   >
                     {i + 1}. {item.title}

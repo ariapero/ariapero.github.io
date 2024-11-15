@@ -18,7 +18,7 @@ const App: React.FC = () => {
         transition={{ duration: 0.8 }}
       >
         {/* Low opacity black box */}
-        <div className='absolute inset-0 bg-black opacity-30 w-full h-full'></div>
+        <div className='absolute inset-0 bg-black opacity-40 w-full h-full'></div>
         {/* <div className='max-w-7xl mx-auto'> */}
         <div className='relative z-10 max-w-7xl mx-auto'>
           {/* Header */}
@@ -34,7 +34,7 @@ const App: React.FC = () => {
             >
               Ari Peró
             </Link>
-            <div className='mt-1 space-y-1 text-sm'>
+            <div className='mt-1 space-y-1 text-sm font-zen'>
               <p>MIT DUSP, EECS, Music</p>
               <p>B.S. Candidate 2025</p>
               <p>ariapero@mit.edu</p>
@@ -51,7 +51,7 @@ const App: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              <h1 className='text-4xl sm:text-5xl font-bold leading-tight'>
+              <h1 className='text-4xl sm:text-5xl font-bold leading-tight font-grand'>
                 Art, Policy, & Technology
                 <span className='block font-normal'>for the common good</span>
               </h1>

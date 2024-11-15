@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Inter, Montserrat, Reenie_Beanie } from "next/font/google";
+import { Inter, Montserrat, Reenie_Beanie, Zen_Kaku_Gothic_New } from "next/font/google";
 import Footnote from "../components/Footnote";
 import "./globals.css";
 
@@ -20,6 +20,13 @@ const reenieBeanie = Reenie_Beanie({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-reenie",
+  display: "swap",
+});
+
+const zen = Zen_Kaku_Gothic_New({
+  weight: ["300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+  variable: "--font-zen",
   display: "swap",
 });
 
@@ -47,6 +54,12 @@ const highriseCondensed = localFont({
   display: "swap",
 });
 
+const grand = localFont({
+  src: "./fonts/GrandSlang-Roman.ttf",
+  variable: "--font-grand",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Ari Peró Portfolio",
   description:
@@ -71,10 +84,12 @@ export default function RootLayout({
       ${inter.variable} 
       ${montserrat.variable} 
       ${reenieBeanie.variable} 
+      ${zen.variable}
       ${sloop.variable} 
       ${highriseRegular.variable} 
       ${highriseBold.variable} 
       ${highriseCondensed.variable}
+      ${grand.variable}
     `}
     >
       <head>
@@ -82,7 +97,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans flex flex-col min-h-screen">
         <header className="fixed top-0 left-0 w-full bg-transparent z-50 p-4">
-          <nav>{/* Add navigation items here if needed */}</nav>
+          <nav></nav>
         </header>
         <main className="flex-grow">{children}</main>
         <Footnote />

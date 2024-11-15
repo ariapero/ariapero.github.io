@@ -128,55 +128,6 @@ const AnimatedBackground: React.FC = () => {
       fragColor = vec4(col, 1);
     }
     `;
-    
-    // void main(void) {
-    //   vec2 uv = (
-    //     gl_FragCoord.xy -.5 * resolution.xy
-    //   )/min(resolution.x, resolution.y);
-    
-    //   float t = T*.1;
-    //   vec3 col = vec3(0);
-    //   vec2 p = vec2(0);
-    //   p.x = noise(uv+vec2(0,1));
-    //   p.y = noise(uv+vec2(1,0));
-    
-    //   p = 8.*(
-    //     vec2(
-    //       sin(t),
-    //       -cos(t)
-    //     )*.15-p
-    //   );
-    
-    //   float s = .35;
-      
-    //   for(float i=.0;i<6.;i++) {
-    //     p.x += s*sin(2.*t-i*1.5*p.y)+t;
-    //     p.y += s*cos(2.*t+i*1.5*p.x)-t;
-    //   }
-    
-    //   col+= sin(t+p.x+p.y);
-    //   col = pow(S(vec3(0),vec3(1),col), vec3(.4));
-    //   // col = mix(vec3(.7,.6,.4)*col, col, col);
-    //   col = mix(vec3(0.5, 0.3, 0.5) * col, vec3(0.5, 0.2, 0.5) * col, col);
-    
-    //   float
-    //   stp = 2.,
-    //   prog = T*.2,
-    //   anim = floor(mod(prog-.5,stp));
-      
-    //   if(anim == .0) {
-    //     prog -= length(uv)*.2;
-    //   } else {
-    //     prog -= min(abs(uv.x),abs(uv.y))*.2;
-    //   }
-    //   float scene = floor(mod(prog,stp));
-    //   if(scene == .0) {
-    //     col = 1.-col;
-    //   } 
-    
-    //   fragColor = vec4(col,1);
-    // }
-    // `;
 
     let time: WebGLUniformLocation | null;
     let buffer: WebGLBuffer | null;
@@ -303,8 +254,11 @@ export default function Component() {
       <div className="max-w-6xl mx-auto relative z-10">
       <header className="mb-12">
         <h1 className="h-screen flex justify-center items-center flex-col text-center text-white font-inter transform transition-transform duration-[1700ms] ease-cubic-bezier">
-          <span className="inline-block whitespace-nowrap">
-            Oops! This page still needs some work. Feel free to reference{' '}
+          <span className="inline-block whitespace-nowrap font-grand text-4xl" style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}>
+            Oops! This page still needs some work.
+          </span>
+          <span className="inline-block whitespace-nowrap mt-4 font-zen text-xl" style={{ textShadow: '2px 2px 4px rgba(0,0,0, 0.5)' }}>
+            Feel free to reference{' '}
             <Link href="https://ariapero.myportfolio.com/" target="_blank" rel="noopener noreferrer" className="text-white underline hover:opacity-80 inline">
               my previous portfolio site
             </Link>{' '}
