@@ -57,7 +57,7 @@ const content = [
     subtitle: "scroll down or use the links below to navigate"
   },
   {
-    title: "Web",
+    title: "Web",  // add iwrising, gis project
     subtitle: "ui/ux design and web development (github linked above)"
   },
   {

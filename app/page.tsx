@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Instagram, Linkedin, GraduationCap, Megaphone, Github } from 'lucide-react'
 import { motion } from 'framer-motion'
 import RadialBackground from '../components/RadialBackground'
@@ -65,54 +66,74 @@ export default function Page() {
             </div>
           </motion.main>
 
-          {/* Social Media Icons */}
-          <motion.div 
-            className="absolute right-8 top-1/3 transform -translate-y-1/2 flex flex-col gap-6 z-10"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-          >
-            <a 
-              href="https://github.com/ariapero" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-white hover:opacity-50 transition-colors duration-300"
+          {/* Headshot and Social Media Icons Container */}
+          <div className="absolute right-8 inset-y-0 flex items-center">
+            {/* Headshot */}
+            <motion.div
+              className="mr-16"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
             >
-              <Github size={28} />
-            </a>
-            <a 
-              href="https://www.linkedin.com/in/ari-pero" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-white hover:opacity-50 transition-colors duration-300"
+              <Image
+                src="/skate.jpg"
+                alt="Ari Peró skating with their cat, Michi"
+                width={250}
+                height={250}
+                className="rounded-full border-1 border-white shadow-lg opacity-95 transition-opacity duration-300 hover:opacity-100"
+                priority
+              />
+            </motion.div>
+
+            {/* Social Media Icons */}
+            <motion.div 
+              className="flex flex-col gap-6 z-20"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1, duration: 0.8 }}
             >
-              <Linkedin size={28} />
-            </a>
-            <a 
-              href="https://www.instagram.com/ariapero" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-white hover:opacity-50 transition-colors duration-300"
-            >
-              <Instagram size={28} />
-            </a>
-            <a 
-              href="https://www.instagram.com/transindigena" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-white hover:opacity-50 transition-colors duration-300"
-            >
-              <Megaphone size={28} />
-            </a>
-            <a 
-              href="https://dusp.mit.edu/people/ari-pero" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-white hover:opacity-50 transition-colors duration-300"
-            >
-              <GraduationCap size={28} />
-            </a>
-          </motion.div>
+              <a 
+                href="https://github.com/ariapero" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white hover:opacity-50 transition-colors duration-300"
+              >
+                <Github size={28} />
+              </a>
+              <a 
+                href="https://www.linkedin.com/in/ari-pero" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white hover:opacity-50 transition-colors duration-300"
+              >
+                <Linkedin size={28} />
+              </a>
+              <a 
+                href="https://www.instagram.com/ariapero" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white hover:opacity-50 transition-colors duration-300"
+              >
+                <Instagram size={28} />
+              </a>
+              <a 
+                href="https://www.instagram.com/transindigena" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white hover:opacity-50 transition-colors duration-300"
+              >
+                <Megaphone size={28} />
+              </a>
+              <a 
+                href="https://dusp.mit.edu/people/ari-pero" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white hover:opacity-50 transition-colors duration-300"
+              >
+                <GraduationCap size={28} />
+              </a>
+            </motion.div>
+          </div>
         </div>
       </RadialBackground>
     </>
