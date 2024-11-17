@@ -5,12 +5,21 @@ import Image from 'next/image'
 import { ArrowRight, Instagram, Linkedin, GraduationCap, Megaphone, Github } from 'lucide-react'
 import { motion } from 'framer-motion'
 import RadialBackground from '../components/RadialBackground'
+import CursorBuddy from '../components/CursorBuddy'
+import CursorTrail from '../components/CursorTrail'
 
 export default function Page() {
   return (
     <>
       <RadialBackground baseColor="#163734" highlightColor="#238177">
         <div className="min-h-screen w-full relative overflow-hidden">
+          <CursorTrail />
+          <CursorBuddy
+            src="/skate2.png"
+            alt="Ari Peró skating with their cat, Michi"
+            width={65}
+            height={60}
+          />
           {/* Content */}
           <motion.main 
             className="relative z-10 min-h-screen flex flex-col justify-center px-8 sm:px-12 lg:px-16"
@@ -69,21 +78,24 @@ export default function Page() {
           {/* Headshot and Social Media Icons Container */}
           <div className="absolute right-8 inset-y-0 flex items-center">
             {/* Headshot */}
-            <motion.div
+            {/* <motion.div
               className="mr-16"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
               <Image
-                src="/skate.jpg"
+                src="/skate2.png"
                 alt="Ari Peró skating with their cat, Michi"
                 width={250}
                 height={250}
-                className="rounded-full border-1 border-white shadow-lg opacity-95 transition-opacity duration-300 hover:opacity-100"
+                // className="rounded-full border-1 border-white shadow-lg opacity-90 transition-opacity duration-300 hover:opacity-100"
+                className="rounded-full border-0 border-white opacity-90 transition-opacity duration-300 hover:opacity-100"
+                // style={{ filter: 'drop-shadow(2px 2px 0 white) drop-shadow(-2px -2px 0 white) drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3))' }}
+                style={{ filter: 'drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3))' }}
                 priority
               />
-            </motion.div>
+            </motion.div> */}
 
             {/* Social Media Icons */}
             <motion.div 
