@@ -7,6 +7,81 @@ import Link from "next/link";
 import PipelineBackground from "../../components/PipelineBackground";
 
 const App: React.FC = () => {
+  const coursework = [
+    {
+      category: "Urban Studies",
+      courses: [
+        "Globalization and Its Discontents: Consuming Latin America",
+        "Climate & Sustainability Undergraduate Advanced Research (TA)",
+        "Undergraduate Planning Seminar",
+        "Intro to Urban Design & Development",
+        "Making Public Policy",
+        "Intro to Housing, Community, & Economic Development"
+      ]
+    },
+    {
+      category: "Urban Science",
+      courses: [
+        "Crowd Sourced City: Civic Tech Prototyping (Data Activism)",
+        "Intro to Spatial Analysis & GIS Laboratory"
+      ]
+    },
+    {
+      category: "Computer Science (CS) & Applications",
+      courses: [
+        "Digital and Computational Photography",
+        "Advances in Computer Vision",
+        "Intro to Machine Learning",
+        "The Battlecode Programming Competition",
+        "Web Lab: Programming Class & Competition",
+        "UPOP Engineering Practice Experience + Workshop",
+        "Linear Algebra & Optimization",
+        "Intro to Algorithms",
+        "Discrete Math & Proof for CS",
+        "Fundamentals of Programming",
+        "Intro to Computational Thinking & Data Science",
+        "Intro to CS Programming in Python"
+      ]
+    },
+    {
+      category: "Social Justice",
+      courses: [
+        "HIV/AIDS in American Culture",
+        "Black Matters: Introduction to Black Studies",
+        "Reparations for Slavery & Colonization: Contemporary Movements for Justice",
+        "Brazil: Race, Place, & Modernity in the Americas",
+        "Crime, Punishment & Policing in an Unequal America (Harvard Law School)",
+        "How to Change the World: Experiences from Social Entrepreneurs"
+      ]
+    },
+    {
+      category: "Music",
+      courses: [
+        "Advanced Seminar in Music",
+        "FaMLE: MIT Laptop Ensemble",
+        "Rambax: MIT Senegalese Drum Ensemble",
+        "Musics of Africa",
+        "DJ History, Technique, and Technology",
+        "Harmony and Counterpoint II",
+        "Chamber Music Society (MIT Vocal Jazz Ensemble)",
+        "Music Performance (Emerson/Harris Program for Private Study Jazz Voice Scholarship)",
+        "Harmony and Counterpoint I",
+        "MIT Chamber Chorus",
+        "MIT Concert Choir",
+        "Electronic Music Composition"
+      ]
+    },
+    {
+      category: "Creative Arts",
+      courses: [
+        "Intro to Artistic Experimentation",
+        "Performance Media",
+        "Intro to Video & Related Media",
+        "Beyond Independent Filmmaking"
+      ]
+    }
+  ];
+
   return (
     <div>
       <PipelineBackground />
@@ -37,7 +112,9 @@ const App: React.FC = () => {
             <div className="mt-1 space-y-1 text-sm font-zen">
               <p>MIT DUSP, EECS, Music</p>
               <p>B.S. Candidate 2025</p>
-              <p>ariapero@mit.edu</p>
+              <p><a href="mailto:ariapero@mit.edu" className="hover:underline">
+                ariapero@mit.edu
+              </a></p>
             </div>
           </motion.div>
 
@@ -66,7 +143,7 @@ const App: React.FC = () => {
                   2018, they have been at the forefront of shaping national
                   legislation as a founding member of{" "}
                   <b>Students Demand Action: Miami</b>. Ari is guided by the
-                  principle of 'pay it forward and pay it back,' inspiring peers
+                  principle of "pay it forward and pay it back," inspiring peers
                   to harness their political agency and empowering them with
                   tools for tangible transformation.
                 </p>
@@ -76,7 +153,7 @@ const App: React.FC = () => {
                   housing justice, leveraging social media for amplifying
                   advocacy groups, environmentally conscious planning through
                   indigenous and reparative paradigms, and holistic criminal
-                  justice reform––fighting for both racial and LGBTQ+ justice
+                  justice reform&#8212;fighting for both racial and LGBTQ+ justice
                   within the context of reducing incarceration. Utilizing
                   technology, programming, machine vision, and urban science
                   principles, they strive to drive transformation in these
@@ -190,8 +267,8 @@ const App: React.FC = () => {
                   countless injustices experienced by transgender individuals
                   via their artistic pursuits. Their recent video installations
                   and live performances explore the ongoing impact of their
-                  community’s history on present-day dynamics (shared fears and
-                  behaviors). These pieces capture Ari’s own emotions as a
+                  community's history on present-day dynamics (shared fears and
+                  behaviors). These pieces capture Ari's own emotions as a
                   trans, Afro-Indigenous activist navigating complex systems of
                   power and oppression, while shedding light on many of the less
                   “palatable” and often overlooked challenges faced by black
@@ -230,6 +307,27 @@ const App: React.FC = () => {
                   className="object-cover rounded-lg z-100"
                   priority
                 />
+              </div>
+              <div className="bg-black bg-opacity-40 mt-6 p-6 rounded-lg">
+                {/* <h2 className="text-2xl font-bold mb-4">Resume</h2> */}
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-2xl font-bold">Coursework</h2>
+                  <Link href="/docs/Ari_Pero_Resume.pdf" className="hover:opacity-80 transition-opacity">
+                    <h2 className="text-2xl font-regular italic">View Resume</h2>
+                  </Link>
+                </div>
+                <div className="space-y-4 text-sm max-h-[400px] overflow-y-auto pr-4">
+                  {coursework.map((category, index) => (
+                    <div key={index}>
+                      <h3 className="text-lg font-semibold mb-2">{category.category}</h3>
+                      <ul className="list-disc pl-5 space-y-1">
+                        {category.courses.map((course, courseIndex) => (
+                          <li key={courseIndex}>{course}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           </div>
