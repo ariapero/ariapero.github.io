@@ -117,7 +117,7 @@ export default function SearchPage() {
                 <Link href="/" className="px-4 py-2 bg-teal-800 text-white rounded hover:bg-teal-900 transition-colors outline outline-teal-900 outline-1">Home</Link>
                 <Link href="/bio" className="px-4 py-2 bg-white text-teal-900 rounded hover:bg-gray-100 transition-colors">Bio</Link>
                 <Link href="/work" className="px-4 py-2 bg-white text-teal-900 rounded hover:bg-gray-100 transition-colors">Works</Link>
-                <Link href="/assets/docs/resume.pdf" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-white text-teal-900 rounded hover:bg-gray-100 transition-colors">Resume</Link>
+                <Link href="/docs/Ari_Pero_Resume.pdf" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-white text-teal-900 rounded hover:bg-gray-100 transition-colors">Resume</Link>
                 <Link href="https://ariapero.myportfolio.com/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-white text-teal-900 rounded hover:bg-gray-100 transition-colors">Previous Portfolio</Link>
               </div>
             </CardContent>
