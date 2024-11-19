@@ -48,7 +48,8 @@ export default function Page() {
               </motion.div>
 
               <motion.nav 
-                className="space-y-4"
+                // className="space-y-4"
+                className="space-y-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
@@ -66,10 +67,16 @@ export default function Page() {
                   Work <ArrowRight className="h-5 w-5" />
                 </Link>
                 <Link 
+                  href="/docs/Ari_Pero_Resume.pdf" 
+                  className="flex items-center gap-2 text-white text-lg sm:text-xl hover:gap-4 transition-all duration-300 font-inter" target="_blank"
+                >
+                  Resume <ArrowRight className="h-5 w-5" />
+                </Link>
+                <Link 
                   href="https://ariapero.myportfolio.com/" 
                   className="flex items-center gap-2 text-white text-lg sm:text-xl hover:gap-4 transition-all duration-300 font-inter" target="_blank"
                 >
-                  Prev. Portfolio <ArrowRight className="h-5 w-5" />
+                  Ex-Portfolio <ArrowRight className="h-5 w-5" />
                 </Link>
               </motion.nav>
             </div>
