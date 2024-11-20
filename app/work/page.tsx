@@ -6,7 +6,7 @@ import { throttle } from 'lodash'
 
 const backgrounds = [
   '/to_man.jpg',
-  '/unsubscribe.png',
+  '/unsubscribe2.png',
   '/body.png',
   '/proj.png',
   '/punky.png',

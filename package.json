@@ -17,6 +17,8 @@
     "@mui/material": "^6.1.7",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-switch": "^1.1.1",
+    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@types/lodash": "^4.17.13",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
