@@ -61,7 +61,7 @@ const grand = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Ari Peró Portfolio",
+  title: "ari peró",
   description:
     "Arts and Engineering portfolio of Ari Peró, BS Candidate at MIT DUSP and EECS",
   icons: [
