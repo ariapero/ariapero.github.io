@@ -21,41 +21,28 @@ const projects = [
       {
         title: "Landing Page",
         description: "Secure access for MIT students via MIT Touchstone authentication, ensuring a safe and personalized experience while maintaining a clean, minimalist design.",
-        image: "/unsubscribe-landing.png?height=450&width=800",
-        thumbnail: "/unsubscribe-landing.png?height=100&width=150"
+        image: "/unsubscribe.png?height=600&width=800",
+        thumbnail: "/placeholder.svg?height=100&width=150"
       },
       {
         title: "Dashboard (Food Posts Feed)",
         // description: "A centralized hub showing recent free food posts, lost & found items, and relevant dormspam, with smart filtering options.",
         description: "A real-time feed of free food posts with seamless integration of collected mailing list emails. Users can upload photos, mark items as 'gone', and connect with the community.",
-        image: "/unsubscribe-dash.png?height=450&width=800",
-        thumbnail: "/unsubscribe-dash.png?height=100&width=150"
+        image: "/unsubscribe2.png?height=600&width=800",
+        thumbnail: "/placeholder.svg?height=100&width=150"
       },
       {
-        title: "Dark Mode",
-        // description: "A centralized hub showing recent free food posts, lost & found items, and relevant dormspam, with smart filtering options.",
-        description: "A real-time feed of free food posts with seamless integration of collected mailing list emails. Users can upload photos, mark items as 'gone', and connect with the community.",
-        image: "/unsubscribe-dark.png?height=450&width=800",
-        thumbnail: "/unsubscribe-dark.png?height=100&width=150"
-      },
-      {
-        title: "Scheduled Food (Calendar View)",
+        title: "Scheduled Food Calendar",
         description: "An interactive calendar of scheduled free food events, allowing users to plan and share their own events, fostering a culture of sharing and sustainability.",
-        image: "/unsubscribe-calendar.png?height=450&width=800",
-        thumbnail: "/unsubscribe-calendar.png?height=100&width=150"
+        image: "/placeholder.svg?height=600&width=800",
+        thumbnail: "/placeholder.svg?height=100&width=150"
       },
       {
-        title: "Scheduled Food (Grid View)",
-        description: "View scheduled food in grid view, or click on a calendar item to be led to the corresponding food card post in grid view.",
-        image: "/unsubscribe-scheduled.png?height=450&width=800",
-        thumbnail: "/unsubscribe-scheduled.png?height=100&width=150"
+        title: "User Profile",
+        description: "Personalized user profiles with dynamic name updates to avoid deadnaming, showcasing the project's commitment to inclusivity and respect.",
+        image: "/placeholder.svg?height=600&width=800",
+        thumbnail: "/placeholder.svg?height=100&width=150"
       },
-      // {
-      //   title: "User Profile",
-      //   description: "Personalized user profiles with dynamic name updates to avoid deadnaming, showcasing the project's commitment to inclusivity and respect.",
-      //   image: "/unsubscribe2.png?height=450&width=800",
-      //   thumbnail: "/unsubscribe2.png?height=100&width=150"
-      // },
     ],
     keyFeatures: [
       "Real-time updates and notifications using WebSocket and Socket.IO",
@@ -63,9 +50,8 @@ const projects = [
       "Responsive multiplatform UI using Tailwind, MUI, ReactTimeAgo, and FullCalendar",
       "Seamless integration of mailing list emails into visually appealing feed posts",
       "Interactive calendar for scheduled free food events",
-      "Personalized user profiles with dynamic user data updates to avoid deadnaming, showcasing the project's commitment to inclusivity and respect.",
-      // "Dynamic user data updates to avoid deadnaming",
-      // "Personalized features for authenticated MIT users",
+      "Dynamic user data updates to avoid deadnaming",
+      "Personalized features for authenticated MIT users",
     ]
   },
   // second project
@@ -86,7 +72,7 @@ export default function WebDevPage() {
   }
 
   return (
-    <div className="min-h-screen text-white p-16 z-0 font-zen">
+    <div className="min-h-screen bg-gradient-to-br from-[#163734] to-[#238177] text-white p-8 font-zen">
       <Link 
         href="/work" 
         className="inline-flex items-center text-white hover:text-gray-300 transition-colors mb-8"
@@ -148,9 +134,9 @@ export default function WebDevPage() {
                         fill
                         className="object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 className="text-xl text-white font-bold mb-2">
+                        <h3 className="text-xl font-bold mb-2">
                           {project.pages[currentSlide].title}
                         </h3>
                         <p className="text-gray-200">
@@ -177,30 +163,16 @@ export default function WebDevPage() {
                   >
                     <ChevronRight className="h-8 w-8" />
                   </Button>
-                </div>
 
-                {/* Thumbnail Navigation */}
-                <div className="relative bg-black/40 p-4">
-                  <div className="flex justify-center gap-2 overflow-x-auto">
-                    {project.pages.map((page, index) => (
+                  <div className="absolute bottom-28 left-0 right-0 flex justify-center gap-2">
+                    {project.pages.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => setCurrentSlide(index)}
-                        className={cn(
-                          "relative w-24 h-16 overflow-hidden rounded transition-all",
-                          // currentSlide === index ? "ring-2 ring-white" : "opacity-50 hover:opacity-75"
-                          currentSlide === index 
-                              ? "border-2 border-white" 
-                              : "opacity-50 hover:opacity-75"
-                        )}
-                      >
-                        <Image
-                          src={page.thumbnail}
-                          alt={page.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </button>
+                        className={`w-2 h-2 rounded-full transition-colors ${
+                          currentSlide === index ? 'bg-white' : 'bg-white/40'
+                        }`}
+                      />
                     ))}
                   </div>
                 </div>
@@ -208,13 +180,14 @@ export default function WebDevPage() {
             </Card>
 
             <div className="mt-8">
-              <h3 className="text-xl font-bold mb-4">Key Features</h3>
-              <ul className="list-disc list-inside space-y-2">
-                {project.keyFeatures.map((feature, index) => (
-                  <li key={index} className="text-gray-200">{feature}</li>
-                ))}
-              </ul>
+                <h3 className="text-xl font-bold mb-4">Key Features</h3>
+                <ul className="list-disc list-inside space-y-2">
+                    {project.keyFeatures.map((feature, index) => (
+                    <li key={index} className="text-gray-200">{feature}</li>
+                    ))}
+                </ul>
             </div>
+
           </div>
         ))}
       </div>

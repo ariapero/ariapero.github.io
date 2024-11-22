@@ -6,7 +6,7 @@ import { throttle } from 'lodash'
 
 const backgrounds = [
   '/to_man.jpg',
-  '/unsubscribe2.png',
+  '/unsubscribe-blurcover.png',
   '/body.png',
   '/proj.png',
   '/punky.png',
@@ -37,7 +37,7 @@ const backgrounds = [
 
 const projects = [
   '',
-  'https://github.com/weblab-class/ariapero-gabrc52-akwon20-cloud',
+  '/work/web',
   '/wip',
   '/wip',
   '/wip',
@@ -58,7 +58,7 @@ const content = [
   },
   {
     title: "Web",  // add iwrising, gis project
-    subtitle: "ui/ux design and web development (github linked above)"
+    subtitle: "web development and ui/ux design"
   },
   {
     title: "Video",
