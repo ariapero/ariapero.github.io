@@ -11,7 +11,7 @@ const App: React.FC = () => {
     {
       category: "Urban Studies",
       courses: [
-        "Globalization and Its Discontents: Consuming Latin America",
+        "Globalization and its Discontents: Consuming Latin America",
         "Climate & Sustainability Undergraduate Advanced Research (TA)",
         "Undergraduate Planning Seminar",
         "Intro to Urban Design & Development",
