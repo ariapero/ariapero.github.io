@@ -38,7 +38,7 @@ const backgrounds = [
 const projects = [
   '',
   '/work/web',
-  '/wip',
+  '/work/video',
   '/wip',
   '/wip',
   '/wip',
