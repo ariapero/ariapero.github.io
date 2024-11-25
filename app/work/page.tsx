@@ -40,7 +40,7 @@ const projects = [
   '/work/web',
   '/work/video',
   '/work/sound',
-  'https://ariapero.myportfolio.com/graphic',
+  '/work/design',
   'https://ariapero.myportfolio.com/photo',
   'https://ariapero.myportfolio.com/voice',
   '/wip',

@@ -13,9 +13,9 @@ export default function Footnote() {
         </footer>
     )
 
-    if (pathname === '/work/textile') return null
+    if (pathname === '/work/textile' || pathname === '/work/design') return null
 
-    if (pathname === '/work' || pathname === '/work/design' || pathname === '/search' || pathname === '/wip') return (
+    if (pathname === '/work' || pathname === '/search' || pathname === '/wip') return (
         <div>
             <footer className="fixed bottom-0 left-0 w-full bg-transparent z-50 p-4 font-zen">
                 <p className="text-sm text-white opacity-80 text-center font-zen">&copy; {new Date().getFullYear()} Ari Peró. All rights reserved.</p>
