@@ -48,7 +48,7 @@ const projects = [
   'https://ariapero.myportfolio.com/instrumental',
   'https://ariapero.myportfolio.com/installation',
   'https://ariapero.myportfolio.com/fabrication',
-  'https://ariapero.myportfolio.com/textile',
+  '/work/textile',
 ]
 
 const content = [

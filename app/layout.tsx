@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Inter, Montserrat, Reenie_Beanie, Zen_Kaku_Gothic_New } from "next/font/google";
+import { Inter, Montserrat, Reenie_Beanie, Zen_Kaku_Gothic_New, Share_Tech_Mono } from "next/font/google";
 import Footnote from "../components/Footnote";
 import "./globals.css";
 
@@ -27,6 +27,13 @@ const zen = Zen_Kaku_Gothic_New({
   weight: ["300", "400", "500", "700", "900"],
   subsets: ["latin"],
   variable: "--font-zen",
+  display: "swap",
+});
+
+const share = Share_Tech_Mono({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-share",
   display: "swap",
 });
 
@@ -60,6 +67,12 @@ const grand = localFont({
   display: "swap",
 });
 
+const ncl = localFont({
+  src: "./fonts/NCL.otf",
+  variable: "--font-ncl",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "ari peró",
   description:
@@ -85,11 +98,13 @@ export default function RootLayout({
       ${montserrat.variable} 
       ${reenieBeanie.variable} 
       ${zen.variable}
+      ${share.variable}
       ${sloop.variable} 
       ${highriseRegular.variable} 
       ${highriseBold.variable} 
       ${highriseCondensed.variable}
       ${grand.variable}
+      ${ncl.variable}
     `}
     >
       <head>
