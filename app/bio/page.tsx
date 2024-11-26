@@ -94,7 +94,6 @@ const App: React.FC = () => {
       >
         {/* Low opacity black box */}
         <div className="absolute inset-0 bg-black opacity-40 w-full h-full"></div>
-        {/* <div className='max-w-7xl mx-auto'> */}
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
@@ -119,11 +118,9 @@ const App: React.FC = () => {
           </motion.div>
 
           {/* Main Content */}
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
-            {/* <div className='grid lg:grid-cols-2 gap-12 lg:gap-20'> */}
+          <div className="flex flex-col pb-8 lg:flex-row gap-12 lg:gap-20">
             <motion.div
               className="space-y-8 lg:w-2/3"
-              // className='space-y-8'
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -293,7 +290,6 @@ const App: React.FC = () => {
 
             <motion.div
               className="sm:ml-auto w-[400px] h-full lg:w-[500px] h-[625px] z-100"
-              // className='relative w-[400px] h-[500px]'
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
@@ -330,6 +326,26 @@ const App: React.FC = () => {
                 </div>
               </div>
             </motion.div>
+            <div className="h-[.1%] w-full flex items-center justify-center absolute bottom-0 left-0">
+              <motion.div
+                initial={{ opacity: 0, y: 0 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className="text-center space-y-8"
+              >
+                <footer className="fixed bottom-0 left-0 w-full p-4 flex justify-between items-center mt-8 text-white font-zen">
+                  <Link href="/" className="text-white hover:underline text-xs">
+                      <Image src="/apple-icon.png" alt="Home" width={6} height={6} className="w-6 h-6" style={{ filter: 'drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3))' }}/>
+                  </Link>
+                  <div className="text-sm">
+                    © 2024 Ari Peró. All rights reserved.
+                  </div>
+                  <a href="mailto:ariapero@mit.edu" className="text-xs hover:underline">
+                    ariapero@mit.edu
+                  </a>
+                </footer>
+              </motion.div>
+            </div>
           </div>
         </div>
       </motion.main>
