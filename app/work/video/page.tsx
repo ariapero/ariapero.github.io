@@ -88,6 +88,7 @@ export default function VideoPage() {
 
   return (
     <div className="min-h-screen bg-neutral-900 text-white p-16 font-zen text-white">
+      <title>ari peró | audiovisual media & experimental performance</title>
       <div className="max-w-4xl mx-auto">
         <Link 
           href="/work" 
