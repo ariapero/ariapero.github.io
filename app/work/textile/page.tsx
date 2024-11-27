@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 
 export default function Page() {
@@ -30,7 +31,7 @@ export default function Page() {
           {/* Left Section - Image and Green Text */}
           <div className="space-y-6">
             <div className="bg-black border border-[#333] rounded-lg overflow-hidden w-full max-w-md">
-              <img
+              <Image
                 src="/textile.jpg?height=400&width=400"
                 alt="A close-up of a layered outfit featuring a white button-up shirt under a black sleeveless top with a curved hemline. The shirt is slightly crinkled, and the black top has asymmetrical cuts, revealing parts of the shirt underneath. Attached to the outfit are two small, plush, star-shaped blue accessories, one on each side. A white braided cord hangs from a multicolored rainbow keffiyeh, visible on the left edge of the outfit. The background shows part of a stone building and pavement."
                 className="w-full object-cover"
