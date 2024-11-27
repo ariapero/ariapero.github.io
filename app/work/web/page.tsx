@@ -1,54 +1,79 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import Link from 'next/link'
-import Image from 'next/image'
-import { ArrowLeft, ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { cn } from "@/lib/utils"
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
+import {
+  ArrowLeft,
+  ExternalLink,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 const projects = [
   {
     title: "Unsubscribe MIT",
-    description: "A platform to help MIT students discover free food, share surplus items, and manage dormspam. Winner of the Webby/People's Choice Award in the 2024 MIT WebLab web development competition.",
+    description:
+      "A platform to help MIT students discover free food, share surplus items, and manage dormspam. Winner of the Webby/People's Choice Award in the 2024 MIT WebLab web development competition.",
     link: "https://unsubscribe.mit.edu",
     technologies: [
-        "React", "Express", "Next.js", "Node.js", "Tailwind CSS", "MongoDB", "Mongoose", "WebSocket", "Socket.IO", "OAuth/OpenID", "Google Login API", "MIT Shibboleth", "Material-UI", "ReactTimeAgo", "FullCalendar",
+      "React",
+      "Express",
+      "Next.js",
+      "Node.js",
+      "Tailwind CSS",
+      "MongoDB",
+      "Mongoose",
+      "WebSocket",
+      "Socket.IO",
+      "OAuth/OpenID",
+      "Google Login API",
+      "MIT Shibboleth",
+      "Material-UI",
+      "ReactTimeAgo",
+      "FullCalendar",
     ],
     pages: [
       {
         title: "Landing Page",
-        description: "Secure access for MIT students via MIT Touchstone authentication, ensuring a safe and personalized experience while maintaining a clean, minimalist design.",
+        description:
+          "Secure access for MIT students via MIT Touchstone authentication, ensuring a safe and personalized experience while maintaining a clean, minimalist design.",
         image: "/unsubscribe-landing.png?height=450&width=800",
-        thumbnail: "/unsubscribe-landing.png?height=100&width=150"
+        thumbnail: "/unsubscribe-landing.png?height=100&width=150",
       },
       {
         title: "Dashboard (Food Posts Feed)",
         // description: "A centralized hub showing recent free food posts, lost & found items, and relevant dormspam, with smart filtering options.",
-        description: "A real-time feed of free food posts with seamless integration of collected mailing list emails. Users can upload photos, mark items as 'gone', and connect with the community.",
+        description:
+          "A real-time feed of free food posts with seamless integration of collected mailing list emails. Users can upload photos, mark items as 'gone', and connect with the community.",
         image: "/unsubscribe-dash.png?height=450&width=800",
-        thumbnail: "/unsubscribe-dash.png?height=100&width=150"
+        thumbnail: "/unsubscribe-dash.png?height=100&width=150",
       },
       {
         title: "Dark Mode",
         // description: "A centralized hub showing recent free food posts, lost & found items, and relevant dormspam, with smart filtering options.",
-        description: "A real-time feed of free food posts with seamless integration of collected mailing list emails. Users can upload photos, mark items as 'gone', and connect with the community.",
+        description:
+          "A real-time feed of free food posts with seamless integration of collected mailing list emails. Users can upload photos, mark items as 'gone', and connect with the community.",
         image: "/unsubscribe-dark.png?height=450&width=800",
-        thumbnail: "/unsubscribe-dark.png?height=100&width=150"
+        thumbnail: "/unsubscribe-dark.png?height=100&width=150",
       },
       {
         title: "Scheduled Food (Calendar View)",
-        description: "An interactive calendar of scheduled free food events, allowing users to plan and share their own events, fostering a culture of sharing and sustainability.",
+        description:
+          "An interactive calendar of scheduled free food events, allowing users to plan and share their own events, fostering a culture of sharing and sustainability.",
         image: "/unsubscribe-calendar.png?height=450&width=800",
-        thumbnail: "/unsubscribe-calendar.png?height=100&width=150"
+        thumbnail: "/unsubscribe-calendar.png?height=100&width=150",
       },
       {
         title: "Scheduled Food (Grid View)",
-        description: "View scheduled food in grid view, or click on a calendar item to be led to the corresponding food card post in grid view.",
+        description:
+          "View scheduled food in grid view, or click on a calendar item to be led to the corresponding food card post in grid view.",
         image: "/unsubscribe-scheduled.png?height=450&width=800",
-        thumbnail: "/unsubscribe-scheduled.png?height=100&width=150"
+        thumbnail: "/unsubscribe-scheduled.png?height=100&width=150",
       },
       // {
       //   title: "User Profile",
@@ -66,54 +91,58 @@ const projects = [
       "Personalized user profiles with dynamic user data updates to avoid deadnaming, showcasing the project's commitment to inclusivity and respect.",
       // "Dynamic user data updates to avoid deadnaming",
       // "Personalized features for authenticated MIT users",
-    ]
+    ],
   },
   // second project
-]
+];
 
 export default function WebDevPage() {
-  const [currentProject, setCurrentProject] = useState(0)
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [currentProject, setCurrentProject] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
-    const project = projects[currentProject]
-    setCurrentSlide((prev) => (prev + 1) % project.pages.length)
-  }
+    const project = projects[currentProject];
+    setCurrentSlide((prev) => (prev + 1) % project.pages.length);
+  };
 
   const prevSlide = () => {
-    const project = projects[currentProject]
-    setCurrentSlide((prev) => (prev - 1 + project.pages.length) % project.pages.length)
-  }
+    const project = projects[currentProject];
+    setCurrentSlide(
+      (prev) => (prev - 1 + project.pages.length) % project.pages.length
+    );
+  };
 
   return (
     <div className="min-h-screen text-white p-16 z-0 font-zen">
-      <Link 
-        href="/work" 
+      <title>ari peró | web dev & ui</title>
+      <Link
+        href="/work"
         className="inline-flex items-center text-white hover:text-gray-300 transition-colors mb-8"
       >
         <ArrowLeft className="mr-2" size={20} />
         Back to Work
       </Link>
-      
-      <h1 className="text-4xl font-bold mb-8 font-grand">Web Development & &thinsp;UI</h1>
-      
+
+      <h1 className="text-4xl font-bold mb-8 font-grand">
+        Web Development & &thinsp;UI
+      </h1>
+
       <div className="space-y-16">
         {projects.map((project, projectIndex) => (
           <div key={projectIndex} className="space-y-6">
-            {/* <div className="flex justify-between items-end"> */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
-              {/* <div> */}
               <div className="flex-1 max-w-4xl">
                 <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
-                <p className="text-gray-200 mb-4 max-w-2xl">{project.description}</p>
+                <p className="text-gray-200 mb-4 max-w-2xl">
+                  {project.description}
+                </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech, techIndex) => (
-                    // <Badge key={techIndex} variant="secondary" className="bg-white/10 text-white">
-                    <span 
-                      key={techIndex} 
+                    <span
+                      key={techIndex}
                       className="bg-white/10 backdrop-blur-sm px-3 py-1 rounded-full text-sm"
                     >
-                        {tech}
+                      {tech}
                     </span>
                     // </Badge>
                   ))}
@@ -123,7 +152,6 @@ export default function WebDevPage() {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                // className="inline-flex items-center text-white hover:text-gray-300 transition-colors"
                 className="inline-flex items-center whitespace-nowrap text-white hover:text-gray-300 transition-colors"
               >
                 Visit Project <ExternalLink className="ml-2" size={16} />
@@ -188,10 +216,9 @@ export default function WebDevPage() {
                         onClick={() => setCurrentSlide(index)}
                         className={cn(
                           "relative w-24 h-16 overflow-hidden rounded transition-all",
-                          // currentSlide === index ? "ring-2 ring-white" : "opacity-50 hover:opacity-75"
-                          currentSlide === index 
-                              ? "border-2 border-white" 
-                              : "opacity-50 hover:opacity-75"
+                          currentSlide === index
+                            ? "border-2 border-white"
+                            : "opacity-50 hover:opacity-75"
                         )}
                       >
                         <Image
@@ -211,7 +238,9 @@ export default function WebDevPage() {
               <h3 className="text-xl font-bold mb-4">Key Features</h3>
               <ul className="list-disc list-inside space-y-2">
                 {project.keyFeatures.map((feature, index) => (
-                  <li key={index} className="text-gray-200">{feature}</li>
+                  <li key={index} className="text-gray-200">
+                    {feature}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -219,5 +248,5 @@ export default function WebDevPage() {
         ))}
       </div>
     </div>
-  )
+  );
 }
