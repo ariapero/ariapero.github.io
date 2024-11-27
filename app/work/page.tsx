@@ -20,21 +20,6 @@ const backgrounds = [
   '/textile.png',
 ]
 
-// const projects = [
-//   '',
-//   '/work/video',
-//   '/work/sound',
-//   '/work/design',
-//   '/work/photo',
-//   '/work/voice',
-//   '/work/poetry',
-//   '/work/composition',
-//   '/work/instrumental',
-//   '/work/installation',
-//   '/work/fabrication',
-//   '/work/textile',
-// ]
-
 const projects = [
   '',
   '/work/web',
@@ -45,7 +30,7 @@ const projects = [
   'https://ariapero.myportfolio.com/voice',
   '/wip',
   'https://ariapero.myportfolio.com/composition',
-  'https://ariapero.myportfolio.com/instrumental',
+  '/work/instrumental',
   'https://ariapero.myportfolio.com/installation',
   'https://ariapero.myportfolio.com/fabrication',
   '/work/textile',
