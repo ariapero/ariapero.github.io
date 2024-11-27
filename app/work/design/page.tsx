@@ -4,7 +4,13 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ChevronLeft, ChevronRight, DivideCircle, X } from "lucide-react";
+import {
+  ArrowLeft,
+  ChevronLeft,
+  ChevronRight,
+  DivideCircle,
+  X,
+} from "lucide-react";
 
 const projects = [
   {
@@ -115,7 +121,9 @@ const ProjectSection = ({
   const [currentImage, setCurrentImage] = useState(0);
   const [showDetails, setShowDetails] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [expandedImageIndex, setExpandedImageIndex] = useState<number | null>(null);
+  const [expandedImageIndex, setExpandedImageIndex] = useState<number | null>(
+    null
+  );
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -123,42 +131,45 @@ const ProjectSection = ({
   //   setCurrentImage((prev) => (prev + 1) % project.images.length);
 
   const nextImage = useCallback(() => {
-    setCurrentImage((prev) => (prev + 1) % project.images.length)
-  }, [project.images.length])
+    setCurrentImage((prev) => (prev + 1) % project.images.length);
+  }, [project.images.length]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting)
+        setIsVisible(entry.isIntersecting);
       },
       { threshold: 0.5 }
-    )
+    );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+      observer.observe(sectionRef.current);
     }
 
     return () => {
       if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+        observer.unobserve(sectionRef.current);
       }
-    }
+    };
   }, []);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout | null = null
+    let timer: NodeJS.Timeout | null = null;
     if (isVisible && !isHovered) {
       timer = setInterval(() => {
-        nextImage()
-      }, 2000)
+        nextImage();
+      }, 2000);
     }
     return () => {
-      if (timer) clearInterval(timer)
-    }
-  }, [isVisible, isHovered, nextImage])
+      if (timer) clearInterval(timer);
+    };
+  }, [isVisible, isHovered, nextImage]);
 
   return (
-    <div ref={sectionRef} className="min-h-screen w-full flex items-center bg-black snap-start">
+    <div
+      ref={sectionRef}
+      className="min-h-screen w-full flex items-center bg-black snap-start"
+    >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-16">
         <div
           className="relative h-[80vh] w-full"
@@ -180,8 +191,13 @@ const ProjectSection = ({
             {/* Overlay elements */}
             <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-0 pointer-events-none">
               {Array.from({ length: 36 }).map((_, i) => (
-                <div key={i} className="relative w-full h-full flex items-center justify-center">
-                  <span className="absolute text-[#ff00ff] font-bold opacity-70 text-xl">+</span>
+                <div
+                  key={i}
+                  className="relative w-full h-full flex items-center justify-center"
+                >
+                  <span className="absolute text-[#ff00ff] font-bold opacity-70 text-xl">
+                    +
+                  </span>
                 </div>
               ))}
             </div>
@@ -191,8 +207,11 @@ const ProjectSection = ({
               <button
                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white"
                 onClick={(e) => {
-                  e.stopPropagation()
-                  setCurrentImage((prev) => (prev - 1 + project.images.length) % project.images.length)
+                  e.stopPropagation();
+                  setCurrentImage(
+                    (prev) =>
+                      (prev - 1 + project.images.length) % project.images.length
+                  );
                 }}
               >
                 <ChevronLeft />
@@ -202,8 +221,8 @@ const ProjectSection = ({
                 // onClick={nextImage}
 
                 onClick={(e) => {
-                  e.stopPropagation()
-                  nextImage()
+                  e.stopPropagation();
+                  nextImage();
                 }}
               >
                 <ChevronRight />
@@ -264,8 +283,8 @@ const ProjectSection = ({
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center"
             onClick={() => {
-              setShowDetails(false)
-              setExpandedImageIndex(null)
+              setShowDetails(false);
+              setExpandedImageIndex(null);
             }}
           >
             <motion.div
@@ -281,7 +300,9 @@ const ProjectSection = ({
                   <h2 className="text-3xl font-bold font-mono mb-4 text-[#ffff00]">
                     {project.title}
                   </h2>
-                  <p className="text-white font-mono mb-2">{project.description}</p>
+                  <p className="text-white font-mono mb-2">
+                    {project.description}
+                  </p>
                 </div>
                 <button
                   className="text-white hover:text-[#ffff00]"
@@ -304,7 +325,7 @@ const ProjectSection = ({
                       width={800}
                       height={600}
                       className="w-full lg"
-                      style={{ objectFit: 'cover' }}
+                      style={{ objectFit: "cover" }}
                     />
                   </div>
                 ))}
@@ -339,8 +360,12 @@ const ProjectSection = ({
               <button
                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:text-[#ffff00]"
                 onClick={(e) => {
-                  e.stopPropagation()
-                  setExpandedImageIndex((prev) => (prev! - 1 + project.images.length) % project.images.length)
+                  e.stopPropagation();
+                  setExpandedImageIndex(
+                    (prev) =>
+                      (prev! - 1 + project.images.length) %
+                      project.images.length
+                  );
                 }}
               >
                 <ChevronLeft />
@@ -348,8 +373,10 @@ const ProjectSection = ({
               <button
                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:text-[#ffff00]"
                 onClick={(e) => {
-                  e.stopPropagation()
-                  setExpandedImageIndex((prev) => (prev! + 1) % project.images.length)
+                  e.stopPropagation();
+                  setExpandedImageIndex(
+                    (prev) => (prev! + 1) % project.images.length
+                  );
                 }}
               >
                 <ChevronRight />
@@ -374,7 +401,7 @@ const ArchiveSection = () => {
         <h2 className="text-4xl md:text-5xl font-mono text-[#ffff00]">
           Archived graphics work 2014-2018:
         </h2>
-        <Link
+        <a
           href="https://soulmaets.tumblr.com/tagged/mine"
           target="_blank"
           rel="noopener noreferrer"
@@ -387,29 +414,28 @@ const ArchiveSection = () => {
           >
             ARchIVe
           </motion.button>
-        </Link>
+        </a>
 
         <footer className="fixed bottom-0 left-0 w-full pb-4 pl-4 pr-8 flex justify-between items-center mt-8 text-white font-mono">
           <Link href="/" className="hover:underline">
             HTTPS://ARIAPERO.GITHUB.IO
           </Link>
-          <div>
-            © 2024 Ari Peró. All rights reserved.
-          </div>
+          <div>© 2024 Ari Peró. All rights reserved.</div>
           <a href="mailto:ariapero@mit.edu" className="hover:underline">
             MAILTO:ARIAPERO@MIT.EDU
           </a>
         </footer>
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
 export default function DesignPage() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="bg-black text-white">
+      <title>ari peró | graphic & creative design</title>
       <div className="fixed top-8 left-8 z-50">
         <Link
           href="/work"
