@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from "next/link";
 import Image from "next/image";
-import { ChevronDown, ChevronUp, Maximize2, Minimize2 } from 'lucide-react'
+import { ChevronDown, ChevronUp, ChevronLeft, Maximize2, Minimize2 } from 'lucide-react'
 
 interface Project {
   title: string
@@ -169,7 +169,7 @@ export default function Page() {
       <header className="p-4 flex justify-between items-center border-b border-white/10">
         <div className="flex items-center space-x-4">
           <div className="border border-white p-2">
-            <span className="text-xs">01/</span>
+            <Link href="/work" className="inline-flex items-center text-xs text-white hover:underline">‹01/</Link>
           </div>
           <div className="text-xs space-y-1">
             <p>INSTRUMENTAL PERFORMANCE & IMPROVISATION</p>
@@ -295,7 +295,7 @@ export default function Page() {
               ))}
             </div>
             <div className="border border-white px-2 py-0.5">
-              <Link href="/" className="text-sm hover:underline">home</Link>
+              <Link href="/" className="text-sm hover:underline">home/</Link>
             </div>
           </div>
           <div className="flex items-center space-x-4">
