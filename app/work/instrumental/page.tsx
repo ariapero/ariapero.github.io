@@ -295,7 +295,7 @@ export default function Page() {
               ))}
             </div>
             <div className="border border-white px-2 py-0.5">
-              <a href="/" className="text-sm hover:underline">home</a>
+              <Link href="/" className="text-sm hover:underline">home</Link>
             </div>
           </div>
           <div className="flex items-center space-x-4">
