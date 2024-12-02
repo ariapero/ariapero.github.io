@@ -43,23 +43,23 @@ const sloop = localFont({
   display: "swap",
 });
 
-const highriseRegular = localFont({
-  src: "./fonts/HighriseFont-Demo-Regular.otf",
-  variable: "--font-highrise-regular",
-  display: "swap",
-});
+// const highriseRegular = localFont({
+//   src: "./fonts/HighriseFont-Demo-Regular.otf",
+//   variable: "--font-highrise-regular",
+//   display: "swap",
+// });
 
-const highriseBold = localFont({
-  src: "./fonts/HighriseFont-Bold-Demo.otf",
-  variable: "--font-highrise-bold",
-  display: "swap",
-});
+// const highriseBold = localFont({
+//   src: "./fonts/HighriseFont-Bold-Demo.otf",
+//   variable: "--font-highrise-bold",
+//   display: "swap",
+// });
 
-const highriseCondensed = localFont({
-  src: "./fonts/HighriseFont-Condensed-Demo.otf",
-  variable: "--font-highrise-condensed",
-  display: "swap",
-});
+// const highriseCondensed = localFont({
+//   src: "./fonts/HighriseFont-Condensed-Demo.otf",
+//   variable: "--font-highrise-condensed",
+//   display: "swap",
+// });
 
 const grand = localFont({
   src: "./fonts/GrandSlang-Roman.ttf",
@@ -100,9 +100,6 @@ export default function RootLayout({
       ${zen.variable}
       ${share.variable}
       ${sloop.variable} 
-      ${highriseRegular.variable} 
-      ${highriseBold.variable} 
-      ${highriseCondensed.variable}
       ${grand.variable}
       ${ncl.variable}
     `}
