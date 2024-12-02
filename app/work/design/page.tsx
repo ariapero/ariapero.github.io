@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,7 +8,6 @@ import {
   ArrowLeft,
   ChevronLeft,
   ChevronRight,
-  DivideCircle,
   X,
 } from "lucide-react";
 
@@ -111,119 +110,115 @@ const projects = [
   },
 ];
 
-const ProjectSection = ({
-  project,
-  index,
-}: {
-  project: (typeof projects)[0];
-  index: number;
-}) => {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [showDetails, setShowDetails] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
-  const [expandedImageIndex, setExpandedImageIndex] = useState<number | null>(
-    null
-  );
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  // const nextImage = () =>
-  //   setCurrentImage((prev) => (prev + 1) % project.images.length);
+const ProjectSection = ({ project, index }: { project: typeof projects[0]; index: number }) => {
+  const [currentImage, setCurrentImage] = useState(0)
+  const [showDetails, setShowDetails] = useState(false)
+  const [isHovered, setIsHovered] = useState(false)
+  const [expandedImageIndex, setExpandedImageIndex] = useState<number | null>(null)
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLDivElement>(null)
 
   const nextImage = useCallback(() => {
-    setCurrentImage((prev) => (prev + 1) % project.images.length);
-  }, [project.images.length]);
+    setCurrentImage((prev) => (prev + 1) % project.images.length)
+  }, [project.images.length])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting);
+        setIsVisible(entry.isIntersecting)
       },
       { threshold: 0.5 }
-    );
+    )
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+      observer.observe(sectionRef.current)
     }
 
     return () => {
       if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+        observer.unobserve(sectionRef.current)
       }
-    };
-  }, []);
+    }
+  }, [])
 
   useEffect(() => {
-    let timer: NodeJS.Timeout | null = null;
+    let timer: NodeJS.Timeout | null = null
     if (isVisible && !isHovered) {
-      timer = setInterval(() => {
-        nextImage();
-      }, 2000);
+      timer = setInterval(nextImage, 2000)
     }
     return () => {
-      if (timer) clearInterval(timer);
-    };
-  }, [isVisible, isHovered, nextImage]);
+      if (timer) clearInterval(timer)
+    }
+  }, [isVisible, isHovered, nextImage])
+
+  const handleImageClick = useCallback((e: React.MouseEvent, index: number) => {
+    e.stopPropagation()
+    setExpandedImageIndex(index)
+  }, [])
+
+  const closeExpandedImage = useCallback(() => setExpandedImageIndex(null), [])
+
+  const navigateExpandedImage = useCallback((direction: 'prev' | 'next') => {
+    setExpandedImageIndex((prev) => {
+      if (prev === null) return null
+      const newIndex = direction === 'prev'
+        ? (prev - 1 + project.images.length) % project.images.length
+        : (prev + 1) % project.images.length
+      return newIndex
+    })
+  }, [project.images.length])
+
+  const memoizedOverlay = useMemo(() => (
+    <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-0 pointer-events-none">
+      {Array.from({ length: 36 }).map((_, i) => (
+        <div key={i} className="relative w-full h-full flex items-center justify-center">
+          <span className="absolute text-[#ff00ff] font-bold opacity-70 text-xl">+</span>
+        </div>
+      ))}
+    </div>
+  ), [])
 
   return (
-    <div
-      ref={sectionRef}
-      className="min-h-screen w-full flex items-center bg-black snap-start"
-    >
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-16">
+    <div ref={sectionRef} className="min-h-screen w-full flex items-center bg-black snap-start">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-16">
         <div
           className="relative h-[80vh] w-full"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => setShowDetails(true)}
         >
-          <div className="absolute inset-0">
-            <Image
-              src={project.images[currentImage]}
-              alt={project.title}
-              fill
-              className="object-cover transition-all duration-300"
-              style={{
-                filter: isHovered ? "none" : "grayscale(100%)",
-                objectPosition: "center",
-              }}
-            />
-            {/* Overlay elements */}
-            <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-0 pointer-events-none">
-              {Array.from({ length: 36 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="relative w-full h-full flex items-center justify-center"
-                >
-                  <span className="absolute text-[#ff00ff] font-bold opacity-70 text-xl">
-                    +
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
+          <Image
+            src={project.images[currentImage]}
+            alt={project.title}
+            fill
+            className="object-cover transition-all duration-300"
+            style={{
+              filter: isHovered ? 'none' : 'grayscale(100%)',
+              objectPosition: 'center',
+            }}
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority={index === 0}
+          />
+          {memoizedOverlay}
           {project.images.length > 1 && (
             <>
               <button
                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white"
                 onClick={(e) => {
-                  e.stopPropagation();
-                  setCurrentImage(
-                    (prev) =>
-                      (prev - 1 + project.images.length) % project.images.length
-                  );
+                  e.stopPropagation()
+                  setCurrentImage((prev) => (prev - 1 + project.images.length) % project.images.length)
                 }}
+                aria-label="Previous image"
               >
                 <ChevronLeft />
               </button>
               <button
                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white"
-                // onClick={nextImage}
-
                 onClick={(e) => {
-                  e.stopPropagation();
-                  nextImage();
+                  e.stopPropagation()
+                  nextImage()
                 }}
+                aria-label="Next image"
               >
                 <ChevronRight />
               </button>
@@ -243,12 +238,7 @@ const ProjectSection = ({
             className="space-y-6"
           >
             <div className="space-y-2">
-              <h3 className="text-xs font-mono opacity-50">
-                {project.category}
-              </h3>
-              {/* <h2 className="text-4xl md:text-6xl font-bold font-mono tracking-tighter">
-                    {project.title}
-                </h2> */}
+              <h3 className="text-xs font-mono opacity-50">{project.category}</h3>
               <button
                 className="text-left text-4xl md:text-6xl font-bold font-mono tracking-tighter hover:text-[#ff00ff] transition-colors"
                 onClick={() => setShowDetails(true)}
@@ -268,7 +258,6 @@ const ProjectSection = ({
             </button>
           </motion.div>
 
-          {/* Decorative elements */}
           <div className="absolute bottom-4 right-4">
             <div className="w-8 h-8 border border-[#ffff00] opacity-50 rotate-45" />
           </div>
@@ -283,15 +272,14 @@ const ProjectSection = ({
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center"
             onClick={() => {
-              setShowDetails(false);
-              setExpandedImageIndex(null);
+              setShowDetails(false)
+              setExpandedImageIndex(null)
             }}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              // className="bg-[#000] p-8 rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto"
               className="bg-neutral-900 p-8 rounded-lg w-[80vw] h-[85vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
@@ -300,13 +288,12 @@ const ProjectSection = ({
                   <h2 className="text-3xl font-bold font-mono mb-4 text-[#ffff00]">
                     {project.title}
                   </h2>
-                  <p className="text-white font-mono mb-2">
-                    {project.description}
-                  </p>
+                  <p className="text-white font-mono mb-2">{project.description}</p>
                 </div>
                 <button
                   className="text-white hover:text-[#ffff00]"
                   onClick={() => setShowDetails(false)}
+                  aria-label="Close details"
                 >
                   <X size={24} />
                 </button>
@@ -317,7 +304,7 @@ const ProjectSection = ({
                   <div
                     key={i}
                     className="break-inside-avoid cursor-pointer hover:opacity-80 transition-opacity"
-                    onClick={() => setExpandedImageIndex(i)}
+                    onClick={(e) => handleImageClick(e, i)}
                   >
                     <Image
                       src={img}
@@ -325,7 +312,7 @@ const ProjectSection = ({
                       width={800}
                       height={600}
                       className="w-full lg"
-                      style={{ objectFit: "cover" }}
+                      style={{ objectFit: 'cover' }}
                     />
                   </div>
                 ))}
@@ -342,7 +329,7 @@ const ProjectSection = ({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/95 z-[60] flex items-center justify-center"
-            onClick={() => setExpandedImageIndex(null)}
+            onClick={closeExpandedImage}
           >
             <div className="relative w-full h-full flex items-center justify-center">
               <Image
@@ -353,31 +340,28 @@ const ProjectSection = ({
               />
               <button
                 className="absolute top-4 right-4 text-white hover:text-[#ffff00]"
-                onClick={() => setExpandedImageIndex(null)}
+                onClick={closeExpandedImage}
+                aria-label="Close expanded image"
               >
                 <X size={24} />
               </button>
               <button
                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:text-[#ffff00]"
                 onClick={(e) => {
-                  e.stopPropagation();
-                  setExpandedImageIndex(
-                    (prev) =>
-                      (prev! - 1 + project.images.length) %
-                      project.images.length
-                  );
+                  e.stopPropagation()
+                  navigateExpandedImage('prev')
                 }}
+                aria-label="Previous image"
               >
                 <ChevronLeft />
               </button>
               <button
                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:text-[#ffff00]"
                 onClick={(e) => {
-                  e.stopPropagation();
-                  setExpandedImageIndex(
-                    (prev) => (prev! + 1) % project.images.length
-                  );
+                  e.stopPropagation()
+                  navigateExpandedImage('next')
                 }}
+                aria-label="Next image"
               >
                 <ChevronRight />
               </button>
@@ -386,8 +370,8 @@ const ProjectSection = ({
         )}
       </AnimatePresence>
     </div>
-  );
-};
+  )
+}
 
 const ArchiveSection = () => {
   return (
@@ -415,23 +399,13 @@ const ArchiveSection = () => {
             ARchIVe
           </motion.button>
         </a>
-
-        <footer className="fixed bottom-0 left-0 w-full pb-4 pl-4 pr-8 flex justify-between items-center mt-8 text-white font-mono">
-          <Link href="/" className="hover:underline">
-            HTTPS://ARIAPERO.GITHUB.IO
-          </Link>
-          <div>© 2024 Ari Peró. All rights reserved.</div>
-          <a href="mailto:ariapero@mit.edu" className="hover:underline">
-            MAILTO:ARIAPERO@MIT.EDU
-          </a>
-        </footer>
       </motion.div>
     </div>
-  );
-};
+  )
+}
 
 export default function DesignPage() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null)
 
   return (
     <div className="bg-black text-white">
@@ -458,9 +432,8 @@ export default function DesignPage() {
 
       <button
         className="fixed top-1/2 right-6 -translate-y-1/2 bg-black/50 p-3 rounded-full text-white z-50 hover:bg-gray-200 hover:text-black transition-colors duration-300 focus:outline-none"
-        onClick={() =>
-          containerRef.current?.scrollTo({ top: 0, behavior: "smooth" })
-        }
+        onClick={() => containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
+        aria-label="Scroll to top"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -477,6 +450,16 @@ export default function DesignPage() {
           />
         </svg>
       </button>
+
+      <footer className="fixed bottom-0 left-0 w-full pb-4 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center mt-8 text-white font-mono text-sm">
+        <Link href="/" className="hover:underline mb-2 md:mb-0">
+          HTTPS://ARIAPERO.GITHUB.IO
+        </Link>
+        <div className="mb-2 md:mb-0">© 2024 Ari Peró. All rights reserved.</div>
+        <a href="mailto:ariapero@mit.edu" className="hover:underline">
+          MAILTO:ARIAPERO@MIT.EDU
+        </a>
+      </footer>
     </div>
-  );
+  )
 }
