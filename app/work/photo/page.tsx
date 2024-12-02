@@ -70,11 +70,15 @@ export default function PhotoPage() {
 
   const randomizedImages = useMemo(() => shuffleArray(originalImages), []);
 
+  const randomDepths = useMemo(() => 
+    Array.from({ length: randomizedImages.length }, () => Math.random() * 40),
+  [randomizedImages.length]);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setScrollPosition((prevPosition) => {
         if (slideshowRef.current) {
-          const newPosition = prevPosition + 1;
+          const newPosition = prevPosition + 1.1; // scroll speed
           return newPosition % slideshowRef.current.scrollWidth;
         }
         return prevPosition;
@@ -104,7 +108,7 @@ export default function PhotoPage() {
             key={index}
             className="shrink-0 w-full h-full"
             style={{
-              transform: `translateZ(${Math.sin(index * 0.5) * 200}px)`,
+              transform: `translateZ(${Math.sin(randomDepths[index] * 0.5) * 280}px)`, // depth effect (image size)
               opacity: 0.7,
             }}
           >
@@ -168,7 +172,7 @@ export default function PhotoPage() {
         <main className="flex-grow flex items-center mt-4">
           {/* <main className="my-24"> */}
           <div className="grid grid-cols-4 gap-4">
-            {/* <div className="text-red-600 text-[8rem] leading-none font-bold tracking-tighter"> */}
+            {/* <div className="text-red-600 text-[7rem] leading-none font-bold tracking-tighter"> */}
             <div className="text-red-600 text-[8.2vw] leading-none font-bold tracking-tighter">
               <Link
                 href="https://ariapero.myportfolio.com/photo"
