@@ -112,13 +112,13 @@ export default function Page() {
                       >
                         Resume <ArrowRight className="h-5 w-5" />
                       </Link>
-                      <a
+                      <Link
                         href="https://ariapero.myportfolio.com/"
                         className="flex items-center gap-2 text-white text-lg sm:text-xl hover:gap-4 transition-all duration-300 font-inter"
                         target="_blank"
                       >
                         Ex-Portfolio <ArrowRight className="h-5 w-5" />
-                      </a>
+                      </Link>
                     </motion.nav>
                   </div>
                 </motion.main>
