@@ -165,6 +165,7 @@ export default function VideoPage() {
                           objectFit="cover"
                           sizes="(max-width: 768px) 100vw, 50vw"
                           className="rounded-lg"
+                          loading="lazy"
                         />
                       </div>
                     ))}
@@ -207,6 +208,7 @@ export default function VideoPage() {
               height={1080}
               objectFit="contain"
               className="rounded-lg"
+              loading="lazy"
             />
             <Button
               variant="ghost"
