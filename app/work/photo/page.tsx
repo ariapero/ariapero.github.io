@@ -67,12 +67,24 @@ function shuffleArray<T>(array: T[]): T[] {
 export default function PhotoPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const slideshowRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
 
   const randomizedImages = useMemo(() => shuffleArray(originalImages), []);
 
-  const randomDepths = useMemo(() => 
-    Array.from({ length: randomizedImages.length }, () => Math.random() * 40),
-  [randomizedImages.length]);
+  const randomDepths = useMemo(
+    () =>
+      Array.from({ length: randomizedImages.length }, () => Math.random() * 40),
+    [randomizedImages.length]
+  );
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -95,7 +107,7 @@ export default function PhotoPage() {
   }, [scrollPosition]);
 
   return (
-    <div className="h-screen bg-black text-yellow-500 relative overflow-hidden font-mono flex flex-col">
+    <div className="h-[100dvh] bg-black text-yellow-500 relative overflow-hidden font-mono flex flex-col">  {/* or h-screen */}
       <title>ari peró | photography & editing</title>
       {/* Autoscrolling background */}
       <div
@@ -108,7 +120,9 @@ export default function PhotoPage() {
             key={index}
             className="shrink-0 w-full h-full"
             style={{
-              transform: `translateZ(${Math.sin(randomDepths[index] * 0.5) * 280}px)`, // depth effect (image size)
+              transform: `translateZ(${
+                Math.sin(randomDepths[index] * 0.5) * 280
+              }px)`, // depth effect (image size)
               opacity: 0.7,
             }}
           >
@@ -123,14 +137,10 @@ export default function PhotoPage() {
           </div>
         ))}
       </div>
-
-      {/* Content container */}
       {/* <div className="relative z-10 container mx-auto px-4 py-8"> */}
       {/* <div className="relative z-10 flex flex-col justify-between h-full p-8"> */}
-      <div className="relative z-10 flex flex-col justify-between h-full px-16 py-8">
-        {/* Header section */}
+      <div className="relative z-10 flex flex-col justify-between h-full px-4 md:px-16 py-6 md:py-8">  {/* browser view: px-16 py-8 */}
         <header>
-          {/* <header className="mb-12"> */}
           <div className="flex justify-between items-start text-xs">
             <div>
               <h2 className="text-sm mb-1.5">
@@ -142,38 +152,58 @@ export default function PhotoPage() {
                   BACK TO WORK
                 </Link>
               </h2>
-              <p>2017 - 2022</p>
-              <p>SAMPLE WORKS</p>
+              <p className="whitespace-nowrap">2017 - 2022</p>
+              {isMobile ? (
+                <p>SAMPLE WORKS IN PHOTOGRAPHY & EDITING</p>
+              ) : (
+                <p className="whitespace-nowrap">SAMPLE WORKS</p>
+              )}
             </div>
-            <div className="text-center">
-              <h1 className="text-xl font-bold mb-1">ARIAPERO/Photo</h1>
-              {/* <p className="text-yellow-500">▼42°21'36.36"N 71°5'39.12"E</p> */}
-              <p className="text-yellow-500">(* WIP/PLACEHOLDER PAGE *)</p>
-            </div>
+            {!isMobile && (
+              <div className="text-center">
+                <h1 className="text-xl font-bold mb-1">ARIAPERO/Photo</h1>
+                {/* <p className="text-yellow-500">▼42°21'36.36"N 71°5'39.12"E</p> */}
+                <p className="text-yellow-500">(* WIP/PLACEHOLDER PAGE *)</p>
+              </div>
+            )}
             <div className="text-right">
-              <Link
-                href="/"
-                className="hover:underline hover:text-white transition-colors"
-              >
-                <p>HTTPS://ARIAPERO</p>
-                <p>.GITHUB.IO</p>
-              </Link>
+              {isMobile ? (
+                <Link
+                  href="/"
+                  className="text-sm mb-1.5 hover:underline hover:text-white transition-colors"
+                  rel="noopener noreferrer"
+                >
+                  HOME
+                </Link>
+              ) : (
+                <Link
+                  href="/"
+                  className="hover:underline hover:text-white transition-colors"
+                  rel="noopener noreferrer"
+                >
+                  <p>HTTPS://ARIAPERO</p>
+                  <p>.GITHUB.IO</p>
+                </Link>
+              )}
             </div>
           </div>
 
           <div className="text-xs mt-3.5">
-            <p>EVENT / FASHION / PORTRAIT –– PHOTOGRAPHY</p>
-            <p>COLOR GRADING / CORRECTIVE / STYLISTIC / GENERAL –– EDITING</p>
+            {!isMobile && (
+              <div>
+                <p>EVENT / FASHION / PORTRAIT –– PHOTOGRAPHY</p>
+                <p>
+                  COLOR GRADING / CORRECTIVE / STYLISTIC / GENERAL –– EDITING
+                </p>
+              </div>
+            )}
             <p>PHOTOS DISPLAYED ALL SHOT ON NIKON D3400 OR iPHONE 8</p>
           </div>
         </header>
-
-        {/* Main title section */}
-        <main className="flex-grow flex items-center mt-4">
-          {/* <main className="my-24"> */}
+        {/* Main title */}
+        <main className="flex-grow flex items-center mt-4">  {/* orig <main className="my-24"> */}
           <div className="grid grid-cols-4 gap-4">
-            {/* <div className="text-red-600 text-[7rem] leading-none font-bold tracking-tighter"> */}
-            <div className="text-red-600 text-[8.2vw] leading-none font-bold tracking-tighter">
+            <div className="text-red-600 text-[24vw] md:text-[8.2vw] leading-none font-bold tracking-tighter">  {/* orig text-[7rem] */}
               <Link
                 href="https://ariapero.myportfolio.com/photo"
                 target="_blank"
@@ -191,36 +221,46 @@ export default function PhotoPage() {
             </div>
           </div>
         </main>
-
         {/* Footer */}
-        <footer>
-          {/* <footer className="absolute bottom-0 left-0 right-0 p-4"> */}
+        <footer>  {/* orig <footer className="absolute bottom-0 left-0 right-0 p-4"> */}
           <div className="flex justify-between items-center text-xs">
             <div className="flex items-center gap-2">
               <span>©</span>
-              <span className="text-yellow-500">
-                ARI PERÓ / EST. MMXXIV / ARTS & DEV PORTFOLIO / PHOTOGRAPHY &
-                EDITING ✱
-              </span>
+              {isMobile ? (
+                <span className="text-yellow-500">ARI PERÓ ✱ 2024</span>
+              ) : (
+                <span className="text-yellow-500">
+                  ARI PERÓ / EST. MMXXIV / ARTS & DEV PORTFOLIO / PHOTOGRAPHY &
+                  EDITING ✱
+                </span>
+              )}
             </div>
             <div>
-              <p>
+              {isMobile ? (
                 <a
                   href="mailto:ariapero@mit.edu"
                   className="underline hover:text-white transition-colors"
                 >
-                  HERE
+                  EMAIL
                 </a>
-                'S MY EMAIL ¯\_(ツ)_/¯
-              </p>
+              ) : (
+                <p>
+                  <a
+                    href="mailto:ariapero@mit.edu"
+                    className="underline hover:text-white transition-colors"
+                  >
+                    HERE
+                  </a>
+                  &apos;S MY EMAIL ¯\_(ツ)_/¯
+                </p>
+              )}
             </div>
           </div>
         </footer>
       </div>
-
       {/* Decorative background lines */}
       <div className="absolute top-1/3 left-0 right-0 h-px bg-yellow-500/20"></div>
-      <div className="absolute top-2/3 left-0 right-0 h-px bg-yellow-500/20"></div>
+      <div className="absolute top-2/3 left-0 right-0 h-px bg-yellow-500/20"></div>  {/* or top-[62%] */}
     </div>
   );
 }
