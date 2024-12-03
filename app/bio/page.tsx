@@ -23,7 +23,7 @@ const App: React.FC = () => {
       category: "Urban Science",
       courses: [
         "Crowd Sourced City: Civic Tech Prototyping (Data Activism)",
-        "Intro to Spatial Analysis & GIS Laboratory"
+        "Urban Planning and Social Science Laboratory: Intro to Spatial Analysis & Geographic Information Systems (GIS) Laboratory"
       ]
     },
     {
