@@ -22,7 +22,7 @@ const AudioPlayer = ({ src, title }: { src: string; title?: string }) => (
 
 export default function SoundDesignPage() {
   return (
-    <div className="min-h-screen text-white p-8 relative">
+    <div className="min-h-screen text-white p-6 sm:p-8 relative">
       <title>ari peró | sound design</title>
       <GradientBackground />
       <div className="max-w-4xl mx-auto relative z-10">
@@ -44,9 +44,9 @@ export default function SoundDesignPage() {
         </motion.h1>
 
         <Card className="bg-white/5 backdrop-blur-sm overflow-hidden font-zen text-white text-center mb-8">
-          <CardContent className="p-8">
+          <CardContent className="p-6 sm:p-8">
             <h2 className="text-2xl font-bold mb-4">EDITED IN LOGIC PRO.</h2>
-            <p className="text-lg mb-4">
+            <p className="text-base sm:text-lg mb-4">
               Blending traditional African instruments like the mbëng-mbëng,
               mbira, talking drum (tama), and bala (West African marimba), with
               contemporary vocal techniques, inspired by both Sabar drumming and
@@ -71,8 +71,8 @@ export default function SoundDesignPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-white/5 backdrop-blur-sm overflow-hidden font-zen text-white text-center mb-8">
-          <CardContent className="p-8">
+        <Card className="bg-white/5 backdrop-blur-sm overflow-hidden font-zen text-white text-center mb-4 sm:mb-8">
+          <CardContent className="p-6 sm:p-8">
             <h2 className="text-2xl font-bold mb-4">
               EXPERIMENTAL AUDIO ENVIRONMENTS CRAFTED FROM ORIGINAL RECORDINGS.
               EDITED IN REAPER.

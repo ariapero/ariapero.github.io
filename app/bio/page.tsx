@@ -16,15 +16,15 @@ const App: React.FC = () => {
         "Undergraduate Planning Seminar",
         "Intro to Urban Design & Development",
         "Making Public Policy",
-        "Intro to Housing, Community, & Economic Development"
-      ]
+        "Intro to Housing, Community, & Economic Development",
+      ],
     },
     {
       category: "Urban Science",
       courses: [
         "Crowd Sourced City: Civic Tech Prototyping (Data Activism)",
-        "Urban Planning and Social Science Laboratory: Intro to Spatial Analysis & Geographic Information Systems (GIS) Laboratory"
-      ]
+        "Urban Planning and Social Science Laboratory: Intro to Spatial Analysis & Geographic Information Systems (GIS) Laboratory",
+      ],
     },
     {
       category: "Computer Science (CS) & Applications",
@@ -40,8 +40,8 @@ const App: React.FC = () => {
         "Discrete Math & Proof for CS",
         "Fundamentals of Programming",
         "Intro to Computational Thinking & Data Science",
-        "Intro to CS Programming in Python"
-      ]
+        "Intro to CS Programming in Python",
+      ],
     },
     {
       category: "Social Justice",
@@ -51,8 +51,8 @@ const App: React.FC = () => {
         "Reparations for Slavery & Colonization: Contemporary Movements for Justice",
         "Brazil: Race, Place, & Modernity in the Americas",
         "Crime, Punishment & Policing in an Unequal America (Harvard Law School)",
-        "How to Change the World: Experiences from Social Entrepreneurs"
-      ]
+        "How to Change the World: Experiences from Social Entrepreneurs",
+      ],
     },
     {
       category: "Music",
@@ -68,8 +68,8 @@ const App: React.FC = () => {
         "Harmony and Counterpoint I",
         "MIT Chamber Chorus",
         "MIT Concert Choir",
-        "Electronic Music Composition"
-      ]
+        "Electronic Music Composition",
+      ],
     },
     {
       category: "Creative Arts",
@@ -77,27 +77,27 @@ const App: React.FC = () => {
         "Intro to Artistic Experimentation",
         "Performance Media",
         "Intro to Video & Related Media",
-        "Beyond Independent Filmmaking"
-      ]
-    }
+        "Beyond Independent Filmmaking",
+      ],
+    },
   ];
 
   return (
-    <div>
+    <div className="relative">
       <PipelineBackground />
       {/* Content */}
       <motion.main
-        className="relative z-10 min-h-screen p-8 sm:p-12 lg:p-16 text-white"
+        className="relative z-10 min-h-screen p-6 sm:p-10 lg:p-16 text-white"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
         {/* Low opacity black box */}
-        <div className="absolute inset-0 bg-black opacity-40 w-full h-full"></div>
+        <div className="absolute inset-0 bg-black opacity-40" />
         <div className="relative z-10 max-w-7xl mx-auto">
           {/* Header */}
           <motion.div
-            className="mb-20"
+            className="mb-16 sm:mb-20"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
@@ -111,23 +111,27 @@ const App: React.FC = () => {
             <div className="mt-1 space-y-1 text-sm font-zen">
               <p>MIT DUSP, EECS, Music</p>
               <p>B.S. Candidate 2025</p>
-              <p><a href="mailto:ariapero@mit.edu" className="hover:underline">
-                ariapero@mit.edu
-              </a></p>
+              <p>
+                <a href="mailto:ariapero@mit.edu" className="hover:underline">
+                  ariapero@mit.edu
+                </a>
+              </p>
             </div>
           </motion.div>
 
           {/* Main Content */}
-          <div className="flex flex-col pb-8 lg:flex-row gap-12 lg:gap-20">
+          <div className="flex flex-col pb-8 lg:flex-row gap-10 lg:gap-18">
             <motion.div
-              className="space-y-8 lg:w-2/3"
+              className="space-y-8 -mb-2 lg:mb-0 lg:w-2/3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              <h1 className="text-4xl sm:text-5xl font-bold leading-tight font-grand">
-                Art, Policy, & Technology
-                <span className="block font-normal">for the common good</span>
+              <h1 className="text-3xl sm:text-5xl font-bold leading-tight font-grand">
+                Art, Policy, & Technology{" "}
+                <span className="sm:block font-normal">
+                  for the common good
+                </span>
               </h1>
 
               <div
@@ -150,11 +154,11 @@ const App: React.FC = () => {
                   housing justice, leveraging social media for amplifying
                   advocacy groups, environmentally conscious planning through
                   indigenous and reparative paradigms, and holistic criminal
-                  justice reform&#8212;fighting for both racial and LGBTQ+ justice
-                  within the context of reducing incarceration. Utilizing
-                  technology, programming, machine vision, and urban science
-                  principles, they strive to drive transformation in these
-                  domains.
+                  justice reform&#8212;fighting for both racial and LGBTQ+
+                  justice within the context of reducing incarceration.
+                  Utilizing technology, programming, machine vision, and urban
+                  science principles, they strive to drive transformation in
+                  these domains.
                 </p>
 
                 <p>
@@ -289,33 +293,40 @@ const App: React.FC = () => {
             </motion.div>
 
             <motion.div
-              className="sm:ml-auto w-[400px] h-full lg:w-[500px] h-[625px] z-100"
+              className="lg:w-2/5 flex flex-col items-center lg:items-start"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
-              <div className="relative w-full h-full z-100">
+              <div className="relative w-full max-w-lg mb-8">
                 <Image
                   src="/headshot.JPG"
                   alt="presentation"
                   width={500}
                   height={625}
-                  className="object-cover rounded-lg z-100"
+                  className="object-cover rounded-lg"
                   priority
                 />
               </div>
-              <div className="bg-black bg-opacity-40 mt-6 p-6 rounded-lg">
+              <div className="bg-black bg-opacity-40 p-6 rounded-lg">
                 {/* <h2 className="text-2xl font-bold mb-4">Resume</h2> */}
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex flex-col gap-0 sm:flex-row justify-between items-start sm:items-center mb-4">
                   <h2 className="text-2xl font-bold">Coursework</h2>
-                  <Link href="/docs/Ari_Pero_Resume.pdf" className="hover:opacity-80 transition-opacity">
-                    <h2 className="text-2xl font-regular italic">View Resume</h2>
+                  <Link
+                    href="/docs/Ari_Pero_Resume.pdf"
+                    className="hover:opacity-80 transition-opacity"
+                  >
+                    <h2 className="text-2xl lg:text-xl xl:text-2xl font-regular italic">
+                      View Resume
+                    </h2>
                   </Link>
                 </div>
-                <div className="space-y-4 text-sm max-h-[400px] overflow-y-auto pr-4">
+                <div className="space-y-4 text-sm max-h-[350px] sm:max-h-[400px] overflow-y-auto pr-4">
                   {coursework.map((category, index) => (
                     <div key={index}>
-                      <h3 className="text-lg font-semibold mb-2">{category.category}</h3>
+                      <h3 className="text-lg font-semibold mb-2">
+                        {category.category}
+                      </h3>
                       <ul className="list-disc pl-5 space-y-1">
                         {category.courses.map((course, courseIndex) => (
                           <li key={courseIndex}>{course}</li>
@@ -334,13 +345,25 @@ const App: React.FC = () => {
                 className="text-center space-y-8"
               >
                 <footer className="fixed bottom-0 left-0 w-full p-4 flex justify-between items-center mt-8 text-white font-zen">
-                  <Link href="/" className="text-white hover:underline text-xs">
-                      <Image src="/apple-icon.png" alt="Home" width={6} height={6} className="w-6 h-6" style={{ filter: 'drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3))' }}/>
+                  <Link href="/" className="text-white hover:underline">
+                    <Image
+                      src="/apple-icon.png"
+                      alt="Home"
+                      width={6}
+                      height={6}
+                      className="w-6 h-6"
+                      style={{
+                        filter: "drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3))",
+                      }}
+                    />
                   </Link>
-                  <div className="text-sm">
-                    © 2024 Ari Peró. All rights reserved.
+                  <div className="text-xs sm:text-sm">
+                    © 2025 Ari Peró. All rights reserved.
                   </div>
-                  <a href="mailto:ariapero@mit.edu" className="text-xs hover:underline">
+                  <a
+                    href="mailto:ariapero@mit.edu"
+                    className="text-xs hover:underline"
+                  >
                     ariapero@mit.edu
                   </a>
                 </footer>

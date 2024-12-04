@@ -113,7 +113,7 @@ export default function WebDevPage() {
   };
 
   return (
-    <div className="min-h-screen text-white p-16 z-0 font-zen">
+    <div className="min-h-screen text-white p-6 sm:p-16 z-0 font-zen">
       <title>ari peró | web dev & ui</title>
       <Link
         href="/work"

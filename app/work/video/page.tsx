@@ -87,7 +87,7 @@ export default function VideoPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-900 text-white p-16 font-zen text-white">
+    <div className="min-h-screen bg-neutral-900 text-white p-6 sm:p-16 font-zen text-white">
       <title>ari peró | audiovisual media & experimental performance</title>
       <div className="max-w-4xl mx-auto">
         <Link 
@@ -103,7 +103,7 @@ export default function VideoPage() {
         <div className="space-y-16">
           {projects.map((project, projectIndex) => (
             <Card key={projectIndex} className="bg-white/5 backdrop-blur-sm overflow-hidden">
-              <CardContent className="p-8">
+              <CardContent className="p-6 sm:p-8">
                 <h2 className="text-2xl font-bold font-montserrat text-white text-center mt-1 mb-6">{project.title}</h2>
                 <div className="relative">
                   <AnimatePresence mode="wait">
@@ -161,8 +161,8 @@ export default function VideoPage() {
                         <Image
                           src={image.src}
                           alt={image.alt}
-                          layout="fill"
-                          objectFit="cover"
+                          fill={true}
+                          style={{ objectFit: "cover" }}
                           sizes="(max-width: 768px) 100vw, 50vw"
                           className="rounded-lg"
                           loading="lazy"
@@ -206,7 +206,7 @@ export default function VideoPage() {
               // layout="intrinsic"
               width={1920}
               height={1080}
-              objectFit="contain"
+              style={{ objectFit: "contain" }}
               className="rounded-lg"
               loading="lazy"
             />
