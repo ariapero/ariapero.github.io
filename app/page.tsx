@@ -69,7 +69,7 @@ export default function Page() {
                 >
                   <div className="max-w-xl">
                     <motion.h1
-                      className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-4 font-reenie"
+                      className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-2 sm:mb-4 font-reenie"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2, duration: 0.8 }}
@@ -78,7 +78,7 @@ export default function Page() {
                     </motion.h1>
 
                     <motion.div
-                      className="space-y-2 text-lg sm:text-xl text-white/90 mb-12 font-inter"
+                      className="space-y-2 text-base sm:text-xl text-white/90 mb-10 sm:mb-12 font-inter"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4, duration: 0.8 }}
@@ -95,26 +95,26 @@ export default function Page() {
                     >
                       <Link
                         href="/bio"
-                        className="flex items-center gap-2 text-white text-lg sm:text-xl hover:gap-4 transition-all duration-300 font-inter"
+                        className="flex items-center gap-2 text-white text-base sm:text-xl hover:gap-4 transition-all duration-300 font-inter"
                       >
                         Bio <ArrowRight className="h-5 w-5" />
                       </Link>
                       <Link
                         href="/work"
-                        className="flex items-center gap-2 text-white text-lg sm:text-xl hover:gap-4 transition-all duration-300 font-inter"
+                        className="flex items-center gap-2 text-white text-base sm:text-xl hover:gap-4 transition-all duration-300 font-inter"
                       >
                         Work <ArrowRight className="h-5 w-5" />
                       </Link>
                       <Link
                         href="/docs/Ari_Pero_Resume.pdf"
-                        className="flex items-center gap-2 text-white text-lg sm:text-xl hover:gap-4 transition-all duration-300 font-inter"
+                        className="flex items-center gap-2 text-white text-base sm:text-xl hover:gap-4 transition-all duration-300 font-inter"
                         target="_blank"
                       >
                         Resume <ArrowRight className="h-5 w-5" />
                       </Link>
                       <Link
                         href="https://ariapero.myportfolio.com/"
-                        className="flex items-center gap-2 text-white text-lg sm:text-xl hover:gap-4 transition-all duration-300 font-inter"
+                        className="flex items-center gap-2 text-white text-base sm:text-xl hover:gap-4 transition-all duration-300 font-inter"
                         target="_blank"
                       >
                         Ex-Portfolio <ArrowRight className="h-5 w-5" />
@@ -123,7 +123,7 @@ export default function Page() {
                   </div>
                 </motion.main>
 
-                <div className="absolute right-8 inset-y-0 flex items-center">
+                <div className="absolute right-6 sm:right-8 inset-y-0 flex items-center">
                   <motion.div
                     className="flex flex-col gap-6 z-20"
                     initial={{ opacity: 0, x: 20 }}
