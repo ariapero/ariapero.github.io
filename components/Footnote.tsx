@@ -24,7 +24,7 @@ export default function Footnote() {
                 <Link href="/" className="text-white hover:underline text-xs">
                     <Image src="/apple-icon.png" alt="Home" width={6} height={6} className="w-6 h-6" style={{ filter: 'drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.3))' }}/>
                 </Link>
-                <a href="mailto:ariapero@mit.edu" className="text-white hover:underline text-xs font-zen">ariapero@mit.edu</a>
+                <a href="mailto:ariapero@mit.edu" className="text-white hover:underline text-xs font-zen sm:pr-4">ariapero@mit.edu</a>
             </div>
         </div>
     )

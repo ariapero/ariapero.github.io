@@ -19,7 +19,7 @@ const backgrounds = [
   '/rambax.png',
   '/civil.png',
   '/door.jpg',
-  '/textile.png',
+  '/textile.jpg',
 ]
 
 const projects = [
@@ -44,8 +44,8 @@ const content = [
     subtitle: "scroll down or use the links below to navigate"
   },
   {
-    title: "Web",
-    subtitle: "web development and ui/ux design"
+    title: "Web",  // add iwrising, gis project "PUBLIC INTEREST TECHNOLOGY"
+    subtitle: "web dev, civic tech, and ui/ux design"
   },
   {
     title: "Video",
@@ -96,127 +96,149 @@ const content = [
 export default function WorksPage() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
-  const tickingRef = useRef(false)
+  // const tickingRef = useRef(false)
+  const [isMobile, setIsMobile] = useState(false)
   const [showTopButton, setShowTopButton] = useState(false)
 
   const scrollSensitivitySetting = 30
   const slideDurationSetting = 600
 
-  const slideDurationTimeout = (duration: number) => {
-    setTimeout(() => {
-      tickingRef.current = false
-    }, duration)
+  // const slideDurationTimeout = (duration: number) => {
+  //   setTimeout(() => {
+  //     tickingRef.current = false
+  //   }, duration)
+  // }
+
+  const scrollToSlide = (index: number) => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo({
+        top: index * window.innerHeight,
+        behavior: 'smooth'
+      })
+    }
   }
 
   const nextItem = () => {
     if (currentSlide < backgrounds.length - 1) {
       setCurrentSlide(prev => prev + 1)
+      scrollToSlide(currentSlide + 1)
     }
   }
 
   const previousItem = () => {
     if (currentSlide > 0) {
       setCurrentSlide(prev => prev - 1)
+      scrollToSlide(currentSlide - 1)
     }
   }
 
   const navigateToSlide = (index: number) => {
     setCurrentSlide(index)
+    scrollToSlide(index)
   }
 
   const scrollToTop = () => {
     setCurrentSlide(0)
+    scrollToSlide(0)
   }
 
   useEffect(() => {
-    const handleScroll = throttle((event: WheelEvent | TouchEvent) => {
-      event.preventDefault()
-      
-      if (!tickingRef.current) {
-        let delta = 0;
-        if (event instanceof WheelEvent) {
-          delta = -event.deltaY;
-        } else if (event instanceof TouchEvent) {
-          const touch = event.touches[0];
-          delta = touch.clientY - (containerRef.current?.getBoundingClientRect().top || 0);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = throttle(() => {
+      if (containerRef.current) {
+        const scrollPosition = containerRef.current.scrollTop
+        const windowHeight = window.innerHeight
+        const currentSlideIndex = Math.round(scrollPosition / windowHeight)
+
+        // Only update if scrolled more than 50% of the slide height
+        if (Math.abs(scrollPosition - (currentSlide * windowHeight)) > windowHeight / 2) {
+          setCurrentSlide(currentSlideIndex)
         }
 
-        if (delta <= -scrollSensitivitySetting) {
-          tickingRef.current = true
-          nextItem()
-          slideDurationTimeout(slideDurationSetting)
-        }
-        if (delta >= scrollSensitivitySetting) {
-          tickingRef.current = true
-          previousItem()
-          slideDurationTimeout(slideDurationSetting)
-        }
+        setShowTopButton(currentSlideIndex > 0)
       }
-    }, 60)
+    }, 100)
 
     const container = containerRef.current
     if (container) {
-      container.addEventListener('wheel', handleScroll, { passive: false })
-      container.addEventListener('touchmove', handleScroll, { passive: false })
+      container.addEventListener('scroll', handleScroll)
     }
-
-    setShowTopButton(currentSlide > 0)
 
     return () => {
       if (container) {
-        container.removeEventListener('wheel', handleScroll)
-        container.removeEventListener('touchmove', handleScroll)
+        container.removeEventListener('scroll', handleScroll)
       }
     }
   }, [currentSlide])
 
   return (
-    <div ref={containerRef} className="h-screen overflow-y-auto overflow-x-hidden snap-y snap-mandatory">
+    <div 
+      ref={containerRef} 
+      className="h-screen overflow-y-auto overflow-x-hidden snap-y snap-mandatory"
+      style={{ scrollSnapType: 'y mandatory', scrollBehavior: 'smooth' }}
+    >
       {backgrounds.map((bg, index) => (
         <section 
           key={index}
           className={`
-            fixed w-full h-screen bg-cover bg-no-repeat bg-center overflow-hidden will-change-transform backface-hidden
-            transition-transform duration-1200 ease-cubic-bezier snap-start
-            ${index === currentSlide ? 'z-10' : 'z-0'}
-            ${index < currentSlide ? 'down-scroll' : index > currentSlide ? 'up-scroll' : ''}
+            relative w-full h-screen bg-cover bg-no-repeat bg-center overflow-hidden
+            snap-start
           `}
-          style={{
-            transform: `translateY(${(index - currentSlide) * 100}vh)`,
-          }}
         >
-          <Image
-            src={bg}
-            alt={`Background ${index + 1}`}
-            fill={true}
-            style={{ objectFit: "cover" }}
-            quality={75}
-            priority={index === 0}
-            loading={index === 0 ? "eager" : "lazy"}
-          />
+          <div 
+            className="absolute inset-0"
+            style={{ height: 'calc(100vh + 25vh)'}}
+          >
+            <Image
+              src={bg}
+              alt={`Background ${index + 1}`}
+              fill={true}
+              style={{ objectFit: "cover" }}
+              quality={75}
+              priority={index === 0}
+              loading={index === 0 ? "eager" : "lazy"}
+            />
+          </div>
           <div className="absolute inset-0 bg-black bg-opacity-35"></div>
-          <div className={`
-            h-screen flex justify-center items-center flex-col text-center text-white font-inter
-          `}>
+          <div className="absolute inset-0 flex justify-center items-center flex-col text-center text-white font-inter transform -translate-y-5 md:-translate-y-0">
             {index === 0 ? (
               <h1
-                className="text-3xl md:text-[20vh] leading-tight font-sloop z-20"
+                className="z-20 text-[4.5vh] md:text-[20vh] leading-tight
+                  tracking-tighter md:tracking-normal
+                  uppercase md:capitalize
+                  font-medium md:font-normal
+                  font-zen md:font-sloop"
                 style={{ textShadow: '1px 1px 2px rgba(0,0,0, 0.15)' }}>
                   {content[index].title}
               </h1>
             ) : (
               <Link
                 href={projects[index]}
-                className="text-3xl md:text-[20vh] leading-tight font-sloop z-20 hover:opacity-75 transition-opacity"
-                style={{ textShadow: '1px 1px 2px rgba(0,0,0, 0.15)' }}>
+                className="z-20 text-[8vh] md:text-[20vh] leading-tight
+                  tracking-tighter md:tracking-normal
+                  uppercase md:capitalize
+                  font-medium md:font-normal
+                  font-zen md:font-sloop
+                  hover:opacity-75 transition-opacity"
+                style={ isMobile ? {
+                  textShadow: '1px 1px 2px rgba(0,0,0, 0.5)',
+                } : { textShadow: '1px 1px 2px rgba(0,0,0, 0.15)' }}>
                 {content[index].title}
               </Link>
             )}
-            <p className="text-xl md:text-2xl mt-4 font-zen font-medium">{content[index].subtitle}</p>
+            <p className="text-xl md:text-2xl mt-2 md:mt-4 font-zen font-medium z-10">{content[index].subtitle}</p>
             {index === 0 && (
-              <div className="mt-12 flex flex-col items-center">
+              <div className="mt-12 flex flex-col items-center z-10">
                 <p
-                  className="text-xl mb-0 font-bold uppercase font-zen"
+                  className="text-xl md:text-xl mb-0 font-bold uppercase font-zen tracking-tight md:tracking-normal"
                   style={{ textShadow: '1px 1px 1px rgba(0,0,0, 0.5)' }}>
                     Table of Contents
                 </p>
@@ -224,7 +246,7 @@ export default function WorksPage() {
                   <button
                     key={i}
                     onClick={() => navigateToSlide(i + 1)}
-                    className="text-sm my-0 hover:underline focus:outline-none font-zen font-medium lowercase"
+                    className="text-base sm:text-sm my-0 hover:underline focus:outline-none font-zen font-medium lowercase"
                     style={{ textShadow: '1px 1px 2px rgba(0,0,0, 0.5)' }}
                   >
                     {i + 1}. {item.title}
@@ -237,7 +259,7 @@ export default function WorksPage() {
       ))}
       {showTopButton && (
         <div 
-          className="fixed right-4 bottom-4 z-50 group"
+          className="fixed right-4 sm:right-8 top-4 md:top-1/2 transform translate-y-0 md:-translate-y-1/2 z-50 group"
           title="Back to Top"
         >
           <button
@@ -251,6 +273,24 @@ export default function WorksPage() {
           </span>
         </div>
       )}
+      {/* {isMobile && (
+        <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-2">
+          <button
+            onClick={previousItem}
+            disabled={currentSlide === 0}
+            className="bg-white bg-opacity-50 text-black p-2 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 focus:outline-none disabled:opacity-50"
+          >
+            <ChevronUp className="h-6 w-6" />
+          </button>
+          <button
+            onClick={nextItem}
+            disabled={currentSlide === backgrounds.length - 1}
+            className="bg-white bg-opacity-50 text-black p-2 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 focus:outline-none disabled:opacity-50"
+          >
+            <ChevronDown className="h-6 w-6" />
+          </button>
+        </div>
+      )} */}
     </div>
   )
 }
