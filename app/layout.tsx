@@ -107,9 +107,8 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="./favicon.ico" />
       </head>
-      {/* <body className="font-sans flex flex-col min-h-screen"> */}
-      <body className="font-sans flex flex-col min-h-screen bg-gradient-to-br from-[#163734] to-[#238177]">
-        <div className="flex flex-col min-h-screen">
+      <body className="font-sans flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#163734] to-[#238177]">
           <header className="fixed top-0 left-0 w-full bg-transparent z-50 p-4">
             <nav></nav>
           </header>
