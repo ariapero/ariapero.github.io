@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { throttle } from 'lodash'
-import { ChevronUp, ChevronDown } from 'lucide-react'
+import { ChevronUp } from 'lucide-react'
 
 const backgrounds = [
   '/to_man.jpg',
@@ -96,18 +96,9 @@ const content = [
 export default function WorksPage() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
-  // const tickingRef = useRef(false)
   const [isMobile, setIsMobile] = useState(false)
   const [showTopButton, setShowTopButton] = useState(false)
-
-  const scrollSensitivitySetting = 30
-  const slideDurationSetting = 600
-
-  // const slideDurationTimeout = (duration: number) => {
-  //   setTimeout(() => {
-  //     tickingRef.current = false
-  //   }, duration)
-  // }
+  const [visibleSlides, setVisibleSlides] = useState(new Set([0, 1, 2]))
 
   const scrollToSlide = (index: number) => {
     if (containerRef.current) {
@@ -115,20 +106,6 @@ export default function WorksPage() {
         top: index * window.innerHeight,
         behavior: 'smooth'
       })
-    }
-  }
-
-  const nextItem = () => {
-    if (currentSlide < backgrounds.length - 1) {
-      setCurrentSlide(prev => prev + 1)
-      scrollToSlide(currentSlide + 1)
-    }
-  }
-
-  const previousItem = () => {
-    if (currentSlide > 0) {
-      setCurrentSlide(prev => prev - 1)
-      scrollToSlide(currentSlide - 1)
     }
   }
 
@@ -158,14 +135,19 @@ export default function WorksPage() {
         const windowHeight = window.innerHeight
         const currentSlideIndex = Math.round(scrollPosition / windowHeight)
 
-        // Only update if scrolled more than 50% of the slide height
-        if (Math.abs(scrollPosition - (currentSlide * windowHeight)) > windowHeight / 2) {
-          setCurrentSlide(currentSlideIndex)
-        }
-
+        setCurrentSlide(currentSlideIndex)
         setShowTopButton(currentSlideIndex > 0)
+
+        const newVisibleSlides = new Set([
+          currentSlideIndex,
+          Math.max(0, currentSlideIndex - 1),
+          Math.min(backgrounds.length - 1, currentSlideIndex + 1),
+          Math.min(backgrounds.length - 1, currentSlideIndex + 2),
+          Math.max(0, currentSlideIndex - 2)
+        ])
+        setVisibleSlides(newVisibleSlides)
       }
-    }, 100)
+    }, 80)
 
     const container = containerRef.current
     if (container) {
@@ -177,12 +159,20 @@ export default function WorksPage() {
         container.removeEventListener('scroll', handleScroll)
       }
     }
-  }, [currentSlide])
+  }, [])
+
+  // Preload images
+  useEffect(() => {
+    backgrounds.forEach((src) => {
+      const img = new window.Image()
+      img.src = src
+    })
+  }, [])
 
   return (
     <div 
       ref={containerRef} 
-      className="h-screen overflow-y-auto overflow-x-hidden snap-y snap-mandatory"
+      className="h-screen overflow-y-auto overflow-x-hidden snap-y snap-mandatory bg-neutral-900"
       style={{ scrollSnapType: 'y mandatory', scrollBehavior: 'smooth' }}
     >
       {backgrounds.map((bg, index) => (
@@ -201,28 +191,37 @@ export default function WorksPage() {
               src={bg}
               alt={`Background ${index + 1}`}
               fill={true}
-              style={{ objectFit: "cover" }}
-              quality={75}
-              priority={index === 0}
-              loading={index === 0 ? "eager" : "lazy"}
+              style={{ 
+                objectFit: "cover",
+                opacity: visibleSlides.has(index) ? 1 : 0,
+                transition: 'opacity 0.3s ease-in-out'
+              }}
+              quality={isMobile ? 50 : 75}
+              priority={index <= 1}
+              loading={index <= 1 ? "eager" : "lazy"}
+              sizes="100vw"
             />
           </div>
           <div className="absolute inset-0 bg-black bg-opacity-35"></div>
-          <div className="absolute inset-0 flex justify-center items-center flex-col text-center text-white font-inter transform -translate-y-5 md:-translate-y-0">
+          <div className="absolute inset-0 flex justify-center items-center flex-col text-center text-white font-inter transform -translate-y-2 md:-translate-y-0">
             {index === 0 ? (
               <h1
-                className="z-20 text-[4.5vh] md:text-[20vh] leading-tight
+                className="z-20 text-[4.6vh] md:text-[20vh] leading-tight
                   tracking-tighter md:tracking-normal
                   uppercase md:capitalize
                   font-medium md:font-normal
-                  font-zen md:font-sloop"
-                style={{ textShadow: '1px 1px 2px rgba(0,0,0, 0.15)' }}>
+                  font-zen md:font-sloop
+                  transform -translate-y-4 md:-translate-y-0
+                  -mb-4 md:mb-0"
+                style={ isMobile ? {
+                  textShadow: '1px 1px 2px rgba(0,0,0, 0.5)',
+                } : { textShadow: '1px 1px 2px rgba(0,0,0, 0.15)' }}>
                   {content[index].title}
               </h1>
             ) : (
               <Link
                 href={projects[index]}
-                className="z-20 text-[8vh] md:text-[20vh] leading-tight
+                className="z-20 text-[7.8vh] md:text-[20vh] leading-tight
                   tracking-tighter md:tracking-normal
                   uppercase md:capitalize
                   font-medium md:font-normal
@@ -234,11 +233,11 @@ export default function WorksPage() {
                 {content[index].title}
               </Link>
             )}
-            <p className="text-xl md:text-2xl mt-2 md:mt-4 font-zen font-medium z-10">{content[index].subtitle}</p>
+            <p className="text-l sm:text-xl md:text-2xl mt-0 sm:mt-2 md:mt-4 tracking-tight md:tracking-normal font-zen font-medium z-10">{content[index].subtitle}</p>
             {index === 0 && (
               <div className="mt-12 flex flex-col items-center z-10">
                 <p
-                  className="text-xl md:text-xl mb-0 font-bold uppercase font-zen tracking-tight md:tracking-normal"
+                  className="text-xl md:text-xl mb-0 font-bold uppercase font-zen tracking-tight md:tracking-normal -mt-4 sm:mt-0"
                   style={{ textShadow: '1px 1px 1px rgba(0,0,0, 0.5)' }}>
                     Table of Contents
                 </p>
@@ -273,24 +272,6 @@ export default function WorksPage() {
           </span>
         </div>
       )}
-      {/* {isMobile && (
-        <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-2">
-          <button
-            onClick={previousItem}
-            disabled={currentSlide === 0}
-            className="bg-white bg-opacity-50 text-black p-2 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 focus:outline-none disabled:opacity-50"
-          >
-            <ChevronUp className="h-6 w-6" />
-          </button>
-          <button
-            onClick={nextItem}
-            disabled={currentSlide === backgrounds.length - 1}
-            className="bg-white bg-opacity-50 text-black p-2 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300 focus:outline-none disabled:opacity-50"
-          >
-            <ChevronDown className="h-6 w-6" />
-          </button>
-        </div>
-      )} */}
     </div>
   )
 }
