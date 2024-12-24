@@ -182,7 +182,7 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
     <div ref={sectionRef} className="min-h-screen w-full flex items-center bg-black snap-start">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-16">
         <div
-          className="relative h-[80vh] w-full"
+          className="relative -mt-16 sm:mt-0 h-[50vh] md:h-[80vh] w-full"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => setShowDetails(true)}
@@ -226,8 +226,8 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
           )}
         </div>
 
-        <div className="flex flex-col justify-center text-[#ffff00] relative">
-          <div className="absolute top-4 right-4 font-ncl text-sm opacity-50">
+        <div className="flex flex-col justify-center text-[#ffff00] relative -mt-4 sm:mt-0">
+          <div className="hidden sm:block absolute -top-0.5 md:top-4 right-0 md:right-4 font-ncl text-sm opacity-50">
             {project.details}
           </div>
 
@@ -235,30 +235,30 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-2 md:space-y-6"
           >
-            <div className="space-y-2">
+            <div className="space-y-1 sm:space-y-2">
               <h3 className="text-xs font-mono opacity-50">{project.category}</h3>
               <button
                 className="text-left text-4xl md:text-6xl font-bold font-mono tracking-tighter hover:text-[#ff00ff] transition-colors"
                 onClick={() => setShowDetails(true)}
               >
-                <h2>{project.title}</h2>
+                <h2 className="leading-[0.9] md:leading-none">{project.title}</h2>
               </button>
-              <p className="text-sm font-mono opacity-70">{project.year}</p>
+              <p className="text-xs sm:text-sm font-mono opacity-70">{project.year}</p>
             </div>
 
-            <p className="text-lg max-w-md font-mono">{project.description}</p>
+            <p className="text-sm md:text-lg tracking-tight md:tracking-normal max-w-md font-mono">{project.description}</p>
 
             <button
-              className="text-[#ffff00] underline font-mono"
+              className="text-[#ffff00] underline font-mono hidden md:block"
               onClick={() => setShowDetails(true)}
             >
               View Details
             </button>
           </motion.div>
 
-          <div className="absolute bottom-4 right-4">
+          <div className="absolute bottom-4 right-4 hidden md:block">
             <div className="w-8 h-8 border border-[#ffff00] opacity-50 rotate-45" />
           </div>
         </div>
@@ -280,12 +280,12 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-neutral-900 p-8 rounded-lg w-[80vw] h-[85vh] overflow-y-auto"
+              className="bg-neutral-900 p-4 md:p-8 rounded-lg w-[95vw] md:w-[80vw] h-[85vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex justify-between items-center mb-6">
                 <div>
-                  <h2 className="text-3xl font-bold font-mono mb-4 text-[#ffff00]">
+                  <h2 className="text-2xl md:text-3xl font-bold font-mono mb-4 text-[#ffff00]">
                     {project.title}
                   </h2>
                   <p className="text-white font-mono mb-2">{project.description}</p>
@@ -382,7 +382,7 @@ const ArchiveSection = () => {
         transition={{ duration: 0.5 }}
         className="text-center space-y-8"
       >
-        <h2 className="text-4xl md:text-5xl font-mono text-[#ffff00]">
+        <h2 className="px-2 sm:px-0 text-3xl md:text-4xl lg:text-5xl font-mono text-[#ffff00]">
           Archived graphics work 2014-2018:
         </h2>
         <a
@@ -410,10 +410,10 @@ export default function DesignPage() {
   return (
     <div className="bg-black text-white">
       <title>ari peró | graphic & creative design</title>
-      <div className="fixed top-8 left-8 z-50">
+      <div className="fixed top-4 md:top-8 left-4 md:left-8 z-50">
         <Link
           href="/work"
-          className="inline-flex items-center text-white font-ncl hover:text-[#ffff00] transition-colors"
+          className="inline-flex items-center text-white font-ncl text-sm sm:text-base hover:text-[#ffff00] transition-colors"
         >
           <ArrowLeft className="mr-2" size={20} />
           BAck to woRk
@@ -431,7 +431,7 @@ export default function DesignPage() {
       </div>
 
       <button
-        className="fixed top-1/2 right-6 -translate-y-1/2 bg-black/50 p-3 rounded-full text-white z-50 hover:bg-gray-200 hover:text-black transition-colors duration-300 focus:outline-none"
+        className="fixed rounded-full bottom-[25%] md:bottom-1/2 right-4 sm:right-6 translate-y-0 md:translate-y-1/2 bg-white/15 md:bg-black/50 p-3 text-white z-50 hover:bg-gray-200 hover:text-[#ff00ff] transition-colors duration-300 focus:outline-none"
         onClick={() => containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label="Scroll to top"
       >
@@ -449,15 +449,21 @@ export default function DesignPage() {
             d="M5 10l7-7m0 0l7 7m-7-7v18"
           />
         </svg>
+        {/* <div className="w-8 h-8 border border-[#ffff00] opacity-50 rotate-45" /> */}
       </button>
 
-      <footer className="fixed bottom-0 left-0 w-full pb-4 px-4 md:px-8 flex flex-col md:flex-row justify-between items-center mt-8 text-white font-mono text-sm">
-        <Link href="/" className="hover:underline mb-2 md:mb-0">
-          HTTPS://ARIAPERO.GITHUB.IO
+      <footer className="fixed bottom-0 left-0 w-full pb-4 px-4 md:px-8 flex md:flex-row justify-between items-center mt-8 text-white font-mono text-xs md:text-sm">
+        <Link href="/" className="hover:underline mb-0">
+          <span className="md:hidden">://</span>
+          <span className="hidden md:inline">HTTPS://ARIAPERO.GITHUB.IO</span>
         </Link>
-        <div className="mb-2 md:mb-0">© 2024 Ari Peró. All rights reserved.</div>
+        <div className="mb-0">
+          <span className="md:hidden">© 2025</span>
+          <span className="hidden md:inline">© 2025 Ari Peró. All rights reserved.</span>
+        </div>
         <a href="mailto:ariapero@mit.edu" className="hover:underline">
-          MAILTO:ARIAPERO@MIT.EDU
+          <span className="md:hidden">MAILTO:</span>
+          <span className="hidden md:inline">MAILTO:ARIAPERO@MIT.EDU</span>
         </a>
       </footer>
     </div>
