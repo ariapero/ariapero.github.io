@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Inter, Montserrat, Reenie_Beanie, Zen_Kaku_Gothic_New, Share_Tech_Mono } from "next/font/google";
+import {
+  Inter,
+  Montserrat,
+  Reenie_Beanie,
+  Zen_Kaku_Gothic_New,
+  Share_Tech_Mono,
+} from "next/font/google";
 import Footnote from "../components/Footnote";
 import "./globals.css";
 
@@ -107,14 +113,11 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="./favicon.ico" />
       </head>
-      <body className="font-sans flex flex-col min-h-screen">
-        <div className="flex flex-col min-h-screen bg-gradient-to-br from-[#163734] to-[#238177]">
-          <header className="fixed top-0 left-0 w-full bg-transparent z-50 p-4">
-            <nav></nav>
-          </header>
-          <main className="flex-grow">{children}</main>
-          <Footnote />
-        </div>
+
+      <body className="font-sans flex flex-col min-h-screen bg-gradient-to-br from-[#163734] to-[#238177]">
+        <header className="fixed top-0 left-0 w-full bg-transparent z-50 p-4"/>
+        <main className="flex-grow">{children}</main>
+        <Footnote />
       </body>
     </html>
   );

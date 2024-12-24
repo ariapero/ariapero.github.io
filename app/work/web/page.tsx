@@ -14,7 +14,21 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-const projects = [
+type Project = {
+  title: string;
+  description: string;
+  link?: string;
+  technologies: string[];
+  pages: {
+    title: string;
+    description: string;
+    image: string;
+    thumbnail: string;
+  }[];
+  keyFeatures?: string[];
+};
+
+const projects: Project[] = [
   {
     title: "Unsubscribe MIT",
     description:
@@ -93,28 +107,178 @@ const projects = [
       // "Personalized features for authenticated MIT users",
     ],
   },
-  // second project
+  {
+    title: "Indigenous Women Rising Data Visualization",
+    description:
+      "Developed tools to visualize abortion fund data for the non-profit foundation Indigneous Women Rising (IWR). Created ArcGIS StoryMap showing geographic distribution of IWR's services across Native territories, for integration/embedding onto their public-facing website. Implemented privacy-preserving measures to protect sensitive client information. Designed visualizations to demonstrate urgent demand for abortion care and IWR's capacity to serve clients. With Alec Wagner, Rima Das, Caroline Chea, Bianchi Dy.",
+    technologies: ["Python", "ArcGIS", "QGIS", "PyQGIS", "Tableau", "Jotform", "Wix", "Canva"],
+    pages: [
+      {
+        title: "IWR Final Presentation Slide 1",
+        description: "",
+        image: "/iwr/iwr-1.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-1.png?height=100&width=150",
+      },
+      {
+        title: "IWR Final Presentation Slide 2",
+        description: "",
+        image: "/iwr/iwr-2.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-2.png?height=100&width=150",
+      },
+      {
+        title: "IWR Final Presentation Slide 3",
+        description: "",
+        image: "/iwr/iwr-3.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-3.png?height=100&width=150",
+      },
+      {
+        title: "IWR Final Presentation Slide 4",
+        description: "",
+        image: "/iwr/iwr-4.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-4.png?height=100&width=150",
+      },
+      {
+        title: "IWR Final Presentation Slide 5",
+        description: "",
+        image: "/iwr/iwr-5.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-5.png?height=100&width=150",
+      },
+      {
+        title: "IWR Final Presentation Slide 6",
+        description: "",
+        image: "/iwr/iwr-6.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-6.png?height=100&width=150",
+      },
+      {
+        title: "IWR Final Presentation Slide 7",
+        description: "",
+        image: "/iwr/iwr-7.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-7.png?height=100&width=150",
+      },
+      {
+        title: "IWR Final Presentation Slide 8",
+        description: "",
+        image: "/iwr/iwr-8.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-8.png?height=100&width=150",
+      },
+      {
+        title: "IWR Final Presentation Slide 9",
+        description: "",
+        image: "/iwr/iwr-9.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-9.png?height=100&width=150",
+      },
+      {
+        title: "IWR Final Presentation Slide 10",
+        description: "",
+        image: "/iwr/iwr-10.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-10.png?height=100&width=150",
+      },
+      {
+        title: "IWR Final Presentation Slide 11",
+        description: "",
+        image: "/iwr/iwr-11.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-11.png?height=100&width=150",
+      },
+      {
+        title: "IWR Final Presentation Slide 12",
+        description: "",
+        image: "/iwr/iwr-12.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-12.png?height=100&width=150",
+      },
+    ],
+  },
+  {
+    title: "Who Polices Who? Mapping Police Geographies in Boston",
+    description:
+      "Conducted exploratory GIS analysis of spatial relationships between police officer residences and policing patterns in Boston. Used Python for data scraping and preprocessing of police incident reports. Created interactive maps and data visualizations to communicate findings on potential racial biases in policing distribution. Aimed to inform more equitable policing practices and resource allocation strategies. With Denyse Tan, Marina Ten Have, and Gabriel Rodríguez.",
+    technologies: ["Python", "QGIS", "PyQGIS", "Tableau", "GitHub", "Web/data scraping (from publicly available documents)"],
+    pages: [
+      {
+        title: "",
+        description: "",
+        image: "/Who-Polices-Who/policing-1.png?height=450&width=800",
+        thumbnail: "/Who-Polices-Who/policing-1.png?height=100&width=150",
+      },
+      {
+        title: "",
+        description: "",
+        image: "/Who-Polices-Who/policing-2.png?height=450&width=800",
+        thumbnail: "/Who-Polices-Who/policing-2.png?height=100&width=150",
+      },
+      {
+        title: "",
+        description: "",
+        image: "/Who-Polices-Who/policing-3.png?height=450&width=800",
+        thumbnail: "/Who-Polices-Who/policing-3.png?height=100&width=150",
+      },
+      {
+        title: "",
+        description: "",
+        image: "/Who-Polices-Who/policing-4.png?height=450&width=800",
+        thumbnail: "/Who-Polices-Who/policing-4.png?height=100&width=150",
+      },
+      {
+        title: "",
+        description: "",
+        image: "/Who-Polices-Who/policing-5.png?height=450&width=800",
+        thumbnail: "/Who-Polices-Who/policing-5.png?height=100&width=150",
+      },
+      {
+        title: "",
+        description: "",
+        image: "/Who-Polices-Who/policing-6.png?height=450&width=800",
+        thumbnail: "/Who-Polices-Who/policing-6.png?height=100&width=150",
+      },
+      {
+        title: "",
+        description: "",
+        image: "/Who-Polices-Who/policing-7.png?height=450&width=800",
+        thumbnail: "/Who-Polices-Who/policing-7.png?height=100&width=150",
+      },
+      {
+        title: "",
+        description: "",
+        image: "/Who-Polices-Who/policing-8.png?height=450&width=800",
+        thumbnail: "/Who-Polices-Who/policing-8.png?height=100&width=150",
+      },
+      {
+        title: "",
+        description: "",
+        image: "/Who-Polices-Who/policing-9.png?height=450&width=800",
+        thumbnail: "/Who-Polices-Who/policing-9.png?height=100&width=150",
+      },
+      {
+        title: "",
+        description: "",
+        image: "/Who-Polices-Who/policing-10.png?height=450&width=800",
+        thumbnail: "/Who-Polices-Who/policing-10.png?height=100&width=150",
+      },
+    ],
+  },
 ];
 
 export default function WebDevPage() {
-  const [currentProject, setCurrentProject] = useState(0);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlides, setCurrentSlides] = useState(projects.map(() => 0));
 
-  const nextSlide = () => {
-    const project = projects[currentProject];
-    setCurrentSlide((prev) => (prev + 1) % project.pages.length);
+  const nextSlide = (projectIndex: number) => {
+    setCurrentSlides(prev => {
+      const newSlides = [...prev];
+      newSlides[projectIndex] = (newSlides[projectIndex] + 1) % projects[projectIndex].pages.length;
+      return newSlides;
+    });
   };
 
-  const prevSlide = () => {
-    const project = projects[currentProject];
-    setCurrentSlide(
-      (prev) => (prev - 1 + project.pages.length) % project.pages.length
-    );
+  const prevSlide = (projectIndex: number) => {
+    setCurrentSlides(prev => {
+      const newSlides = [...prev];
+      newSlides[projectIndex] = (newSlides[projectIndex] - 1 + projects[projectIndex].pages.length) % projects[projectIndex].pages.length;
+      return newSlides;
+    });
   };
 
   return (
-    <div className="min-h-screen text-white p-6 sm:p-16 z-0 font-zen">
-      <title>ari peró | web dev & ui</title>
+    <div className="min-h-screen text-white p-6 sm:p-16 z-0 font-zen lg:px-[12vh] xl:px-[30vh]">
+      <title>ari peró | web dev, ui, & public interest tech</title>
       <Link
         href="/work"
         className="inline-flex items-center text-white hover:text-gray-300 transition-colors mb-8"
@@ -123,8 +287,8 @@ export default function WebDevPage() {
         Back to Work
       </Link>
 
-      <h1 className="text-4xl font-bold mb-8 font-grand">
-        Web Development & &thinsp;UI
+      <h1 className="text-4xl font-[599] mb-8 font-grand">
+        <b>Web Development, UI/UX&#8202;, &#8202;&&thinsp; Public Intere</b>s<b>t Technology</b>
       </h1>
 
       <div className="space-y-16">
@@ -144,18 +308,19 @@ export default function WebDevPage() {
                     >
                       {tech}
                     </span>
-                    // </Badge>
                   ))}
                 </div>
               </div>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center whitespace-nowrap text-white hover:text-gray-300 transition-colors"
-              >
-                Visit Project <ExternalLink className="ml-2" size={16} />
-              </a>
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center whitespace-nowrap text-white hover:text-gray-300 transition-colors"
+                >
+                  Visit Project <ExternalLink className="ml-2" size={16} />
+                </a>
+              )}
             </div>
 
             <Card className="border-0 bg-white/5 backdrop-blur-sm overflow-hidden">
@@ -163,7 +328,7 @@ export default function WebDevPage() {
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <AnimatePresence mode="wait">
                     <motion.div
-                      key={currentSlide}
+                      key={currentSlides[projectIndex]}
                       initial={{ opacity: 0, x: 100 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -100 }}
@@ -171,79 +336,95 @@ export default function WebDevPage() {
                       className="absolute inset-0"
                     >
                       <Image
-                        src={project.pages[currentSlide].image}
-                        alt={project.pages[currentSlide].title}
+                        src={project.pages[currentSlides[projectIndex]].image}
+                        alt={project.pages[currentSlides[projectIndex]].title}
                         fill
                         className="object-cover"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <h3 className="text-xl text-white font-bold mb-2">
-                          {project.pages[currentSlide].title}
-                        </h3>
-                        <p className="text-gray-200">
-                          {project.pages[currentSlide].description}
-                        </p>
-                      </div>
+                      {project.pages[currentSlides[projectIndex]].description && (
+                        <div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
+                          <div className="absolute bottom-0 left-0 right-0 p-6">
+                            <h3 className="text-xl text-white font-bold mb-2">
+                              {project.pages[currentSlides[projectIndex]].title}
+                            </h3>
+                            <p className="text-gray-200">
+                              {project.pages[currentSlides[projectIndex]].description}
+                            </p>
+                          </div>
+                        </div>
+                      )}
                     </motion.div>
                   </AnimatePresence>
 
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white"
-                    onClick={prevSlide}
-                  >
-                    <ChevronLeft className="h-8 w-8" />
-                  </Button>
+                  {project.pages.length > 1 && (
+                    <div>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white"
+                        onClick={() => prevSlide(projectIndex)}
+                      >
+                        <ChevronLeft className="h-8 w-8" />
+                      </Button>
 
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white"
-                    onClick={nextSlide}
-                  >
-                    <ChevronRight className="h-8 w-8" />
-                  </Button>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/20 hover:bg-black/40 text-white"
+                        onClick={() => nextSlide(projectIndex)}
+                      >
+                        <ChevronRight className="h-8 w-8" />
+                      </Button>
+                    </div>
+                  )}
                 </div>
 
                 {/* Thumbnail Navigation */}
-                <div className="relative bg-black/40 p-4">
-                  <div className="flex justify-center gap-2 overflow-x-auto">
-                    {project.pages.map((page, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setCurrentSlide(index)}
-                        className={cn(
-                          "relative w-24 h-16 overflow-hidden rounded transition-all",
-                          currentSlide === index
-                            ? "border-2 border-white"
-                            : "opacity-50 hover:opacity-75"
-                        )}
-                      >
-                        <Image
-                          src={page.thumbnail}
-                          alt={page.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </button>
-                    ))}
+                {project.pages.length > 1 && (
+                  <div className="relative bg-black/40 p-4">
+                    <div className="flex justify-center gap-2 overflow-x-auto">
+                      {project.pages.map((page, index) => (
+                        <button
+                          key={index}
+                          onClick={() => setCurrentSlides(prev => {
+                            const newSlides = [...prev];
+                            newSlides[projectIndex] = index;
+                            return newSlides;
+                          })}
+                          className={cn(
+                            "relative w-24 h-16 overflow-hidden rounded transition-all",
+                            currentSlides[projectIndex] === index
+                              ? "border-2 border-white"
+                              : "opacity-50 hover:opacity-75"
+                          )}
+                        >
+                          <Image
+                            src={page.thumbnail}
+                            alt={page.title}
+                            fill
+                            className="object-cover"
+                          />
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
               </CardContent>
             </Card>
 
-            <div className="mt-8">
-              <h3 className="text-xl font-bold mb-4">Key Features</h3>
-              <ul className="list-disc list-inside space-y-2">
-                {project.keyFeatures.map((feature, index) => (
-                  <li key={index} className="text-gray-200">
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {project.keyFeatures && (
+              <div className="mt-8">
+                <h3 className="text-xl font-bold mb-4">Key Features</h3>
+                <ul className="list-disc list-outside pl-4 space-y-1">
+                  {project.keyFeatures.map((feature, index) => (
+                    <li key={index} className="text-gray-200">
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         ))}
       </div>

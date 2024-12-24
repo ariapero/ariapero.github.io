@@ -44,8 +44,8 @@ const content = [
     subtitle: "scroll down or use the links below to navigate"
   },
   {
-    title: "Web",  // add iwrising, gis project "PUBLIC INTEREST TECHNOLOGY"
-    subtitle: "web dev, civic tech, and ui/ux design"
+    title: "Web",
+    subtitle: "web dev, ui/ux design, and public interest tech"
   },
   {
     title: "Video",
@@ -214,7 +214,7 @@ export default function WorksPage() {
                   transform -translate-y-4 md:-translate-y-0
                   -mb-4 md:mb-0"
                 style={ isMobile ? {
-                  textShadow: '1px 1px 2px rgba(0,0,0, 0.5)',
+                  textShadow: '1px 1px 2px rgba(0,0,0, 0.4)',
                 } : { textShadow: '1px 1px 2px rgba(0,0,0, 0.15)' }}>
                   {content[index].title}
               </h1>
@@ -228,7 +228,7 @@ export default function WorksPage() {
                   font-zen md:font-sloop
                   hover:opacity-75 transition-opacity"
                 style={ isMobile ? {
-                  textShadow: '1px 1px 2px rgba(0,0,0, 0.5)',
+                  textShadow: '1px 1px 2px rgba(0,0,0, 0.4)',
                 } : { textShadow: '1px 1px 2px rgba(0,0,0, 0.15)' }}>
                 {content[index].title}
               </Link>
@@ -237,8 +237,8 @@ export default function WorksPage() {
             {index === 0 && (
               <div className="mt-12 flex flex-col items-center z-10">
                 <p
-                  className="text-xl md:text-xl mb-0 font-bold uppercase font-zen tracking-tight md:tracking-normal -mt-4 sm:mt-0"
-                  style={{ textShadow: '1px 1px 1px rgba(0,0,0, 0.5)' }}>
+                  className="text-xl md:text-xl mb-0 font-bold uppercase font-zen -mt-4 sm:mt-0"
+                  style={{ textShadow: '1px 1px 1px rgba(0,0,0, 0.4)' }}>
                     Table of Contents
                 </p>
                 {content.slice(1).map((item, i) => (
@@ -246,7 +246,7 @@ export default function WorksPage() {
                     key={i}
                     onClick={() => navigateToSlide(i + 1)}
                     className="text-base sm:text-sm my-0 hover:underline focus:outline-none font-zen font-medium lowercase"
-                    style={{ textShadow: '1px 1px 2px rgba(0,0,0, 0.5)' }}
+                    style={{ textShadow: '1px 1px 2px rgba(0,0,0, 0.4)' }}
                   >
                     {i + 1}. {item.title}
                   </button>
