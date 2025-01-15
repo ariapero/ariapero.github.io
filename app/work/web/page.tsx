@@ -185,13 +185,19 @@ const projects: Project[] = [
         image: "/iwr/iwr-12.png?height=450&width=800",
         thumbnail: "/iwr/iwr-12.png?height=100&width=150",
       },
+      {
+        title: "IWR Final Presentation Slide 13",
+        description: "",
+        image: "/iwr/iwr-13.png?height=450&width=800",
+        thumbnail: "/iwr/iwr-13.png?height=100&width=150",
+      },
     ],
   },
   {
     title: "Who Polices Who? Mapping Police Geographies in Boston",
     description:
       "Conducted exploratory GIS analysis of spatial relationships between police officer residences and policing patterns in Boston. Used Python for data scraping and preprocessing of police incident reports. Created interactive maps and data visualizations to communicate findings on potential racial biases in policing distribution. Aimed to inform more equitable policing practices and resource allocation strategies. With Denyse Tan, Marina Ten Have, and Gabriel Rodríguez.",
-    technologies: ["Python", "QGIS", "PyQGIS", "Tableau", "GitHub", "Web/data scraping (from publicly available documents)"],
+    technologies: ["Python", "QGIS", "PyQGIS", "Tableau", "GitHub", "Web/data scraping (publicly available documents)"],
     pages: [
       {
         title: "",
@@ -336,26 +342,24 @@ export default function WebDevPage() {
                       className="absolute inset-0"
                     >
                       <Image
-                        src={project.pages[currentSlides[projectIndex]].image}
+                        src={project.pages[currentSlides[projectIndex]].image || "/placeholder.svg"}
                         alt={project.pages[currentSlides[projectIndex]].title}
                         fill
                         className="object-cover"
                       />
-                      {project.pages[currentSlides[projectIndex]].description && (
-                        <div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
-                          <div className="absolute bottom-0 left-0 right-0 p-6">
-                            <h3 className="text-xl text-white font-bold mb-2">
-                              {project.pages[currentSlides[projectIndex]].title}
-                            </h3>
-                            <p className="text-gray-200">
-                              {project.pages[currentSlides[projectIndex]].description}
-                            </p>
-                          </div>
-                        </div>
-                      )}
                     </motion.div>
                   </AnimatePresence>
+
+                  {project.pages[currentSlides[projectIndex]].description && (
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/65 to-transparent p-4 md:p-6 hidden md:block">
+                      <h3 className="text-lg md:text-xl text-white font-bold mb-2">
+                        {project.pages[currentSlides[projectIndex]].title}
+                      </h3>
+                      <p className="text-sm md:text-base text-gray-200">
+                        {project.pages[currentSlides[projectIndex]].description}
+                      </p>
+                    </div>
+                  )}
 
                   {project.pages.length > 1 && (
                     <div>
@@ -380,7 +384,17 @@ export default function WebDevPage() {
                   )}
                 </div>
 
-                {/* Thumbnail Navigation */}
+                {project.pages[currentSlides[projectIndex]].description && (
+                  <div className="block md:hidden p-4 pt-3 bg-white/5">
+                    <h3 className="text-lg text-white font-bold mb-2">
+                      {project.pages[currentSlides[projectIndex]].title}
+                    </h3>
+                    <p className="text-sm text-gray-200">
+                      {project.pages[currentSlides[projectIndex]].description}
+                    </p>
+                  </div>
+                )}
+
                 {project.pages.length > 1 && (
                   <div className="relative bg-black/40 p-4">
                     <div className="flex justify-center gap-2 overflow-x-auto">
@@ -400,7 +414,7 @@ export default function WebDevPage() {
                           )}
                         >
                           <Image
-                            src={page.thumbnail}
+                            src={page.thumbnail || "/placeholder.svg"}
                             alt={page.title}
                             fill
                             className="object-cover"
