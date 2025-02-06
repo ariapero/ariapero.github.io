@@ -7,8 +7,8 @@ export default function Page() {
     <div className="min-h-screen bg-black text-white">
       <title>ari peró | textile art & fashion design</title>
       {/* Header */}
-      <header className="bg-[#0000CC] p-4 flex justify-between items-center border-b border-[#0000FF]">
-        <div className="flex items-center gap-2">
+      <header className="bg-[#0000CC] p-4 flex flex-col sm:flex-row justify-between items-center border-b border-[#0000FF]">
+        <div className="flex items-center gap-2 mb-2 sm:mb-0">
           <Link
             href="/work"
             className="inline-flex items-center font-ncl z-50 text-white hover:text-[#AAFF00] transition-colors"
@@ -17,11 +17,11 @@ export default function Page() {
             BAck to woRk
           </Link>
           {/* <h1 className="font-ncl">ARIAPERO</h1> */}
-          <p className="text-xs ml-2 opacity-75">42°21'36.36"N 71°5'39.12"E</p>
+          <p className="text-xs ml-2 opacity-75 hidden sm:block">42°21'36.36"N 71°5'39.12"E</p>
         </div>
-        <div className="flex items-center gap-4">
-          <span className="text-xs">(∩｀-´)⊃━☆ﾟ.*･｡ﾟ</span>
-          <span className="text-xs">｡ﾟ･*.｡ﾟ☆━٩(⇀‸↼‶)</span>
+        <div className="flex items-center gap-4 text-xs">
+          <span>(∩｀-´)⊃━☆ﾟ.*･｡ﾟ</span>
+          <span>｡ﾟ･*.｡ﾟ☆━٩(⇀‸↼‶)</span>
         </div>
       </header>
 
@@ -34,32 +34,35 @@ export default function Page() {
               <Image
                 src="/textile.jpg?height=400&width=400"
                 alt="A close-up of a layered outfit featuring a white button-up shirt under a black sleeveless top with a curved hemline. The shirt is slightly crinkled, and the black top has asymmetrical cuts, revealing parts of the shirt underneath. Attached to the outfit are two small, plush, star-shaped blue accessories, one on each side. A white braided cord hangs from a multicolored rainbow keffiyeh, visible on the left edge of the outfit. The background shows part of a stone building and pavement."
+                width={400}
+                height={400}
+                layout="responsive"
                 className="w-full object-cover"
               />
             </div>
-            <div className="space-y-1 font-ncl">
-              <div className="text-[#AAFF00] text-4xl font-bold tracking-wider transform skew-x-12">
+            <div className="space-y-0 sm:space-y-1 font-ncl text-3xl lg:text-4xl">
+              <div className="text-[#AAFF00] font-bold tracking-wider transform skew-x-12">
                 MODULAR
               </div>
-              <div className="text-[#AAFF00] text-4xl font-bold tracking-wider transform skew-x-12">
+              <div className="text-[#AAFF00] font-bold tracking-wider transform skew-x-12">
                 CLOTHING
               </div>
-              <div className="text-[#AAFF00] text-4xl font-bold tracking-wider transform skew-x-12">
+              <div className="text-[#AAFF00] font-bold tracking-wider transform skew-x-12">
                 DESIGN
               </div>
             </div>
           </div>
 
           {/* Right Section - White Text */}
-          <div className="space-y-6">
-            <div className="space-y-1 font-ncl">
-              <div className="text-white text-4xl font-bold tracking-wider transform skew-x-12">
+          <div className="-mt-4 md:mt-0 space-y-6 flex flex-col items-end md:items-start">
+            <div className="space-y-0 sm:space-y-1 font-ncl text-3xl lg:text-4xl text-right md:text-left">
+              <div className="text-white font-bold tracking-wider transform skew-x-12">
                 modular
               </div>
-              <div className="text-white text-4xl font-bold tracking-wider transform skew-x-12">
+              <div className="text-white font-bold tracking-wider transform skew-x-12">
                 clothing
               </div>
-              <div className="text-white text-4xl font-bold tracking-wider transform skew-x-12">
+              <div className="text-white font-bold tracking-wider transform skew-x-12">
                 design
               </div>
             </div>
@@ -77,7 +80,7 @@ export default function Page() {
         </div>
 
         {/* Info Bar */}
-        <div className="bg-[#0000CC] p-4 rounded-lg flex justify-between items-center font-mono mt-8">
+        <div className="bg-[#0000CC] p-4 rounded-lg flex flex-col sm:flex-row justify-between items-center font-mono mt-8 space-y-2 sm:space-y-0">
           <div className="flex items-center gap-4">
             <span>8614</span>
             <span className="opacity-75">99-99</span>
@@ -86,7 +89,7 @@ export default function Page() {
           <div className="text-sm">TO BE CONTINUED</div>
         </div>
 
-        <div className="grid grid-cols-2 gap-8 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8">
           <div className="space-y-2 text-sm">
             <p>+ CUT & RE-HEMMED</p>
             <p>+ CREWNECK SWEATSHIRT</p>
@@ -103,11 +106,11 @@ export default function Page() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-[#AAFF00] p-4 flex justify-between items-center mt-8 font-mono">
+      <footer className="bg-[#AAFF00] p-4 flex flex-col sm:flex-row justify-between items-center mt-2 sm:mt-8 font-mono space-y-2 sm:space-y-0">
         <Link href="/" className="text-black hover:underline">
           HTTPS://ARIAPERO.GITHUB.IO
         </Link>
-        <div className="text-black">© 2024 Ari Peró. All rights reserved.</div>
+        <div className="text-black text-center sm:text-left hidden md:block">© 2025 Ari Peró. All rights reserved.</div>
         <a
           href="mailto:ariapero@mit.edu"
           className="text-black hover:underline"
