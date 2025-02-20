@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft } from "lucide-react";
 
 const AnimatedBackground: React.FC = () => {
@@ -356,9 +356,18 @@ const AnimatedBackground: React.FC = () => {
 export default function Component() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const slides = [
-    "/shelf-1.png?height=4032&width=3024",
-    "/shelf-2.png?height=4032&width=3024",
-    "/shelf-3.png?height=4032&width=3024",
+    {
+      src: "/shelf-1.png",
+      alt: "Completed shelf design 1",
+    },
+    {
+      src: "/shelf-2.png",
+      alt: "Completed shelf design 2",
+    },
+    {
+      src: "/shelf-3.png",
+      alt: "Completed shelf design 3",
+    },
   ];
 
   useEffect(() => {
@@ -399,22 +408,26 @@ export default function Component() {
                 allowFullScreen
               />
             </div>
-            <section className="relative w-full md:w-1/3">
-              <motion.div
-                key={currentSlide}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                className="absolute inset-0"
-              >
-                <Image
-                  src={slides[currentSlide]}
-                  alt={`Slide ${currentSlide + 1}`}
-                  layout="fill"
-                  objectFit="contain"
-                />
-              </motion.div>
+            <section className="relative w-full md:w-1/3 aspect-video">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentSlide}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative w-full h-full"
+                >
+                  <Image
+                    src={slides[currentSlide].src}
+                    alt={slides[currentSlide].alt}
+                    width={800}
+                    height={600}
+                    priority
+                    className="object-contain w-full h-full"
+                  />
+                </motion.div>
+              </AnimatePresence>
             </section>
           </section>
         </main>
