@@ -14,6 +14,8 @@ interface ProjectImage {
   alt: string;
 }
 
+// TODO: FOOTER BAR COLOR FIX
+
 const VideoPlayer = ({ src }: { src: string }) => (
   <div className="aspect-video w-full max-w-3xl mx-auto mb-6">
     <iframe 
@@ -58,6 +60,13 @@ export default function VideoPage() {
       ]
     },
     {
+      title: "book",
+      description: "Description TBA",
+      videos: [
+        { url: "https://www.youtube.com/embed/e15gT2qoH2I", label: "Original Piece" },
+      ],
+    },
+    {
       title: "facade.",
       description: "An experimental sound project (best experienced with headphones). The first of an ongoing series on trans existence and visibility.",
       videos: [
@@ -87,7 +96,7 @@ export default function VideoPage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-900 text-white p-6 sm:p-16 font-zen text-white">
+    <div className="min-h-screen bg-neutral-900 text-white p-6 sm:p-16 font-zen text-white z-50">
       <title>ari peró | audiovisual media & experimental performance</title>
       <div className="max-w-4xl mx-auto">
         <Link 

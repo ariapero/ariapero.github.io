@@ -13,7 +13,7 @@ export default function Footnote() {
         </footer>
     )
 
-    if (pathname === '/bio' || pathname === '/work/design' || pathname === '/work/photo' || pathname === '/work/instrumental' || pathname === '/work/textile') return null
+    if (pathname === '/bio' || pathname === '/work/design' || pathname === '/work/photo' || pathname === '/work/instrumental' || pathname === '/work/textile' || pathname === '/work/composition' || pathname === '/work/video') return null
 
     if (pathname === '/work' || pathname === '/search' || pathname === '/wip') return (
         <div>
