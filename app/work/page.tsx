@@ -30,11 +30,11 @@ const projects = [
   '/work/design',
   '/work/photo',
   'https://ariapero.myportfolio.com/voice',
-  '/wip',
+  '/work/poetry',
   'https://ariapero.myportfolio.com/composition',
   '/work/instrumental',
   'https://ariapero.myportfolio.com/installation',
-  'https://ariapero.myportfolio.com/fabrication',
+  '/work/fabrication',
   '/work/textile',
 ]
 
