@@ -11,6 +11,7 @@ const App: React.FC = () => {
     {
       category: "Urban Studies",
       courses: [
+        "Land Use Law and Politics: Race, Place, and Law",
         "Globalization and its Discontents: Consuming Latin America",
         "Climate & Sustainability Undergraduate Advanced Research (TA)",
         "Undergraduate Planning Seminar",
@@ -22,6 +23,7 @@ const App: React.FC = () => {
     {
       category: "Urban Science",
       courses: [
+        "Environmental Justice, Science, and Technology",
         "Crowd Sourced City: Civic Tech Prototyping (Data Activism)",
         "Urban Planning and Social Science Laboratory: Intro to Spatial Analysis & Geographic Information Systems (GIS) Laboratory",
       ],
@@ -57,6 +59,7 @@ const App: React.FC = () => {
     {
       category: "Music",
       courses: [
+        "Baroque and Classical Music",
         "Advanced Seminar in Music",
         "FaMLE: MIT Laptop Ensemble",
         "Rambax: MIT Senegalese Drum Ensemble",
@@ -74,6 +77,8 @@ const App: React.FC = () => {
     {
       category: "Creative Arts",
       courses: [
+        "Sound Design",
+        "Introduction to Three-Dimensional Art Class: Textiles, Fashion, and Performative Art",
         "Intro to Artistic Experimentation",
         "Performance Media",
         "Intro to Video & Related Media",
