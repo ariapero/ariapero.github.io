@@ -314,14 +314,14 @@ const App: React.FC = () => {
 
                 <p>
                   In 2025, Ari was selected as one of the world's top applicants
-                  for the prestigious Erasmus Mundus Joint Master (EMJM)
+                  for the prestigious Erasmus Mundus Joint Master (EMJM){" "}
                   <a href="https://www.unic.eu/en/repic#all">
                     <b>
                       <u>
                         <i>Redesigning the Post-Industrial City</i>
                       </u>
                     </b>
-                  </a>
+                  </a>{" "}
                   (MSc RePIC) program. With a fully funded scholarship, Ari will
                   pursue this interdisciplinary master's across 3-5 countries
                   and eight universities in the EU and Turkey— deepening their
