@@ -187,19 +187,36 @@ const App: React.FC = () => {
                 </p>
 
                 <p>
-                  Ari's undergraduate research in computer vision for
-                  biodiversity monitoring under the guidance of{" "}
+                  Ari's research spans impactful projects that use technology to
+                  tackle environmental and urban challenges. Their undergraduate
+                  research in computer vision for biodiversity monitoring, under
+                  the guidance of{" "}
                   <a href="https://beerys.github.io/#:~:text=David%20Fang%20(Alumni)-,Ari%20Pero%20(Alumni),-Avi%20Sundaresan%20(Caltech">
                     <b>
                       <u>Dr. Sara Beery</u>
                     </b>
-                  </a>{" "}
-                  underscores their dedication to leveraging technology for
-                  environmental conservation. Their work explores the use of
-                  machine learning and visual AI to detect and analyze species
-                  across diverse ecosystems, contributing to the preservation of
-                  global biodiversity and advancing computational approaches to
-                  ecological monitoring.
+                  </a>
+                  , explored the use of machine learning and visual AI to
+                  analyze and optimize species tracking across diverse
+                  ecosystems. By advancing computational approaches to preserve
+                  global biodiversity, Ari contributed to international
+                  conservation policies and equitable data sharing.
+                </p>
+
+                <p>
+                  Currently, Ari serves as a research scientist with MIT's{" "}
+                  <a href="https://senseable.mit.edu/">
+                    <b>
+                      <u>Senseable City Lab</u>
+                    </b>
+                  </a>
+                  , where they employ machine learning and advanced image
+                  processing techniques to study urban greenery and tree health.
+                  Their work fuses RGB, thermal, and near-infrared imagery to
+                  quantify the effects of urban forests on heat mitigation and
+                  climate resilience, providing actionable insights for
+                  practitioners and policymakers aiming to build more
+                  sustainable cities.
                 </p>
 
                 <p>
@@ -293,6 +310,23 @@ const App: React.FC = () => {
                   Senegalese Drum Ensemble, and Emerson Harris Scholars Program
                   for Jazz and Classical Voice is a testament to their passion
                   for music and artistic expression.
+                </p>
+
+                <p>
+                  In 2025, Ari was selected as one of the world's top applicants
+                  for the prestigious Erasmus Mundus Joint Master (EMJM){" "}
+                  <a href="https://www.unic.eu/en/repic#all">
+                    <b>
+                      <u>
+                        <i>Redesigning the Post-Industrial City</i>
+                      </u>
+                    </b>
+                  </a>{" "}
+                  (MSc RePIC) program. With a full merit scholarship, Ari will
+                  pursue this interdisciplinary master's across 3-5 countries
+                  and eight universities in the EU and Turkey—deepening their
+                  training in global urban innovation, sustainable development,
+                  and participatory planning.
                 </p>
               </div>
             </motion.div>
