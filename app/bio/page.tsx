@@ -322,9 +322,9 @@ const App: React.FC = () => {
                       </u>
                     </b>
                   </a>{" "}
-                  (MSc RePIC) program. With a fully funded scholarship, Ari will
+                  (MSc RePIC) program. With a full merit scholarship, Ari will
                   pursue this interdisciplinary master's across 3-5 countries
-                  and eight universities in the EU and Turkey— deepening their
+                  and eight universities in the EU and Turkey—deepening their
                   training in global urban innovation, sustainable development,
                   and participatory planning.
                 </p>
