@@ -8,7 +8,7 @@ import { useState, useRef, useEffect, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ChevronLeft, ChevronUp } from "lucide-react";
-import { projects, backgroundImages } from './projectsData';
+import { projects, backgroundImages } from "./projectsData";
 
 function shuffleArray<T>(array: T[]): T[] {
   const newArray = [...array];
@@ -19,12 +19,23 @@ function shuffleArray<T>(array: T[]): T[] {
   return newArray;
 }
 
+// Image prefetcher component
+const ImagePrefetcher = ({ imageSrc }: { imageSrc: string }) => {
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = imageSrc;
+  }, [imageSrc]);
+
+  return null; // This component doesn't render anything
+};
+
 export default function PhotoPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeProject, setActiveProject] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [showGalleryReturn, setShowGalleryReturn] = useState(false)
+  const [showGalleryReturn, setShowGalleryReturn] = useState(false);
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const slideshowRef = useRef<HTMLDivElement>(null);
 
   const randomizedImages = useMemo(() => shuffleArray(backgroundImages), []);
@@ -56,10 +67,18 @@ export default function PhotoPage() {
     return () => clearInterval(interval);
   }, []);
 
+  // useEffect(() => {
+  //   // when scroll position past #gallery href, show button to go back to #gallery / top of gallery section (not top of entire page)
+  //   setShowGalleryReturn(scrollPosition > window.innerHeight);
+  // }, [scrollPosition]);
+
   useEffect(() => {
-    // when scroll position past #gallery href, show button to go back to #gallery / top of gallery section (not top of entire page)
-    setShowGalleryReturn(scrollPosition > window.innerHeight)
-  }, [scrollPosition])
+    const handleScroll = () => {
+      setShowGalleryReturn(window.scrollY > window.innerHeight);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (slideshowRef.current) {
@@ -70,12 +89,26 @@ export default function PhotoPage() {
   const allProjects = useMemo(() => {
     return Object.entries(projects).reduce(
       (acc, [category, categoryProjects]) => {
-        Object.entries(categoryProjects).forEach(([projectName, projectData]) => {
-          acc[projectName] = { category, coverImage: projectData.images[0] };
-        });
+        Object.entries(categoryProjects).forEach(
+          ([projectName, projectData]) => {
+            acc[projectName] = {
+              category,
+              coverImage: projectData.images[0],
+              images: projectData.images,
+            };
+          }
+        );
         return acc;
       },
-      {} as Record<string, { category: string; coverImage: string; description?: React.ReactNode }>
+      {} as Record<
+        string,
+        {
+          category: string;
+          coverImage: string;
+          images: string[];
+          description?: React.ReactNode;
+        }
+      >
     );
   }, []);
 
@@ -125,14 +158,14 @@ export default function PhotoPage() {
             </div>
           ))}
         </div>
-
         {isMobile && (
-            <div className="absolute inset-0 bg-black opacity-50 w-full h-full"/>
+          <div className="absolute inset-0 bg-black opacity-50 w-full h-full" />
         )}
-
         {/* <div className="relative z-10 container mx-auto px-4 py-8"> */}
         {/* <div className="relative z-10 flex flex-col justify-between h-full p-8"> */}
-        <div className="relative z-10 flex flex-col justify-between h-full px-4 md:px-16 py-6 md:py-8">  {/* browser view: px-16 py-8 */}
+        <div className="relative z-10 flex flex-col justify-between h-full px-4 md:px-16 py-6 md:py-8">
+          {" "}
+          {/* browser view: px-16 py-8 */}
           <header>
             <div className="flex justify-between items-start text-xs">
               <div>
@@ -147,7 +180,9 @@ export default function PhotoPage() {
                 </h2>
                 <p className="whitespace-nowrap">2017 - 2022</p>
                 {isMobile ? (
-                  <p className="mt-3.5 whitespace-nowrap">SAMPLE WORKS IN PHOTOGRAPHY & EDITING</p>
+                  <p className="mt-3.5 whitespace-nowrap">
+                    SAMPLE WORKS IN PHOTOGRAPHY & EDITING
+                  </p>
                 ) : (
                   <p className="whitespace-nowrap">SAMPLE WORKS</p>
                 )}
@@ -176,24 +211,28 @@ export default function PhotoPage() {
             </div>
 
             <div className="text-xs">
-                {isMobile ? (
-                  <p>ALL SHOT ON NIKON D3400 OR iPHONE 8</p>
-                ) : (
+              {isMobile ? (
+                <p>ALL SHOT ON NIKON D3400 OR iPHONE 8</p>
+              ) : (
                 <div className="mt-3.5">
                   <p>EVENT / FASHION / PORTRAIT &mdash;&mdash; PHOTOGRAPHY</p>
                   <p>
-                    COLOR GRADING / CORRECTIVE / STYLISTIC / GENERAL &mdash;&mdash; EDITING
+                    COLOR GRADING / CORRECTIVE / STYLISTIC / GENERAL
+                    &mdash;&mdash; EDITING
                   </p>
                   <p>PHOTOS DISPLAYED ALL SHOT ON NIKON D3400 OR iPHONE 8</p>
                 </div>
               )}
             </div>
           </header>
-
           {/* Main title */}
-          <main className="flex-grow flex items-center mt-4">  {/* orig <main className="my-24"> */}
+          <main className="flex-grow flex items-center mt-4">
+            {" "}
+            {/* orig <main className="my-24"> */}
             <div className="grid grid-cols-4 gap-4">
-              <div className="text-red-600 text-[24vw] md:text-[8.2vw] leading-none font-bold tracking-tighter">  {/* orig text-[7rem] */}
+              <div className="text-red-600 text-[24vw] md:text-[8.2vw] leading-none font-bold tracking-tighter">
+                {" "}
+                {/* orig text-[7rem] */}
                 <Link href="#gallery" className="scroll-smooth">
                   <div className="transform hover:scale-105 transition-transform">
                     CAM/
@@ -208,9 +247,10 @@ export default function PhotoPage() {
               </div>
             </div>
           </main>
-
           {/* Footer */}
-          <footer>  {/* orig <footer className="absolute bottom-0 left-0 right-0 p-4"> */}
+          <footer>
+            {" "}
+            {/* orig <footer className="absolute bottom-0 left-0 right-0 p-4"> */}
             <div className="flex justify-between items-center text-xs">
               <div className="flex items-center gap-2">
                 <span>©</span>
@@ -218,8 +258,8 @@ export default function PhotoPage() {
                   <span className="text-yellow-500">ARI PERÓ ✱ 2025</span>
                 ) : (
                   <span className="text-yellow-500">
-                    ARI PERÓ / EST. MMXXIV / ARTS & DEV PORTFOLIO / PHOTOGRAPHY &
-                    EDITING ✱
+                    ARI PERÓ / EST. MMXXIV / ARTS & DEV PORTFOLIO / PHOTOGRAPHY
+                    & EDITING ✱
                   </span>
                 )}
               </div>
@@ -246,10 +286,10 @@ export default function PhotoPage() {
             </div>
           </footer>
         </div>
-
         {/* Decorative background lines */}
         <div className="absolute top-1/3 left-0 right-0 h-px bg-yellow-500/20"></div>
-        <div className="absolute top-2/3 left-0 right-0 h-px bg-yellow-500/20"></div>  {/* or top-[62%] */}
+        <div className="absolute top-2/3 left-0 right-0 h-px bg-yellow-500/20"></div>{" "}
+        {/* or top-[62%] */}
       </section>
 
       {/* Gallery */}
@@ -265,13 +305,13 @@ export default function PhotoPage() {
                   setActiveProject(null);
                 }}
                 className={`rounded-full transition-colors ${
-                    isMobile
-                      ? 'px-2 py-0.5 text-xs'
-                      : 'px-4 py-2 text-sm whitespace-nowrap transition-colors'
-                    } ${
-                    activeCategory === category
-                      ? "bg-yellow-500/95 text-black"
-                      : "text-yellow-500 hover:bg-yellow-500/20"
+                  isMobile
+                    ? "px-2 py-0.5 text-xs"
+                    : "px-4 py-2 text-sm whitespace-nowrap transition-colors"
+                } ${
+                  activeCategory === category
+                    ? "bg-yellow-500/95 text-black"
+                    : "text-yellow-500 hover:bg-yellow-500/20"
                 }`}
               >
                 {category}
@@ -284,10 +324,12 @@ export default function PhotoPage() {
         {!activeProject && (
           <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4">
             {Object.entries(filteredProjects).map(
-              ([projectName, { coverImage }]) => (
+              ([projectName, { coverImage, images }]) => (
                 <div key={projectName} className="break-inside-avoid mb-4">
                   <button
                     onClick={() => setActiveProject(projectName)}
+                    onMouseEnter={() => setHoveredProject(projectName)}
+                    onMouseLeave={() => setHoveredProject(null)}
                     className="w-full relative overflow-hidden rounded-lg group"
                   >
                     <Image
@@ -301,11 +343,19 @@ export default function PhotoPage() {
                     <div className="absolute inset-0 flex items-end p-4">
                       <span
                         className="text-white text-left text-lg font-semibold"
-                        style={{ textShadow: '1.5px 1.5px 3px rgba(0,0,0, 0.5)' }}
+                        style={{
+                          textShadow: "1.5px 1.5px 3px rgba(0,0,0, 0.5)",
+                        }}
                       >
                         {projectName}
                       </span>
                     </div>
+
+                    {/* Prefetch images when hovering */}
+                    {hoveredProject === projectName &&
+                      images.map((image, index) => (
+                        <ImagePrefetcher key={index} imageSrc={image} />
+                      ))}
                   </button>
                 </div>
               )
@@ -327,9 +377,15 @@ export default function PhotoPage() {
               {activeProject}
             </h2>
             {allProjects[activeProject].description && (
-              <div className="z-100 mb-4 text-white" style={{ border: '2px solid red' }}>
-                {typeof allProjects[activeProject].description === 'function'
-                  ? (allProjects[activeProject].description as () => React.ReactNode)()
+              <div
+                className="z-100 mb-4 text-white"
+                style={{ border: "2px solid red" }}
+              >
+                {typeof allProjects[activeProject].description === "function"
+                  ? (
+                      allProjects[activeProject]
+                        .description as () => React.ReactNode
+                    )()
                   : allProjects[activeProject].description}
               </div>
             )}
