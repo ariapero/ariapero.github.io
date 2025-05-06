@@ -38,12 +38,25 @@ export default function PhotoPage() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
   const slideshowRef = useRef<HTMLDivElement>(null);
 
-  const randomizedImages = useMemo(() => shuffleArray(backgroundImages), []);
-  const randomDepths = useMemo(
-    () =>
-      Array.from({ length: randomizedImages.length }, () => Math.random() * 40),
-    [randomizedImages.length]
-  );
+  // const randomizedImages = useMemo(() => shuffleArray(backgroundImages), []);
+  // const randomDepths = useMemo(
+  //   () =>
+  //     Array.from({ length: randomizedImages.length }, () => Math.random() * 40),
+  //   [randomizedImages.length]
+  // );
+
+  // Move randomization to useState with a function initializer to ensure it runs client-side
+  const [randomizedImages, setRandomizedImages] = useState<string[]>([]);
+  const [randomDepths, setRandomDepths] = useState<number[]>([]);
+
+  // Initialize randomization on client-side only
+  useEffect(() => {
+    // This will run only in the browser, after hydration
+    setRandomizedImages(shuffleArray(backgroundImages));
+    setRandomDepths(
+      Array.from({ length: backgroundImages.length }, () => Math.random() * 40)
+    );
+  }, []);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -86,8 +99,48 @@ export default function PhotoPage() {
     }
   }, [scrollPosition]);
 
-  const allProjects = useMemo(() => {
-    return Object.entries(projects).reduce(
+  // const allProjects = useMemo(() => {
+  //   return Object.entries(projects).reduce(
+  //     (acc, [category, categoryProjects]) => {
+  //       Object.entries(categoryProjects).forEach(
+  //         ([projectName, projectData]) => {
+  //           acc[projectName] = {
+  //             category,
+  //             coverImage: projectData.images[0],
+  //             images: projectData.images,
+  //           };
+  //         }
+  //       );
+  //       return acc;
+  //     },
+  //     {} as Record<
+  //       string,
+  //       {
+  //         category: string;
+  //         coverImage: string;
+  //         images: string[];
+  //         description?: React.ReactNode;
+  //       }
+  //     >
+  //   );
+  // }, []);
+
+  // Use useState instead of useMemo for allProjects
+  const [allProjects, setAllProjects] = useState<
+    Record<
+      string,
+      {
+        category: string;
+        coverImage: string;
+        images: string[];
+        description?: React.ReactNode;
+      }
+    >
+  >({});
+
+  // Initialize allProjects on client-side
+  useEffect(() => {
+    const projectsData = Object.entries(projects).reduce(
       (acc, [category, categoryProjects]) => {
         Object.entries(categoryProjects).forEach(
           ([projectName, projectData]) => {
@@ -110,8 +163,10 @@ export default function PhotoPage() {
         }
       >
     );
+    setAllProjects(projectsData);
   }, []);
 
+  // Calculate filtered projects based on activeCategory
   const filteredProjects =
     activeCategory === "All"
       ? allProjects
@@ -189,7 +244,7 @@ export default function PhotoPage() {
               </div>
               {!isMobile && (
                 <div className="text-center">
-                  <h1 className="text-xl font-bold mb-1">ARIAPERO/Photo</h1>
+                  <h1 className="text-xl font-bold mb-1">ARIPERO/Photo</h1>
                   <p className="text-yellow-500">▼42°21'36.36"N 71°5'39.12"E</p>
                 </div>
               )}
@@ -202,8 +257,8 @@ export default function PhotoPage() {
                     <span className="text-sm mb-1.5">HOME</span>
                   ) : (
                     <>
-                      <p>HTTPS://ARIAPERO</p>
-                      <p>.GITHUB.IO</p>
+                      <p>HTTPS://</p>
+                      <p>ARIPERO.COM</p>
                     </>
                   )}
                 </Link>
