@@ -3,12 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ChevronDown,
-  ChevronUp,
-  Maximize2,
-  Minimize2,
-} from "lucide-react";
+import { ChevronDown, ChevronUp, Maximize2, Minimize2 } from "lucide-react";
 
 interface Project {
   title: string;
@@ -188,7 +183,7 @@ export default function Page() {
       <title>ari peró | instrumental performance</title>
       {/* Header Section */}
       <header className="p-4 flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-white/10">
-        ={" "}
+        {" "}
         <div className="flex items-center space-x-4 -mb-12 sm:mb-0">
           <div className="border border-white p-2">
             <Link
