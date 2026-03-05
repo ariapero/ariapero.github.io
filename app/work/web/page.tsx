@@ -8,7 +8,7 @@ import {
   ArrowLeft,
   ExternalLink,
   ChevronLeft,
-  ChevronRight,
+  ChevronRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -25,6 +25,11 @@ type Project = {
     image: string;
     thumbnail: string;
   }[];
+  poster?: {
+    pdf: string;
+    alt: string;
+    caption?: string;
+  };
   keyFeatures?: string[];
 };
 
@@ -56,38 +61,38 @@ const projects: Project[] = [
         title: "Landing Page",
         description:
           "Secure access for MIT students via MIT Touchstone authentication, ensuring a safe and personalized experience while maintaining a clean, minimalist design.",
-        image: "/unsubscribe-landing.png?height=450&width=800",
-        thumbnail: "/unsubscribe-landing.png?height=100&width=150",
+        image: "/unsubscribe/unsubscribe-landing.png?height=450&width=800",
+        thumbnail: "/unsubscribe/unsubscribe-landing.png?height=100&width=150",
       },
       {
         title: "Dashboard (Food Posts Feed)",
         // description: "A centralized hub showing recent free food posts, lost & found items, and relevant dormspam, with smart filtering options.",
         description:
           "A real-time feed of free food posts with seamless integration of collected mailing list emails. Users can upload photos, mark items as 'gone', and connect with the community.",
-        image: "/unsubscribe-dash.png?height=450&width=800",
-        thumbnail: "/unsubscribe-dash.png?height=100&width=150",
+        image: "/unsubscribe/unsubscribe-dash.png?height=450&width=800",
+        thumbnail: "/unsubscribe/unsubscribe-dash.png?height=100&width=150",
       },
       {
         title: "Dark Mode",
         // description: "A centralized hub showing recent free food posts, lost & found items, and relevant dormspam, with smart filtering options.",
         description:
           "A real-time feed of free food posts with seamless integration of collected mailing list emails. Users can upload photos, mark items as 'gone', and connect with the community.",
-        image: "/unsubscribe-dark.png?height=450&width=800",
-        thumbnail: "/unsubscribe-dark.png?height=100&width=150",
+        image: "/unsubscribe/unsubscribe-dark.png?height=450&width=800",
+        thumbnail: "/unsubscribe/unsubscribe-dark.png?height=100&width=150",
       },
       {
         title: "Scheduled Food (Calendar View)",
         description:
           "An interactive calendar of scheduled free food events, allowing users to plan and share their own events, fostering a culture of sharing and sustainability.",
-        image: "/unsubscribe-calendar.png?height=450&width=800",
-        thumbnail: "/unsubscribe-calendar.png?height=100&width=150",
+        image: "/unsubscribe/unsubscribe-calendar.png?height=450&width=800",
+        thumbnail: "/unsubscribe/unsubscribe-calendar.png?height=100&width=150",
       },
       {
         title: "Scheduled Food (Grid View)",
         description:
           "View scheduled food in grid view, or click on a calendar item to be led to the corresponding food card post in grid view.",
-        image: "/unsubscribe-scheduled.png?height=450&width=800",
-        thumbnail: "/unsubscribe-scheduled.png?height=100&width=150",
+        image: "/unsubscribe/unsubscribe-scheduled.png?height=450&width=800",
+        thumbnail: "/unsubscribe/unsubscribe-scheduled.png?height=100&width=150",
       },
       // {
       //   title: "User Profile",
@@ -96,6 +101,11 @@ const projects: Project[] = [
       //   thumbnail: "/unsubscribe2.png?height=100&width=150"
       // },
     ],
+    poster: {
+      pdf: "/unsubscribe/unsubscribe-icampus-poster.pdf",
+      alt: "Unsubscribe iCampus Project Poster: Streamlining Campus Resource Sharing for a Sustainable MIT",
+      caption: "Project poster made for submission to MIT iCampus competition",
+    },
     keyFeatures: [
       "Real-time updates and notifications using WebSocket and Socket.IO",
       "Secure authentication via OAuth/OpenID clients, Google Login API, and MIT Shibboleth",
@@ -259,6 +269,63 @@ const projects: Project[] = [
         image: "/Who-Polices-Who/policing-10.png?height=450&width=800",
         thumbnail: "/Who-Polices-Who/policing-10.png?height=100&width=150",
       },
+    ],
+  },
+  {
+    title: "Mayor Simulator: Can Code Help Heal Post-Industrial Cities?",
+    description:
+      "\"Mayor of Reddale\" is an interactive policy simulation and educational web experience (game) developed as an example for how civic technology can make urban planning more legible to everyday residents. Players take on the role of mayor of a fictional struggling city, making budget-constrained policy decisions across multiple rounds, with consideration for trade-offs across jobs, equity, climate, and political support.",
+    link: "https://aripero.com/repic-blogpost/",
+    technologies: [
+      "React",
+      "Express",
+      "Next.js",
+      "Tailwind CSS",
+    ],
+    pages: [
+      {
+        title: "Landing Page Screenshot",
+        description:
+          "",
+        image: "/mayor-simulator/mayor-1.png?height=450&width=800",
+        thumbnail: "/mayor-simulator/mayor-1.png?height=100&width=150",
+      },
+      {
+        title: "Sample Year 1 Gameplay",
+        description:
+          "",
+        image: "/mayor-simulator/mayor-2.png?height=450&width=800",
+        thumbnail: "/mayor-simulator/mayor-2.png?height=100&width=150",
+      },
+      {
+        title: "Sample Year 4 Gameplay",
+        description:
+          "",
+        image: "/mayor-simulator/mayor-3.png?height=450&width=800",
+        thumbnail: "/mayor-simulator/mayor-3.png?height=100&width=150",
+      },
+      {
+        title: "Sample Concluding Page (First Half)",
+        description:
+          "",
+        image: "/mayor-simulator/mayor-4.png?height=450&width=800",
+        thumbnail: "/mayor-simulator/mayor-4.png?height=100&width=150",
+      },
+      {
+        title: "Sample Concluding Page (Second Half)",
+        description:
+          "",
+        image: "/mayor-simulator/mayor-5.png?height=450&width=800",
+        thumbnail: "/mayor-simulator/mayor-5.png?height=100&width=150",
+      },
+    ],
+    keyFeatures: [
+      "Multi-round simulation engine with a dynamic budget system and cascading policy effects across four tracked metrics",
+      "Upgrade/dependency policy tree (certain advanced policies only unlock after prerequisite investments, modeling realistic policy sequencing)",
+      "14 distinct policies across base and upgrade tiers, each with stakeholder narratives and explicit equity trade-offs",
+      "Branching outcome system with 10+ contextual end-states based on final metric combinations",
+      "Embedded editorial framing the simulation with research on civic tech, digital equity, and community organizing",
+      "Responsive, accessible UI with real-time metric visualization",
     ],
   },
 ];
@@ -437,6 +504,42 @@ export default function WebDevPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            )}
+
+            {project.poster && (
+              <div className="mt-8 -mb-8 flex flex-col items-center gap-3">
+                <a
+                  href={project.poster.pdf}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative max-w-2xl w-full border border-white/10 rounded-lg overflow-hidden group cursor-pointer transition-all hover:border-white/30 block"
+                >
+                  {/* <div className="aspect-[8.5/11] w-full overflow-hidden"> */}
+                    <div className="aspect-[3/4] w-full overflow-hidden relative">
+                      <iframe
+                        src={`${project.poster.pdf}#view=FitW&toolbar=0&navpanes=0`}
+                        style={{
+                          width: 'calc(100% + 17px)', // pushes scrollbar outside the clipped area
+                          height: '100%',
+                          border: 'none',
+                          pointerEvents: 'none',
+                          display: 'block',
+                        }}
+                        title={project.poster.alt}
+                      />
+                    </div>
+                  {/* </div> */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white text-sm bg-black/60 px-4 py-2 rounded-full flex items-center gap-2">
+                      <ExternalLink size={14} />
+                      Open PDF
+                    </span>
+                  </div>
+                </a>
+                {project.poster.caption && (
+                  <p className="text-gray-300 text-sm">{project.poster.caption}</p>
+                )}
               </div>
             )}
           </div>
