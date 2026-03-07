@@ -1,3 +1,5 @@
+// add CV? separate from resume maybe
+
 "use client";
 
 import React from "react";
@@ -144,29 +146,33 @@ const App: React.FC = () => {
                 style={{ textShadow: "1px 1px 2px black" }}
               >
                 <p>
-                  Ari Peró has been committed to effecting political change
+                  Ari Peró is an engineer, urbanist, and artist committed to
+                  building more just cities. Since February 2018, before they
+                  were even old enough to vote, they have been organizing for
+                  policy change as a founding member of{" "}
+                  <b>Students Demand Action: Miami</b>.{" "}
+                  {/* Ari Peró has been committed to effecting political change
                   since before they were old enough to vote. Since February
                   2018, they have been at the forefront of shaping national
                   legislation as a founding member of{" "}
-                  <b>Students Demand Action: Miami</b>. Ari is guided by the
-                  principle of "pay it forward and pay it back," inspiring peers
-                  to harness their political agency and empowering them with
-                  tools for tangible transformation.
+                  <b>Students Demand Action: Miami</b>. */}
+                  Ari is guided by the principle of "pay it forward and pay it
+                  back," inspiring peers to harness their political agency and
+                  empowering them with tools for tangible transformation.
                 </p>
 
                 <p>
-                  Their interests converge around critical issues such as
-                  housing justice, leveraging social media for amplifying
-                  advocacy groups, environmentally conscious planning through
-                  indigenous and reparative paradigms, and holistic criminal
-                  justice reform&#8212;fighting for both racial and LGBTQ+
-                  justice within the context of reducing incarceration.
-                  Utilizing technology, programming, machine vision, and urban
-                  science principles, they strive to drive transformation in
-                  these domains.
+                  Their interests converge around critical issues such as civic
+                  technology / e-governance, housing justice, environmentally
+                  conscious planning through indigenous and reparative
+                  paradigms, and holistic criminal justice reform&#8212;fighting
+                  for both racial and LGBTQ+ justice within the context of
+                  reducing incarceration. Utilizing technology, programming,
+                  machine vision, and urban science principles, they strive to
+                  drive transformation in these domains.
                 </p>
 
-                <p>
+                {/* <p>
                   In line with these passions, Ari is both a scholar and
                   Teaching Assistant in{" "}
                   <b>
@@ -184,42 +190,94 @@ const App: React.FC = () => {
                   climate and sustainability issues, while mentoring fellow
                   scholars in navigating academic and professional pathways
                   related to climate impact.
+                </p> */}
+
+                <p>
+                  Ari recently graduated from the{" "}
+                  <b>Massachusetts Institute of Technology (MIT)</b> with a B.S.
+                  in Urban Science &amp; Planning with Computer Science and in
+                  Music, where they were both a scholar and Teaching Assistant
+                  in{" "}
+                  <a href="https://impactclimate.mit.edu/get-involved/student-opportunities/climate-sustainability-scholars-program/">
+                    <u>
+                      <b>
+                        MIT's Climate and Sustainability Consortium (MCSC)
+                        Scholars Program
+                      </b>
+                    </u>
+                  </a>
+                  . Through the program, they engaged deeply with projects
+                  addressing pressing climate and sustainability issues, while
+                  mentoring fellow scholars in research design as well as
+                  navigating academic and professional pathways related to
+                  climate impact.
                 </p>
 
                 <p>
                   Ari's research spans impactful projects that use technology to
-                  tackle environmental and urban challenges. Their undergraduate
-                  research in computer vision for biodiversity monitoring, under
-                  the guidance of{" "}
+                  tackle environmental and urban challenges. As a researcher in
+                  MIT Computer Science & Artificial Intelligence Laboratory
+                  (CSAIL) under{" "}
                   <a href="https://beerys.github.io/#:~:text=David%20Fang%20(Alumni)-,Ari%20Pero%20(Alumni),-Avi%20Sundaresan%20(Caltech">
                     <b>
                       <u>Dr. Sara Beery</u>
                     </b>
                   </a>
-                  , explored the use of machine learning and visual AI to
-                  analyze and optimize species tracking across diverse
+                  {/* , Ari studied how biodiversity data sharing shapes machine
+                  learning performance and global conservation policy. */}
+                  , Ari explored the use of machine learning and visual AI to
+                  analyze and optimize animal species tracking across diverse
                   ecosystems. By advancing computational approaches to preserve
                   global biodiversity, Ari contributed to international
-                  conservation policies and equitable data sharing.
+                  conservation and equitable data sharing policies.
                 </p>
 
                 <p>
-                  Currently, Ari serves as a research scientist with MIT's{" "}
+                  At MIT's{" "}
                   <a href="https://senseable.mit.edu/">
                     <b>
                       <u>Senseable City Lab</u>
                     </b>
                   </a>
-                  , where they employ machine learning and advanced image
-                  processing techniques to study urban greenery and tree health.
-                  Their work fuses RGB, thermal, and near-infrared imagery to
-                  quantify the effects of urban forests on heat mitigation and
-                  climate resilience, providing actionable insights for
+                  , Ari employed machine learning and advanced image processing
+                  techniques to study urban greenery and tree health. Their work
+                  fused RGB, thermal, and near-infrared imagery to quantify the
+                  effects of urban forests on heat mitigation and climate
+                  resilience.{" "}
+                  {/* , providing actionable insights for
                   practitioners and policymakers aiming to build more
-                  sustainable cities.
+                  sustainable cities. */}
+                  Their work provides actionable insights to practitioners and
+                  policymakers in improving public health and integrating green
+                  infrastructure into planning.
                 </p>
 
                 <p>
+                  In industry, Ari has focused on infrastructure powering
+                  large-scale systems. As a Software Engineering Intern on{" "}
+                  <b>ML Serving &amp; Inference Infrastructure</b> at{" "}
+                  <a href="https://www.pinterestcareers.com/early-career/pinterns">
+                    <b>
+                      <u>Pinterest</u>
+                    </b>
+                  </a>
+                  , they built an automated cluster management framework that
+                  cut setup time from 4.5 hours to 15 minutes and extended
+                  feature optimization systems to process 95M+ operations with
+                  negligible added latency. At{" "}
+                  <a href="https://www.aboutamazon.com/what-we-do/devices-services/project-kuiper">
+                    <b>
+                      <u>Amazon Project Kuiper</u>
+                    </b>
+                  </a>
+                  , their first experience in embedded systems design, Ari
+                  designed a satellite gateway CLI that reduced codebase size
+                  and improved developer productivity, as well as developed
+                  Rust-based features to address security vulnerabilities in
+                  bootloader verification.
+                </p>
+
+                {/* <p>
                   This past summer, Ari interned at{" "}
                   <a href="https://www.aboutamazon.com/what-we-do/devices-services/project-kuiper">
                     <b>
@@ -233,9 +291,33 @@ const App: React.FC = () => {
                   sharpened their technical abilities in embedded systems design
                   and bolstered their commitment to creating scalable, efficient
                   solutions with tangible impact.
-                </p>
+                </p> */}
 
                 <p>
+                  Beyond research and engineering, Ari grounded their MIT
+                  experience in community work: coordinating social justice
+                  programming for the
+                  <b>Active Community Engagement</b> pre-orientation program,
+                  teaching in the{" "}
+                  <a href="https://mites.mit.edu/discover-mites/mites-summer/">
+                    <b>
+                      <u>MITES Summer</u>
+                    </b>
+                  </a>{" "}
+                  program, and serving as a{" "}
+                  <a href="https://pleasure.mit.edu/educators/ari-pero/">
+                    <b>
+                      <u>PLEASURE Educator</u>
+                    </b>
+                  </a>{" "}
+                  leading consent and healthy relationship workshops. As
+                  President of <b>G@MIT</b>, MIT's LGBTQ+ cultural and advocacy
+                  organization, they worked to secure space, resources, and
+                  institutional accountability for students with intersectional
+                  identities.
+                </p>
+
+                {/* <p>
                   Originally from South Side, Chicago, IL, and now based in
                   Miami, FL, Ari has spent the past three years anchoring their
                   experiences at MIT in their desire to empower others: as an
@@ -259,9 +341,26 @@ const App: React.FC = () => {
                   , Ari contributes to eradicating sexual violence at MIT by
                   leading educational presentations on topics like contraception
                   and healthy relationships for athletes and FSILGs.
-                </p>
+                </p> */}
 
                 <p>
+                  Ari's commitment to public service and advocacy has been
+                  recognized through awards including the{" "}
+                  <b>Priscilla King Gray Public Service Award</b>, the{" "}
+                  <b>Albert G. Hill Prize</b>, the <b>Golden Beaver Award</b>,
+                  and{" "}
+                  <a href="https://ome.mit.edu/about/student-awards/distinguished-peers/ari-pero">
+                    <b>
+                      <u>OME Distinguished Peer in Public Service</u>
+                    </b>
+                  </a>{" "}
+                  recognition, as well as national honors such as the{" "}
+                  <b>Point Foundation Flagship Scholarship</b>, Miami Ortega
+                  Foundation Scholarship, and Hispanic Scholarship Fund (HSF)
+                  awards.
+                </p>
+
+                {/* <p>
                   Their commitment to public service has been recognized through
                   accolades including selection as the{" "}
                   <a href="https://ome.mit.edu/about/student-awards/distinguished-peers/ari-pero">
@@ -274,16 +373,16 @@ const App: React.FC = () => {
                   . They are also recognized as a Miami Ortega Foundation
                   Scholar and Point Foundation Flagship Scholar and Spokesperson
                   since 2021.
-                </p>
+                </p> */}
 
-                <p>
+                {/* <p>
                   In Fall 2022, Ari assumed the presidency of G@MIT, MIT's
                   LGBTQ+ cultural and activist organization. Through this
                   office, they work to establish dedicated spaces for students
                   with intersectional identities, foster constructive dialogue
                   between queer students and MIT administration, and organize
                   inclusive events for affirming LGBTQ+ experiences on campus.
-                </p>
+                </p> */}
 
                 <p>
                   Ari has also been deeply involved in raising awareness of the
@@ -291,17 +390,25 @@ const App: React.FC = () => {
                   via their artistic pursuits. Their recent video installations
                   and live performances explore the ongoing impact of their
                   community's history on present-day dynamics (shared fears and
-                  behaviors). These pieces capture Ari's own emotions as a
-                  trans, Afro-Indigenous activist navigating complex systems of
-                  power and oppression, while shedding light on many of the less
-                  “palatable” and often overlooked challenges faced by black
-                  transgender women. This narrative extends into the context of
-                  NYC ballroom culture and the 80s AIDS crisis. Ari intends to
-                  leverage these projects as a conduit for enlightening allies
-                  on the trans experience.
+                  behaviors).
                 </p>
 
                 <p>
+                  Before MIT, Ari trained in classical and jazz voice at a
+                  magnet arts high school, a passion they continued channeling
+                  through the MIT Concert Choir, Chamber Chorus, Vocal Jazz
+                  Ensemble, FaMLE (Laptop Ensemble), Rambax Senegalese Drum
+                  Ensemble, and the Emerson/Harris Program in Jazz and Classical
+                  Voice. Their video installation and live performance work
+                  explores trans experience, NYC ballroom culture, and the
+                  legacy of the AIDS crisis as living, political memory. These
+                  pieces capture Ari's own emotions as a trans, Afro-Indigenous
+                  activist navigating complex systems of power and oppression,
+                  while shedding light on many of the less "palatable" and often
+                  overlooked challenges faced by black transgender women.
+                </p>
+
+                {/* <p>
                   Before embarking on double majors in Urban Science & Planning
                   with Computer Science and Music at MIT, Ari's foundation was
                   classical vocal performance at their magnet arts high school.
@@ -310,11 +417,11 @@ const App: React.FC = () => {
                   Senegalese Drum Ensemble, and Emerson Harris Scholars Program
                   for Jazz and Classical Voice is a testament to their passion
                   for music and artistic expression.
-                </p>
+                </p> */}
 
                 <p>
                   In 2025, Ari was selected as one of the world's top applicants
-                  for the prestigious Erasmus Mundus Joint Master (EMJM){" "}
+                  for the prestigious Erasmus Mundus Joint Master (EMJM) in{" "}
                   <a href="https://www.unic.eu/en/repic#all">
                     <b>
                       <u>
@@ -322,9 +429,9 @@ const App: React.FC = () => {
                       </u>
                     </b>
                   </a>{" "}
-                  (MSc RePIC) program. With a full merit scholarship, Ari will
-                  pursue this interdisciplinary master's across 3-5 countries
-                  and eight universities in the EU and Turkey—deepening their
+                  (MSc RePIC), with a full merit scholarship. They are now
+                  pursuing this interdisciplinary master's across six countries
+                  and ten universities in Europe and Turkey—deepening their
                   training in global urban innovation, sustainable development,
                   and participatory planning.
                 </p>
@@ -397,7 +504,7 @@ const App: React.FC = () => {
                     />
                   </Link>
                   <div className="text-xs sm:text-sm">
-                    © 2025 Ari Peró. All rights reserved.
+                    © {new Date().getFullYear()} Ari Peró. All rights reserved.
                   </div>
                   <a
                     href="mailto:ariapero@mit.edu"
