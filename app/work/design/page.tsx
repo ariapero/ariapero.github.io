@@ -458,8 +458,8 @@ export default function DesignPage() {
           <span className="hidden md:inline">HTTPS://ARIAPERO.GITHUB.IO</span>
         </Link>
         <div className="mb-0">
-          <span className="md:hidden">© 2025</span>
-          <span className="hidden md:inline">© 2025 Ari Peró. All rights reserved.</span>
+          <span className="md:hidden">© {new Date().getFullYear()}</span>
+          <span className="hidden md:inline">© {new Date().getFullYear()} Ari Peró. All rights reserved.</span>
         </div>
         <a href="mailto:ariapero@mit.edu" className="hover:underline">
           <span className="md:hidden">MAILTO:</span>
