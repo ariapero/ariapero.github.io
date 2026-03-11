@@ -8,7 +8,8 @@ import { ChevronUp } from 'lucide-react'
 
 const backgrounds = [
   '/to_man.jpg',
-  '/unsubscribe-blurcover.png',
+  '/poster-session.png',
+  '/unsubscribe/unsubscribe-blurcover.png',
   '/body.png',
   '/proj.png',
   '/punky.png',
@@ -24,6 +25,7 @@ const backgrounds = [
 
 const projects = [
   '',
+  '/wip',
   '/work/web',
   '/work/video',
   '/work/sound',
@@ -42,6 +44,10 @@ const content = [
   {
     title: "Transdisciplinearity",
     subtitle: "scroll down or use the links below to navigate"
+  },
+  {
+    title: "Research",
+    subtitle: "scientific writing and research contributions in computer vision and urban science/planning"
   },
   {
     title: "Web",
