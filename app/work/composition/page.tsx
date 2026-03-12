@@ -12,7 +12,6 @@ interface CompositionImage {
 
 interface Composition {
   title: string;
-  displayTitle: string;
   subtitle: string;
   year: string;
   images: CompositionImage[];
@@ -23,8 +22,7 @@ interface Composition {
 const compositions: Composition[] = [
   {
     title: 'Variations on "Rolling Girl" (Wowaka)',
-    displayTitle: "Rolling Girl",
-    subtitle: "for string quartet.",
+    subtitle: "for string quartet",
     year: "2023",
     images: [
       { src: "/compositions/rolling-girl/page-1.png", alt: "Rolling Girl sheet music, page 1" },
@@ -39,8 +37,7 @@ const compositions: Composition[] = [
   },
   {
     title: 'Variations on "Miku" (Anamanaguchi)',
-    displayTitle: "Miku",
-    subtitle: "for string quartet.",
+    subtitle: "for string quartet",
     year: "2023",
     images: [
       { src: "/compositions/miku/page-1.png", alt: "Miku sheet music, page 1" },
@@ -54,8 +51,7 @@ const compositions: Composition[] = [
   },
   {
     title: "a fairly sad tale",
-    displayTitle: "a fairly sad tale",
-    subtitle: '"art song" for soprano + piano accompaniment.',
+    subtitle: '"art song" for soprano + piano accompaniment',
     year: "2023",
     images: [
       { src: "/compositions/sad-tale/page-1.png", alt: "a fairly sad tale sheet music, page 1" },
@@ -72,8 +68,7 @@ const compositions: Composition[] = [
   },
   {
     title: "Hope is the thing with feathers",
-    displayTitle: "Hope is the thing with feathers",
-    subtitle: "for SAB voices.",
+    subtitle: "for SAB voices",
     year: "2023",
     images: [
       { src: "/compositions/hope/page-1.png", alt: "Hope is the thing with feathers sheet music, page 1" },
@@ -85,9 +80,8 @@ const compositions: Composition[] = [
     status: "completed",
   },
   {
-    title: "Y como dormida (And as if asleep)",
-    displayTitle: "Y como dormida",
-    subtitle: "for string quartet.",
+    title: "Y como dormida",
+    subtitle: "for string quartet",
     year: "2022",
     images: [
       { src: "/compositions/dormida/page-1.png", alt: "Y como dormida sheet music, page 1" },
@@ -100,8 +94,7 @@ const compositions: Composition[] = [
   },
   {
     title: "you are",
-    displayTitle: "you are",
-    subtitle: "for SATB + piano.",
+    subtitle: "for SATB + piano",
     year: "2020",
     images: [
       { src: "/compositions/you-are/page-1.png", alt: "you are sheet music, page 1" },
@@ -123,8 +116,7 @@ const compositions: Composition[] = [
   },
   {
     title: "Ode to Moonlight",
-    displayTitle: "Ode to Moonlight",
-    subtitle: "for SATB voices and optional piano.",
+    subtitle: "for SATB voices and optional piano",
     year: "2019",
     images: [
       { src: "/compositions/moonlight/page-1.png", alt: "Ode to Moonlight sheet music, page 1" },
@@ -143,8 +135,7 @@ const compositions: Composition[] = [
   },
   {
     title: "The Dolphin",
-    displayTitle: "The Dolphin",
-    subtitle: "for SATB + piano.",
+    subtitle: "for SATB voices + piano",
     year: "2018",
     images: [
       { src: "/compositions/dolphin/page-1.png", alt: "The Dolphin sheet music, page 1" },
@@ -342,31 +333,25 @@ const CompositionCard = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
-      <div className="flex justify-between items-center mb-8 relative">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mb-8">
           <Asterisk className="text-red-500 h-4 w-4" />
           <span className="text-sm tracking-wide">
             {composition.status === "wip" ? "WORK IN PROGRESS" : "COMPLETED WORK"}
           </span>
+          <Asterisk className="text-red-500 h-4 w-4" />
         </div>
-        <span className="text-sm text-gray-500">{composition.year}</span>
-        <Asterisk className="text-red-500 h-4 w-4" />
-      </div>
 
       <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-8 uppercase relative">
-        {composition.displayTitle}
+        {composition.title}
       </h1>
 
       <div className="grid grid-cols-12 gap-8 relative border-t border-b border-gray-200 py-8">
         <div className={`col-span-12 md:col-span-6 ${isEven ? "" : "md:order-2"} pr-0 md:pr-8`}>
-          <h2 className="text-2xl md:text-3xl font-normal mb-4">
-            {composition.title !== composition.displayTitle
-              ? composition.title
-              : ""}{" "}
-            {composition.subtitle}
+          <h2 className="text-2xl md:text-2xl font-normal mb-2">
+            {composition.year}
           </h2>
           <p className="text-gray-600 italic mb-6">
-            /{composition.audioFiles[0]?.label.toLowerCase()}/
+            / {composition.subtitle} /
           </p>
 
           {/* Audio Player */}
@@ -474,7 +459,7 @@ const ScrollToTopButton = () => {
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-white text-black relative font-mono">
+    <div className="min-h-screen bg-white text-black relative font-mono overflow-hidden">
       <title>ari peró | music composition</title>
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 grid grid-cols-12 pointer-events-none">
@@ -484,12 +469,6 @@ export default function Page() {
             <div key={i} className="border-l border-gray-200 h-full" />
           ))}
       </div>
-
-      {/* Corner Decorations */}
-      <div className="absolute top-0 left-0 w-8 h-8 border-t border-l border-black transform -translate-x-1 -translate-y-1" />
-      <div className="absolute top-0 right-0 w-8 h-8 border-t border-r border-black transform translate-x-1 -translate-y-1" />
-      <div className="absolute bottom-0 left-0 w-8 h-8 border-b border-l border-black transform -translate-x-1 translate-y-1" />
-      <div className="absolute bottom-0 right-0 w-8 h-8 border-b border-r border-black transform translate-x-1 translate-y-1" />
 
       {/* Header */}
       <header className="border-b border-gray-200 p-4 relative z-10">
