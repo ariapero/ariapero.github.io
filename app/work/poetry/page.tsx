@@ -3,10 +3,12 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ChevronLeft, ChevronRight, X, ArrowUp } from "lucide-react";
+import {ArrowLeft, ArrowUp } from "lucide-react";
+import { ImageViewer } from "@/components/ImageViewer"
 
-// TODO: Expanded view keyboard / arrow key navigation
 // TODO: Add YoungArts links
+// TODO: reuse audio players, scroll-to-top buttons, instead of recreating on each page
+// TODO: 2nd zoom layer feature from compositions page
 
 interface PoemImage {
   src: string;
@@ -25,10 +27,10 @@ const poems: PoemProject[] = [
     // HOMECOMING
     title: "Homecoming",
     images: [
-      { src: "/homecoming/page-1.png", alt: "'Homecoming' poem, page 1" },
-      { src: "/homecoming/page-2.png", alt: "'Homecoming' poem, page 2" },
-      { src: "/homecoming/page-3.png", alt: "'Homecoming' poem, page 3" },
-      { src: "/homecoming/page-4.png", alt: "'Homecoming' poem, page 4" },
+      { src: "/poetry/homecoming/page-1.png", alt: "'Homecoming' poem, page 1" },
+      { src: "/poetry/homecoming/page-2.png", alt: "'Homecoming' poem, page 2" },
+      { src: "/poetry/homecoming/page-3.png", alt: "'Homecoming' poem, page 3" },
+      { src: "/poetry/homecoming/page-4.png", alt: "'Homecoming' poem, page 4" },
     ],
   },
   {
@@ -36,50 +38,51 @@ const poems: PoemProject[] = [
     title: "guer ain fron",
     images: [
       {
-        src: "/guer-visual/artboard-1.png",
+        src: "/poetry/guer-visual/artboard-1.png",
         alt: "Visual representation of 'guer ain fron' poem, artboard 1",
       },
       {
-        src: "/guer-visual/artboard-2.png",
+        src: "/poetry/guer-visual/artboard-2.png",
         alt: "Visual representation of 'guer ain fron' poem, artboard 2",
       },
       {
-        src: "/guer-visual/artboard-3.png",
+        src: "/poetry/guer-visual/artboard-3.png",
         alt: "Visual representation of 'guer ain fron' poem, artboard 3",
       },
       {
-        src: "/guer-visual/artboard-4.png",
+        src: "/poetry/guer-visual/artboard-4.png",
         alt: "Visual representation of 'guer ain fron' poem, artboard 4",
       },
       {
-        src: "/guer-written/page-1.png",
+        src: "/poetry/guer-written/page-1.png",
         alt: "Written text of 'guer ain fron' poem, page 1",
       },
       {
-        src: "/guer-written/page-2.png",
+        src: "/poetry/guer-written/page-2.png",
         alt: "Written text of 'guer ain fron' poem, page 2",
       },
       {
-        src: "/guer-written/page-3.png",
+        src: "/poetry/guer-written/page-3.png",
         alt: "Written text of 'guer ain fron' poem, page 3",
       },
       {
-        src: "/guer-written/page-4.png",
+        src: "/poetry/guer-written/page-4.png",
         alt: "Written text of 'guer ain fron' poem, page 4",
       },
     ],
   },
+  // https://issuu.com/youngarts/docs/2021_h_and_hm_anthology_and_catalogue_final/316
   {
     // FACADE.
     title: "facade.",
     videoLink: "https://www.youtube.com/embed/nYAf7TH3SBA",
     images: [
       {
-        src: "/chapbook/a-facade/facade-1.png",
+        src: "/poetry/chapbook/a-facade/facade-1.png",
         alt: "Written text of 'facade.' poem, page 1",
       },
       {
-        src: "/chapbook/a-facade/facade-2.png",
+        src: "/poetry/chapbook/a-facade/facade-2.png",
         alt: "Written text of 'facade.' poem, page 2",
       },
     ],
@@ -89,23 +92,23 @@ const poems: PoemProject[] = [
     title: "ELLIPSIS",
     images: [
       {
-        src: "/chapbook/b-ellipsis/ellipsis-1.png",
+        src: "/poetry/chapbook/b-ellipsis/ellipsis-1.png",
         alt: "Written text of 'ELLIPSIS' poem, page 1",
       },
       {
-        src: "/chapbook/b-ellipsis/ellipsis-2.png",
+        src: "/poetry/chapbook/b-ellipsis/ellipsis-2.png",
         alt: "Written text of 'ELLIPSIS' poem, page 2",
       },
       {
-        src: "/chapbook/b-ellipsis/ellipsis-3.png",
+        src: "/poetry/chapbook/b-ellipsis/ellipsis-3.png",
         alt: "Written text of 'ELLIPSIS' poem, page 3",
       },
       {
-        src: "/chapbook/b-ellipsis/ellipsis-4.png",
+        src: "/poetry/chapbook/b-ellipsis/ellipsis-4.png",
         alt: "Written text of 'ELLIPSIS' poem, page 4",
       },
       {
-        src: "/chapbook/b-ellipsis/ellipsis-5.png",
+        src: "/poetry/chapbook/b-ellipsis/ellipsis-5.png",
         alt: "Written text of 'ELLIPSIS' poem, page 5",
       },
     ],
@@ -116,11 +119,11 @@ const poems: PoemProject[] = [
     videoLink: "https://www.youtube.com/embed/pWp3zl3XJm0",
     images: [
       {
-        src: "/chapbook/c-grapes/grapes-1.png",
+        src: "/poetry/chapbook/c-grapes/grapes-1.png",
         alt: "Written text of 'stream of conciouspiss/my body is terrifying./AN ALLERGY TO GRAPES' poem, page 1",
       },
       {
-        src: "/chapbook/c-grapes/grapes-2.png",
+        src: "/poetry/chapbook/c-grapes/grapes-2.png",
         alt: "Written text of 'stream of conciouspiss/my body is terrifying./AN ALLERGY TO GRAPES' poem, page 2",
       },
     ],
@@ -129,15 +132,15 @@ const poems: PoemProject[] = [
     // REMAINDER OF CHAPBOOK
     images: [
       {
-        src: "/chapbook/d-comfert.png",
+        src: "/poetry/chapbook/d-comfert.png",
         alt: "Written text of 'comfert;_' poem",
       },
       {
-        src: "/chapbook/e-crayon.png",
+        src: "/poetry/chapbook/e-crayon.png",
         alt: "Written text of 'an exploration of peripeteia in prose and crayon' poem",
       },
       {
-        src: "/chapbook/f-kalopsia.png",
+        src: "/poetry/chapbook/f-kalopsia.png",
         alt: "Written text of 'kalopsia.' poem",
       },
     ],
@@ -148,15 +151,15 @@ const poems: PoemProject[] = [
     videoLink: "https://www.youtube.com/embed/ZxlAOd71UGI",
     images: [
       {
-        src: "/you-are/page-1.png",
+        src: "/poetry/you-are/page-1.png",
         alt: "Written text of 'you are.' poem, page 1",
       },
       {
-        src: "/you-are/page-2.png",
+        src: "/poetry/you-are/page-2.png",
         alt: "Written text of 'you are.' poem, page 2",
       },
       {
-        src: "/you-are/page-3.png",
+        src: "/poetry/you-are/page-3.png",
         alt: "Written text of 'you are.' poem, page 2",
       },
     ],
@@ -167,11 +170,11 @@ const poems: PoemProject[] = [
     videoLink: "https://www.youtube.com/embed/JzXi9erqXPw",
     images: [
       {
-        src: "/cuando-og/page-1.png",
+        src: "/poetry/cuando-og/page-1.png",
         alt: "Written text of 'Cuando escucho mi nombre' spoken word poem, page 1",
       },
       {
-        src: "/cuando-og/page-2.png",
+        src: "/poetry/cuando-og/page-2.png",
         alt: "Written text of 'Cuando escucho mi nombre' spoken word poem, page 2",
       },
     ],
@@ -181,15 +184,15 @@ const poems: PoemProject[] = [
     title: "Cuando escucho mi nombre (Expanded)",
     images: [
       {
-        src: "/cuando-new/page-1.png",
+        src: "/poetry/cuando-new/page-1.png",
         alt: "Written text of 'Cuando escucho mi nombre' spoken word poem, page 1",
       },
       {
-        src: "/cuando-new/page-2.png",
+        src: "/poetry/cuando-new/page-2.png",
         alt: "Written text of 'Cuando escucho mi nombre' spoken word poem, page 2",
       },
       {
-        src: "/cuando-new/page-3.png",
+        src: "/poetry/cuando-new/page-3.png",
         alt: "Written text of 'Cuando escucho mi nombre' spoken word poem, page 3",
       },
     ],
@@ -200,81 +203,20 @@ const poems: PoemProject[] = [
     audioFile: "/catharsis/catharsis.wav",
     images: [
       {
-        src: "/catharsis/page-1.png",
+        src: "/poetry/catharsis/page-1.png",
         alt: "Written text of 'catHArsis' poem, page 1",
       },
       {
-        src: "/catharsis/page-2.png",
+        src: "/poetry/catharsis/page-2.png",
         alt: "Written text of 'catHArsis' poem, page 2",
       },
       {
-        src: "/catharsis/page-3.png",
+        src: "/poetry/catharsis/page-3.png",
         alt: "Written text of 'catHArsis' poem, page 3",
       },
     ],
   },
 ];
-
-const ImageViewer = ({
-  images,
-  currentIndex,
-  onClose,
-  onNext,
-  onPrevious,
-}: {
-  images: PoemImage[];
-  currentIndex: number;
-  onClose: () => void;
-  onNext: () => void;
-  onPrevious: () => void;
-}) => {
-  return (
-    <div
-      className="fixed inset-0 bg-black/85 z-50 flex items-center justify-center"
-      onClick={onClose}
-    >
-      <div
-        className="relative max-w-5xl max-h-[90vh] w-full"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="relative h-full">
-          <Image
-            src={images[currentIndex].src}
-            alt={images[currentIndex].alt}
-            width={1200}
-            height={800}
-            className="max-h-[85vh] w-auto mx-auto object-contain"
-          />
-
-          <button
-            className="absolute top-2 right-2 bg-black/50 p-2 rounded-full text-white hover:bg-black/75"
-            onClick={onClose}
-          >
-            <X size={24} />
-          </button>
-
-          <button
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 p-3 rounded-full text-white hover:bg-black/75"
-            onClick={onPrevious}
-          >
-            <ChevronLeft size={30} />
-          </button>
-
-          <button
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 p-3 rounded-full text-white hover:bg-black/75"
-            onClick={onNext}
-          >
-            <ChevronRight size={30} />
-          </button>
-
-          <div className="absolute bottom-4 left-0 right-0 text-center text-white">
-            {currentIndex + 1} / {images.length}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const PoemProject = ({ poem }: { poem: PoemProject }) => {
   const [viewerOpen, setViewerOpen] = useState(false);
@@ -295,7 +237,7 @@ const PoemProject = ({ poem }: { poem: PoemProject }) => {
 
   const previousImage = () => {
     setCurrentImageIndex(
-      (prev) => (prev - 1 + poem.images.length) % poem.images.length
+      (prev) => (prev - 1 + poem.images.length) % poem.images.length,
     );
   };
 
@@ -539,7 +481,7 @@ export default function Page() {
           className="font-share text-xs opacity-50"
           style={{ writingMode: "vertical-rl" }}
         >
-          © 2025
+          © {new Date().getFullYear()}
         </div>
       </div>
     </div>
