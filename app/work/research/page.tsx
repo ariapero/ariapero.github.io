@@ -315,7 +315,7 @@ const ProjectCard = ({
               }}
               className="flex-1 px-3 py-2 bg-teal-600 hover:bg-teal-500 text-white text-sm rounded transition-colors"
             >
-              View PDF
+              View PDF Report
             </button>
           </div>
         )}
@@ -426,11 +426,11 @@ export default function ResearchPage() {
               Research Portfolio
             </p>
             <h2 className="text-4xl sm:text-5xl mb-6 leading-tight font-grand">
-              Urban Planning &<br />
+              Urban Science &<br />
               <span className="text-neutral-400">Sustainability Research</span>
             </h2>
             <p className="text-neutral-400 text-lg leading-relaxed">
-              A collection of research projects spanning urban planning, GIS
+              A collection of research projects spanning urban planning/studies, GIS
               analysis, data visualization, and policy research.
             </p>
           </div>
