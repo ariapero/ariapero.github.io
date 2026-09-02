@@ -33,7 +33,7 @@ const projects = [
   '/work/photo',
   'https://ariapero.myportfolio.com/voice',
   '/work/poetry',
-  'https://ariapero.myportfolio.com/composition',
+  '/work/composition',
   '/work/instrumental',
   'https://ariapero.myportfolio.com/installation',
   '/work/fabrication',
