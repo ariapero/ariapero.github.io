@@ -25,7 +25,7 @@ interface ResearchProject {
   year: string;
   category: string;
   description: string;
-  images?: { src: string; alt: string }[];
+  images?: { src: string; alt: string }[]; // TODO: magnifying glass for zoom into photo
   pdfUrl?: string;
   coverImage?: string;
   tags?: string[];
@@ -49,7 +49,8 @@ const projects: ResearchProject[] = [
   },
   {
     id: "postindustrial-chicago",
-    title: "Post-Industrial Transformation and Social Resilience on Chicago's South Side",
+    title:
+      "Post-Industrial Transformation and Social Resilience on Chicago's South Side",
     // subtitle: "Research Paper",
     year: "2026",
     category: "paper",
@@ -61,11 +62,14 @@ const projects: ResearchProject[] = [
   },
   {
     id: "senseable-city",
-    title: "Drive-By Visuo-Thermal Sensing for Urban Tree Microclimate Analysis",
-    subtitle: "Research conducted with MIT Senseable City Lab (Poster on individual contributions, created by Ari Peró)",
+    title:
+      "Drive-By Visuo-Thermal Sensing for Urban Tree Microclimate Analysis",
+    subtitle:
+      "Research conducted with MIT Senseable City Lab (Poster on individual contributions, created by Ari Peró)",
     year: "2025",
     category: "poster",
-    description: "Thermal sensing project stitching urban tree canopy panoramas from vehicle cameras to analyze micro-climate cooling effects for tree health monitoring.",
+    description:
+      "Thermal sensing project stitching urban tree canopy panoramas from vehicle cameras to analyze micro-climate cooling effects for tree health monitoring.",
     images: [
       {
         src: "/research/senseable/poster.png",
@@ -83,7 +87,10 @@ const projects: ResearchProject[] = [
     // description: "Proposal for improving transportation options for MIT community, focusing on low-income students/staff.",
     description: "",
     images: [
-      { src: "/research/mitos/poster.png", alt: "Sustainable Commute Initiative poster" },
+      {
+        src: "/research/mitos/poster.png",
+        alt: "Sustainable Commute Initiative poster",
+      },
     ],
     pdfUrl: "/research/mitos/proposal.pdf",
     tags: ["Social Justice", "Sustainability", "Participatory Planning"],
@@ -102,7 +109,8 @@ const projects: ResearchProject[] = [
   },
   {
     id: "visibility",
-    title: "Politics of Visibility: Contemporary Art as a Catalyst for Social Change",
+    title:
+      "Politics of Visibility: Contemporary Art as a Catalyst for Social Change",
     subtitle: "",
     year: "2025",
     category: "paper",
@@ -115,7 +123,8 @@ const projects: ResearchProject[] = [
   },
   {
     id: "data-sharing",
-    title: "Balancing Data Sovereignty and Biodiversity Preservation in Automated Camera Trap Analysis",
+    title:
+      "Balancing Data Sovereignty and Biodiversity Preservation in Automated Camera Trap Analysis",
     subtitle: "Research conducted under Dr. Sara Beery, MIT CSAIL",
     year: "2024",
     category: "paper",
@@ -126,7 +135,7 @@ const projects: ResearchProject[] = [
   },
   {
     id: "little-haiti",
-    title: "From \"Innovation\" to Gentrification",
+    title: 'From "Innovation" to Gentrification',
     subtitle: "Op-ed and presentation...",
     year: "2022",
     category: "paper, presentation",
@@ -430,8 +439,8 @@ export default function ResearchPage() {
               <span className="text-neutral-400">Sustainability Research</span>
             </h2>
             <p className="text-neutral-400 text-lg leading-relaxed">
-              A collection of research projects spanning urban planning/studies, GIS
-              analysis, data visualization, and policy research.
+              A collection of research projects spanning urban planning/studies,
+              GIS, data analysis, and public policy.
             </p>
           </div>
         </div>
@@ -472,3 +481,4 @@ export default function ResearchPage() {
     </div>
   );
 }
+// TODO: footnote fix
