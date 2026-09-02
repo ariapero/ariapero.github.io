@@ -4,12 +4,7 @@ import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowLeft,
-  ChevronLeft,
-  ChevronRight,
-  X,
-} from "lucide-react";
+import { ArrowLeft, ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const projects = [
   {
@@ -110,76 +105,99 @@ const projects = [
   },
 ];
 
-const ProjectSection = ({ project, index }: { project: typeof projects[0]; index: number }) => {
-  const [currentImage, setCurrentImage] = useState(0)
-  const [showDetails, setShowDetails] = useState(false)
-  const [isHovered, setIsHovered] = useState(false)
-  const [expandedImageIndex, setExpandedImageIndex] = useState<number | null>(null)
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLDivElement>(null)
+const ProjectSection = ({
+  project,
+  index,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+}) => {
+  const [currentImage, setCurrentImage] = useState(0);
+  const [showDetails, setShowDetails] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [expandedImageIndex, setExpandedImageIndex] = useState<number | null>(
+    null,
+  );
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
   const nextImage = useCallback(() => {
-    setCurrentImage((prev) => (prev + 1) % project.images.length)
-  }, [project.images.length])
+    setCurrentImage((prev) => (prev + 1) % project.images.length);
+  }, [project.images.length]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setIsVisible(entry.isIntersecting)
+        setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.5 }
-    )
+      { threshold: 0.5 },
+    );
 
     if (sectionRef.current) {
-      observer.observe(sectionRef.current)
+      observer.observe(sectionRef.current);
     }
 
     return () => {
       if (sectionRef.current) {
-        observer.unobserve(sectionRef.current)
+        observer.unobserve(sectionRef.current);
       }
-    }
-  }, [])
+    };
+  }, []);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout | null = null
+    let timer: NodeJS.Timeout | null = null;
     if (isVisible && !isHovered) {
-      timer = setInterval(nextImage, 2000)
+      timer = setInterval(nextImage, 2000);
     }
     return () => {
-      if (timer) clearInterval(timer)
-    }
-  }, [isVisible, isHovered, nextImage])
+      if (timer) clearInterval(timer);
+    };
+  }, [isVisible, isHovered, nextImage]);
 
   const handleImageClick = useCallback((e: React.MouseEvent, index: number) => {
-    e.stopPropagation()
-    setExpandedImageIndex(index)
-  }, [])
+    e.stopPropagation();
+    setExpandedImageIndex(index);
+  }, []);
 
-  const closeExpandedImage = useCallback(() => setExpandedImageIndex(null), [])
+  const closeExpandedImage = useCallback(() => setExpandedImageIndex(null), []);
 
-  const navigateExpandedImage = useCallback((direction: 'prev' | 'next') => {
-    setExpandedImageIndex((prev) => {
-      if (prev === null) return null
-      const newIndex = direction === 'prev'
-        ? (prev - 1 + project.images.length) % project.images.length
-        : (prev + 1) % project.images.length
-      return newIndex
-    })
-  }, [project.images.length])
+  const navigateExpandedImage = useCallback(
+    (direction: "prev" | "next") => {
+      setExpandedImageIndex((prev) => {
+        if (prev === null) return null;
+        const newIndex =
+          direction === "prev"
+            ? (prev - 1 + project.images.length) % project.images.length
+            : (prev + 1) % project.images.length;
+        return newIndex;
+      });
+    },
+    [project.images.length],
+  );
 
-  const memoizedOverlay = useMemo(() => (
-    <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-0 pointer-events-none">
-      {Array.from({ length: 36 }).map((_, i) => (
-        <div key={i} className="relative w-full h-full flex items-center justify-center">
-          <span className="absolute text-[#ff00ff] font-bold opacity-70 text-xl">+</span>
-        </div>
-      ))}
-    </div>
-  ), [])
+  const memoizedOverlay = useMemo(
+    () => (
+      <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-0 pointer-events-none">
+        {Array.from({ length: 36 }).map((_, i) => (
+          <div
+            key={i}
+            className="relative w-full h-full flex items-center justify-center"
+          >
+            <span className="absolute text-[#ff00ff] font-bold opacity-70 text-xl">
+              +
+            </span>
+          </div>
+        ))}
+      </div>
+    ),
+    [],
+  );
 
   return (
-    <div ref={sectionRef} className="min-h-screen w-full flex items-center bg-black snap-start">
+    <div
+      ref={sectionRef}
+      className="min-h-screen w-full flex items-center bg-black snap-start"
+    >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-16">
         <div
           className="relative -mt-16 sm:mt-0 h-[50vh] md:h-[80vh] w-full"
@@ -193,8 +211,8 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
             fill
             className="object-cover transition-all duration-300"
             style={{
-              filter: isHovered ? 'none' : 'grayscale(100%)',
-              objectPosition: 'center',
+              filter: isHovered ? "none" : "grayscale(100%)",
+              objectPosition: "center",
             }}
             sizes="(max-width: 768px) 100vw, 50vw"
             priority={index === 0}
@@ -205,8 +223,12 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
               <button
                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white"
                 onClick={(e) => {
-                  e.stopPropagation()
-                  setCurrentImage((prev) => (prev - 1 + project.images.length) % project.images.length)
+                  e.stopPropagation();
+                  setCurrentImage(
+                    (prev) =>
+                      (prev - 1 + project.images.length) %
+                      project.images.length,
+                  );
                 }}
                 aria-label="Previous image"
               >
@@ -215,8 +237,8 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
               <button
                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white"
                 onClick={(e) => {
-                  e.stopPropagation()
-                  nextImage()
+                  e.stopPropagation();
+                  nextImage();
                 }}
                 aria-label="Next image"
               >
@@ -238,17 +260,25 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
             className="space-y-2 md:space-y-6"
           >
             <div className="space-y-1 sm:space-y-2">
-              <h3 className="text-xs font-mono opacity-50">{project.category}</h3>
+              <h3 className="text-xs font-mono opacity-50">
+                {project.category}
+              </h3>
               <button
                 className="text-left text-4xl md:text-6xl font-bold font-mono tracking-tighter hover:text-[#ff00ff] transition-colors"
                 onClick={() => setShowDetails(true)}
               >
-                <h2 className="leading-[0.9] md:leading-none">{project.title}</h2>
+                <h2 className="leading-[0.9] md:leading-none">
+                  {project.title}
+                </h2>
               </button>
-              <p className="text-xs sm:text-sm font-mono opacity-70">{project.year}</p>
+              <p className="text-xs sm:text-sm font-mono opacity-70">
+                {project.year}
+              </p>
             </div>
 
-            <p className="text-sm md:text-lg tracking-tight md:tracking-normal max-w-md font-mono">{project.description}</p>
+            <p className="text-sm md:text-lg tracking-tight md:tracking-normal max-w-md font-mono">
+              {project.description}
+            </p>
 
             <button
               className="text-[#ffff00] underline font-mono hidden md:block"
@@ -272,8 +302,8 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center"
             onClick={() => {
-              setShowDetails(false)
-              setExpandedImageIndex(null)
+              setShowDetails(false);
+              setExpandedImageIndex(null);
             }}
           >
             <motion.div
@@ -288,7 +318,9 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
                   <h2 className="text-2xl md:text-3xl font-bold font-mono mb-4 text-[#ffff00]">
                     {project.title}
                   </h2>
-                  <p className="text-white font-mono mb-2">{project.description}</p>
+                  <p className="text-white font-mono mb-2">
+                    {project.description}
+                  </p>
                 </div>
                 <button
                   className="text-white hover:text-[#ffff00]"
@@ -312,7 +344,7 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
                       width={800}
                       height={600}
                       className="w-full lg"
-                      style={{ objectFit: 'cover' }}
+                      style={{ objectFit: "cover" }}
                     />
                   </div>
                 ))}
@@ -348,8 +380,8 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
               <button
                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:text-[#ffff00]"
                 onClick={(e) => {
-                  e.stopPropagation()
-                  navigateExpandedImage('prev')
+                  e.stopPropagation();
+                  navigateExpandedImage("prev");
                 }}
                 aria-label="Previous image"
               >
@@ -358,8 +390,8 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
               <button
                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full text-white hover:text-[#ffff00]"
                 onClick={(e) => {
-                  e.stopPropagation()
-                  navigateExpandedImage('next')
+                  e.stopPropagation();
+                  navigateExpandedImage("next");
                 }}
                 aria-label="Next image"
               >
@@ -370,8 +402,8 @@ const ProjectSection = ({ project, index }: { project: typeof projects[0]; index
         )}
       </AnimatePresence>
     </div>
-  )
-}
+  );
+};
 
 const ArchiveSection = () => {
   return (
@@ -401,11 +433,11 @@ const ArchiveSection = () => {
         </a>
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
 export default function DesignPage() {
-  const containerRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="bg-black text-white">
@@ -432,7 +464,9 @@ export default function DesignPage() {
 
       <button
         className="fixed rounded-full bottom-[25%] md:bottom-1/2 right-4 sm:right-6 translate-y-0 md:translate-y-1/2 bg-white/15 md:bg-black/50 p-3 text-white z-50 hover:bg-gray-200 hover:text-[#ff00ff] transition-colors duration-300 focus:outline-none"
-        onClick={() => containerRef.current?.scrollTo({ top: 0, behavior: 'smooth' })}
+        onClick={() =>
+          containerRef.current?.scrollTo({ top: 0, behavior: "smooth" })
+        }
         aria-label="Scroll to top"
       >
         <svg
@@ -455,17 +489,19 @@ export default function DesignPage() {
       <footer className="fixed bottom-0 left-0 w-full pb-4 px-4 md:px-8 flex md:flex-row justify-between items-center mt-8 text-white font-mono text-xs md:text-sm">
         <Link href="/" className="hover:underline mb-0">
           <span className="md:hidden">://</span>
-          <span className="hidden md:inline">HTTPS://ARIAPERO.GITHUB.IO</span>
+          <span className="hidden md:inline">HTTPS://ARIPERO.COM</span>
         </Link>
         <div className="mb-0">
           <span className="md:hidden">© {new Date().getFullYear()}</span>
-          <span className="hidden md:inline">© {new Date().getFullYear()} Ari Peró. All rights reserved.</span>
+          <span className="hidden md:inline">
+            © {new Date().getFullYear()} Ari Peró. All rights reserved.
+          </span>
         </div>
-        <a href="mailto:ariapero@mit.edu" className="hover:underline">
+        <a href="mailto:peroarian@gmail.com" className="hover:underline">
           <span className="md:hidden">MAILTO:</span>
-          <span className="hidden md:inline">MAILTO:ARIAPERO@MIT.EDU</span>
+          <span className="hidden md:inline">MAILTO:PEROARIAN@GMAIL.COM</span>
         </a>
       </footer>
     </div>
-  )
+  );
 }

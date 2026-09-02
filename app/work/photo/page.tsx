@@ -54,7 +54,7 @@ export default function PhotoPage() {
     // This will run only in the browser, after hydration
     setRandomizedImages(shuffleArray(backgroundImages));
     setRandomDepths(
-      Array.from({ length: backgroundImages.length }, () => Math.random() * 40)
+      Array.from({ length: backgroundImages.length }, () => Math.random() * 40),
     );
   }, []);
 
@@ -149,7 +149,7 @@ export default function PhotoPage() {
               coverImage: projectData.images[0],
               images: projectData.images,
             };
-          }
+          },
         );
         return acc;
       },
@@ -161,7 +161,7 @@ export default function PhotoPage() {
           images: string[];
           description?: React.ReactNode;
         }
-      >
+      >,
     );
     setAllProjects(projectsData);
   }, []);
@@ -177,7 +177,7 @@ export default function PhotoPage() {
             }
             return acc;
           },
-          {} as typeof allProjects
+          {} as typeof allProjects,
         );
 
   return (
@@ -329,7 +329,7 @@ export default function PhotoPage() {
                 ) : (
                   <p>
                     <a
-                      href="mailto:ariapero@mit.edu"
+                      href="mailto:peroarian@gmail.com"
                       className="underline hover:text-white transition-colors"
                     >
                       HERE
@@ -413,7 +413,7 @@ export default function PhotoPage() {
                       ))}
                   </button>
                 </div>
-              )
+              ),
             )}
           </div>
         )}
@@ -460,8 +460,8 @@ export default function PhotoPage() {
                           loading="lazy"
                         />
                       </div>
-                    ))
-                  )
+                    )),
+                  ),
               )}
             </div>
           </div>

@@ -2,11 +2,21 @@
 
 // TODO: sheet music zoom view -> when max-zoomed-in, x-out button is partially hidden behind sheet music view; x-out button should always be on top
 // TODO: audio player, scroll to top components already in sound design page; image viewer on poetry page - reuse
+// TODO: add miku
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Asterisk, ChevronLeft, ChevronRight, X, ArrowUp, Play, Pause } from "lucide-react";
+import {
+  ArrowLeft,
+  Asterisk,
+  ChevronLeft,
+  ChevronRight,
+  X,
+  ArrowUp,
+  Play,
+  Pause,
+} from "lucide-react";
 
 interface CompositionImage {
   src: string;
@@ -28,13 +38,32 @@ const compositions: Composition[] = [
     subtitle: "for string quartet",
     year: "2023",
     images: [
-      { src: "/compositions/rolling-girl/page-1.png", alt: "Rolling Girl sheet music, page 1" },
-      { src: "/compositions/rolling-girl/page-2.png", alt: "Rolling Girl sheet music, page 2" },
-      { src: "/compositions/rolling-girl/page-3.png", alt: "Rolling Girl sheet music, page 3" },
-      { src: "/compositions/rolling-girl/page-4.png", alt: "Rolling Girl sheet music, page 4" },
+      {
+        src: "/compositions/rolling-girl/page-1.png",
+        alt: "Rolling Girl sheet music, page 1",
+      },
+      {
+        src: "/compositions/rolling-girl/page-2.png",
+        alt: "Rolling Girl sheet music, page 2",
+      },
+      {
+        src: "/compositions/rolling-girl/page-3.png",
+        alt: "Rolling Girl sheet music, page 3",
+      },
+      {
+        src: "/compositions/rolling-girl/page-4.png",
+        alt: "Rolling Girl sheet music, page 4",
+      },
     ],
     audioFiles: [
-      { src: "/compositions/rolling-girl/playback.mp3", label: "MuseScore Playback" },
+      {
+        src: "/compositions/rolling-girl/playback.mp3",
+        label: "MuseScore Playback",
+      },
+      {
+        src: "/compositions/rolling-girl/original.mp3",
+        label: "Original song by Wowaka",
+      },
     ],
     status: "completed",
   },
@@ -49,6 +78,10 @@ const compositions: Composition[] = [
     ],
     audioFiles: [
       { src: "/compositions/miku/playback.mp3", label: "MuseScore Playback" },
+      {
+        src: "/compositions/miku/original.mp3",
+        label: "Original song by Anamanaguchi",
+      },
     ],
     status: "wip",
   },
@@ -57,15 +90,36 @@ const compositions: Composition[] = [
     subtitle: '"art song" for soprano + piano accompaniment',
     year: "2023",
     images: [
-      { src: "/compositions/sad-tale/page-1.png", alt: "a fairly sad tale sheet music, page 1" },
-      { src: "/compositions/sad-tale/page-2.png", alt: "a fairly sad tale sheet music, page 2" },
-      { src: "/compositions/sad-tale/page-3.png", alt: "a fairly sad tale sheet music, page 3" },
-      { src: "/compositions/sad-tale/page-4.png", alt: "a fairly sad tale sheet music, page 4" },
-      { src: "/compositions/sad-tale/page-5.png", alt: "a fairly sad tale sheet music, page 5" },
-      { src: "/compositions/sad-tale/page-6.png", alt: "a fairly sad tale sheet music, page 6" },
+      {
+        src: "/compositions/sad-tale/page-1.png",
+        alt: "a fairly sad tale sheet music, page 1",
+      },
+      {
+        src: "/compositions/sad-tale/page-2.png",
+        alt: "a fairly sad tale sheet music, page 2",
+      },
+      {
+        src: "/compositions/sad-tale/page-3.png",
+        alt: "a fairly sad tale sheet music, page 3",
+      },
+      {
+        src: "/compositions/sad-tale/page-4.png",
+        alt: "a fairly sad tale sheet music, page 4",
+      },
+      {
+        src: "/compositions/sad-tale/page-5.png",
+        alt: "a fairly sad tale sheet music, page 5",
+      },
+      {
+        src: "/compositions/sad-tale/page-6.png",
+        alt: "a fairly sad tale sheet music, page 6",
+      },
     ],
     audioFiles: [
-      { src: "/compositions/sad-tale/playback.mp3", label: "MuseScore Playback" },
+      {
+        src: "/compositions/sad-tale/playback.mp3",
+        label: "MuseScore Playback",
+      },
     ],
     status: "completed", // Final V3
   },
@@ -74,8 +128,14 @@ const compositions: Composition[] = [
     subtitle: "for SAB voices",
     year: "2023",
     images: [
-      { src: "/compositions/hope/page-1.png", alt: "Hope is the thing with feathers sheet music, page 1" },
-      { src: "/compositions/hope/page-2.png", alt: "Hope is the thing with feathers sheet music, page 2" },
+      {
+        src: "/compositions/hope/page-1.png",
+        alt: "Hope is the thing with feathers sheet music, page 1",
+      },
+      {
+        src: "/compositions/hope/page-2.png",
+        alt: "Hope is the thing with feathers sheet music, page 2",
+      },
     ],
     audioFiles: [
       { src: "/compositions/hope/playback.mp3", label: "MuseScore Playback" },
@@ -87,11 +147,20 @@ const compositions: Composition[] = [
     subtitle: "for string quartet",
     year: "2022",
     images: [
-      { src: "/compositions/dormida/page-1.png", alt: "Y como dormida sheet music, page 1" },
-      { src: "/compositions/dormida/page-2.png", alt: "Y como dormida sheet music, page 2" },
+      {
+        src: "/compositions/dormida/page-1.png",
+        alt: "Y como dormida sheet music, page 1",
+      },
+      {
+        src: "/compositions/dormida/page-2.png",
+        alt: "Y como dormida sheet music, page 2",
+      },
     ],
     audioFiles: [
-      { src: "/compositions/dormida/ensemble.mp3", label: "Live Rehearsal (Sightread)" },
+      {
+        src: "/compositions/dormida/ensemble.mp3",
+        label: "Live Rehearsal (Sightread)",
+      },
     ],
     status: "completed",
   },
@@ -100,20 +169,57 @@ const compositions: Composition[] = [
     subtitle: "for SATB + piano",
     year: "2020",
     images: [
-      { src: "/compositions/you-are/page-1.png", alt: "you are sheet music, page 1" },
-      { src: "/compositions/you-are/page-2.png", alt: "you are sheet music, page 2" },
-      { src: "/compositions/you-are/page-3.png", alt: "you are sheet music, page 3" },
-      { src: "/compositions/you-are/page-4.png", alt: "you are sheet music, page 4" },
-      { src: "/compositions/you-are/page-5.png", alt: "you are sheet music, page 5" },
-      { src: "/compositions/you-are/page-6.png", alt: "you are sheet music, page 6" },
-      { src: "/compositions/you-are/page-7.png", alt: "you are sheet music, page 7" },
-      { src: "/compositions/you-are/page-8.png", alt: "you are sheet music, page 8" },
-      { src: "/compositions/you-are/page-9.png", alt: "you are sheet music, page 9" },
-      { src: "/compositions/you-are/page-10.png", alt: "you are sheet music, page 10" },
-      { src: "/compositions/you-are/page-11.png", alt: "you are sheet music, page 11" },
+      {
+        src: "/compositions/you-are/page-1.png",
+        alt: "you are sheet music, page 1",
+      },
+      {
+        src: "/compositions/you-are/page-2.png",
+        alt: "you are sheet music, page 2",
+      },
+      {
+        src: "/compositions/you-are/page-3.png",
+        alt: "you are sheet music, page 3",
+      },
+      {
+        src: "/compositions/you-are/page-4.png",
+        alt: "you are sheet music, page 4",
+      },
+      {
+        src: "/compositions/you-are/page-5.png",
+        alt: "you are sheet music, page 5",
+      },
+      {
+        src: "/compositions/you-are/page-6.png",
+        alt: "you are sheet music, page 6",
+      },
+      {
+        src: "/compositions/you-are/page-7.png",
+        alt: "you are sheet music, page 7",
+      },
+      {
+        src: "/compositions/you-are/page-8.png",
+        alt: "you are sheet music, page 8",
+      },
+      {
+        src: "/compositions/you-are/page-9.png",
+        alt: "you are sheet music, page 9",
+      },
+      {
+        src: "/compositions/you-are/page-10.png",
+        alt: "you are sheet music, page 10",
+      },
+      {
+        src: "/compositions/you-are/page-11.png",
+        alt: "you are sheet music, page 11",
+      },
     ],
     audioFiles: [
-      { src: "/compositions/you-are/playback.mp3", label: "MuseScore Playback" },
+      { src: "/compositions/you-are/ensemble.mp3", label: "Live Rehearsal" },
+      {
+        src: "/compositions/you-are/playback.mp3",
+        label: "MuseScore Playback",
+      },
     ],
     status: "completed",
   },
@@ -122,17 +228,41 @@ const compositions: Composition[] = [
     subtitle: "for SATB voices and optional piano",
     year: "2019",
     images: [
-      { src: "/compositions/moonlight/page-1.png", alt: "Ode to Moonlight sheet music, page 1" },
-      { src: "/compositions/moonlight/page-2.png", alt: "Ode to Moonlight sheet music, page 2" },
-      { src: "/compositions/moonlight/page-3.png", alt: "Ode to Moonlight sheet music, page 3" },
-      { src: "/compositions/moonlight/page-4.png", alt: "Ode to Moonlight sheet music, page 4" },
-      { src: "/compositions/moonlight/page-5.png", alt: "Ode to Moonlight sheet music, page 5" },
-      { src: "/compositions/moonlight/page-6.png", alt: "Ode to Moonlight sheet music, page 6" },
-      { src: "/compositions/moonlight/page-7.png", alt: "Ode to Moonlight sheet music, page 7" },
+      {
+        src: "/compositions/moonlight/page-1.png",
+        alt: "Ode to Moonlight sheet music, page 1",
+      },
+      {
+        src: "/compositions/moonlight/page-2.png",
+        alt: "Ode to Moonlight sheet music, page 2",
+      },
+      {
+        src: "/compositions/moonlight/page-3.png",
+        alt: "Ode to Moonlight sheet music, page 3",
+      },
+      {
+        src: "/compositions/moonlight/page-4.png",
+        alt: "Ode to Moonlight sheet music, page 4",
+      },
+      {
+        src: "/compositions/moonlight/page-5.png",
+        alt: "Ode to Moonlight sheet music, page 5",
+      },
+      {
+        src: "/compositions/moonlight/page-6.png",
+        alt: "Ode to Moonlight sheet music, page 6",
+      },
+      {
+        src: "/compositions/moonlight/page-7.png",
+        alt: "Ode to Moonlight sheet music, page 7",
+      },
     ],
     audioFiles: [
       { src: "/compositions/moonlight/ensemble.mp3", label: "Live Rehearsal" },
-      { src: "/compositions/moonlight/playback.mp3", label: "MuseScore Playback" },
+      {
+        src: "/compositions/moonlight/playback.mp3",
+        label: "MuseScore Playback",
+      },
     ],
     status: "completed",
   },
@@ -141,12 +271,24 @@ const compositions: Composition[] = [
     subtitle: "for SATB voices + piano",
     year: "2018",
     images: [
-      { src: "/compositions/dolphin/page-1.png", alt: "The Dolphin sheet music, page 1" },
-      { src: "/compositions/dolphin/page-2.png", alt: "The Dolphin sheet music, page 2" },
-      { src: "/compositions/dolphin/page-3.png", alt: "The Dolphin sheet music, page 3" },
+      {
+        src: "/compositions/dolphin/page-1.png",
+        alt: "The Dolphin sheet music, page 1",
+      },
+      {
+        src: "/compositions/dolphin/page-2.png",
+        alt: "The Dolphin sheet music, page 2",
+      },
+      {
+        src: "/compositions/dolphin/page-3.png",
+        alt: "The Dolphin sheet music, page 3",
+      },
     ],
     audioFiles: [
-      { src: "/compositions/dolphin/playback.mp3", label: "MuseScore Playback" },
+      {
+        src: "/compositions/dolphin/playback.mp3",
+        label: "MuseScore Playback",
+      },
     ],
     status: "completed",
   },
@@ -186,7 +328,9 @@ const SheetMusicViewer = ({
         className={`relative ${isZoomed ? "max-w-none w-full h-full overflow-auto" : "max-w-5xl max-h-[90vh] w-full"}`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={`relative ${isZoomed ? "min-h-full flex items-start justify-center p-8" : "h-full"}`}>
+        <div
+          className={`relative ${isZoomed ? "min-h-full flex items-start justify-center p-8" : "h-full"}`}
+        >
           <div
             onClick={toggleZoom}
             className={`relative ${isZoomed ? "cursor-zoom-out" : "cursor-zoom-in"}`}
@@ -225,10 +369,16 @@ const SheetMusicViewer = ({
             </>
           )}
 
-          <div className={`${isZoomed ? "fixed" : "absolute"} bottom-4 left-0 right-0 text-center text-white font-mono`}>
-            <span>{currentIndex + 1} / {images.length}</span>
+          <div
+            className={`${isZoomed ? "fixed" : "absolute"} bottom-4 left-0 right-0 text-center text-white font-mono`}
+          >
+            <span>
+              {currentIndex + 1} / {images.length}
+            </span>
             {isZoomed && (
-              <span className="ml-4 text-sm text-white/60">Click image to zoom out</span>
+              <span className="ml-4 text-sm text-white/60">
+                Click image to zoom out
+              </span>
             )}
           </div>
         </div>
@@ -238,7 +388,11 @@ const SheetMusicViewer = ({
 };
 
 // Audio player component
-const AudioPlayer = ({ audioFiles }: { audioFiles: { src: string; label: string }[] }) => {
+const AudioPlayer = ({
+  audioFiles,
+}: {
+  audioFiles: { src: string; label: string }[];
+}) => {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioRef, setAudioRef] = useState<HTMLAudioElement | null>(null);
@@ -276,7 +430,9 @@ const AudioPlayer = ({ audioFiles }: { audioFiles: { src: string; label: string 
         </button>
         <div className="flex-1">
           {audioFiles.length === 1 ? (
-            <p className="text-sm font-medium text-gray-700">{audioFiles[currentTrack].label}</p>
+            <p className="text-sm font-medium text-gray-700">
+              {audioFiles[currentTrack].label}
+            </p>
           ) : (
             <div className="flex gap-2">
               {audioFiles.map((file, index) => (
@@ -333,7 +489,8 @@ const CompositionCard = ({
 
   const previousImage = () => {
     setCurrentImageIndex(
-      (prev) => (prev - 1 + composition.images.length) % composition.images.length
+      (prev) =>
+        (prev - 1 + composition.images.length) % composition.images.length,
     );
   };
 
@@ -360,20 +517,22 @@ const CompositionCard = ({
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="flex items-center gap-2 mb-8">
-          <Asterisk className="text-red-500 h-4 w-4" />
-          <span className="text-sm tracking-wide">
-            {composition.status === "wip" ? "WORK IN PROGRESS" : "COMPLETED WORK"}
-          </span>
-          <Asterisk className="text-red-500 h-4 w-4" />
-        </div>
+      <div className="flex items-center gap-2 mb-8">
+        <Asterisk className="text-red-500 h-4 w-4" />
+        <span className="text-sm tracking-wide">
+          {composition.status === "wip" ? "WORK IN PROGRESS" : "COMPLETED WORK"}
+        </span>
+        <Asterisk className="text-red-500 h-4 w-4" />
+      </div>
 
       <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-8 uppercase relative">
         {composition.title}
       </h1>
 
       <div className="grid grid-cols-12 gap-8 relative border-t border-b border-gray-200 pt-8 pb-14">
-        <div className={`col-span-12 md:col-span-7 ${isEven ? "" : "md:order-2"} pr-0 md:pr-8`}>
+        <div
+          className={`col-span-12 md:col-span-7 ${isEven ? "" : "md:order-2"} pr-0 md:pr-8`}
+        >
           <h2 className="text-2xl md:text-2xl font-normal mb-2">
             {composition.year}
           </h2>
@@ -407,7 +566,9 @@ const CompositionCard = ({
           </div>
         </div>
 
-        <div className={`col-span-12 md:col-span-4 ${isEven ? "md:col-start-9" : "md:col-start-1 md:order-1"}`}>
+        <div
+          className={`col-span-12 md:col-span-4 ${isEven ? "md:col-start-9" : "md:col-start-1 md:order-1"}`}
+        >
           <div className="bg-red-500 p-6 pb-3.5 text-white relative overflow-hidden">
             {/* Featured sheet music preview */}
             <button
@@ -425,7 +586,7 @@ const CompositionCard = ({
                 Click to view score
               </div>
             </button>
-            
+
             <div className="flex items-center justify-between">
               <div className="text-sm tracking-wide uppercase">
                 {composition.images.length} pages
@@ -534,7 +695,11 @@ export default function Page() {
       {/* Main Content */}
       <main className="relative pt-4 pb-24">
         {compositions.map((composition, index) => (
-          <CompositionCard key={index} composition={composition} index={index} />
+          <CompositionCard
+            key={index}
+            composition={composition}
+            index={index}
+          />
         ))}
       </main>
 
@@ -542,12 +707,14 @@ export default function Page() {
       <footer className="border-t border-gray-200 relative z-10">
         <div className="max-w-7xl mx-auto p-4">
           <div className="flex justify-between">
-            <p className="text-gray-600">© {new Date().getFullYear()} Ari Peró</p>
+            <p className="text-gray-600">
+              © {new Date().getFullYear()} Ari Peró
+            </p>
             <a
-              href="mailto:ariapero@mit.edu"
+              href="mailto:peroarian@gmail.com"
               className="text-red-500 hover:underline"
             >
-              ariapero@mit.edu
+              peroarian@gmail.com
             </a>
           </div>
         </div>

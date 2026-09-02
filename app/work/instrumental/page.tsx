@@ -314,10 +314,10 @@ export default function Page() {
           </div>
           <div className="flex flex-col sm:flex-row items-center space-y-0 sm:space-y-2 sm:space-x-4">
             <a
-              href="mailto:ariapero@mit.edu"
+              href="mailto:peroarian@gmail.com"
               className="hidden sm:block border border-white rounded-full px-4 py-2 text-sm hover:underline"
             >
-              ariapero@mit.edu
+              peroarian@gmail.com
             </a>
             <div className="text-2xl">©2025</div>
             <div className="hidden sm:block w-32">

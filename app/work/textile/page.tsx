@@ -17,7 +17,9 @@ export default function Page() {
             BAck to woRk
           </Link>
           {/* <h1 className="font-ncl">ARIAPERO</h1> */}
-          <p className="text-xs ml-2 opacity-75 hidden sm:block">42°21'36.36"N 71°5'39.12"E</p>
+          <p className="text-xs ml-2 opacity-75 hidden sm:block">
+            42°21'36.36"N 71°5'39.12"E
+          </p>
         </div>
         <div className="flex items-center gap-4 text-xs">
           <span>(∩｀-´)⊃━☆ﾟ.*･｡ﾟ</span>
@@ -108,14 +110,16 @@ export default function Page() {
       {/* Footer */}
       <footer className="bg-[#AAFF00] p-4 flex flex-col sm:flex-row justify-between items-center mt-2 sm:mt-8 font-mono space-y-2 sm:space-y-0">
         <Link href="/" className="text-black hover:underline">
-          HTTPS://ARIAPERO.GITHUB.IO
+          HTTPS://ARIPERO.COM
         </Link>
-        <div className="text-black text-center sm:text-left hidden md:block">© 2025 Ari Peró. All rights reserved.</div>
+        <div className="text-black text-center sm:text-left hidden md:block">
+          © 2025 Ari Peró. All rights reserved.
+        </div>
         <a
-          href="mailto:ariapero@mit.edu"
+          href="mailto:peroarian@gmail.com"
           className="text-black hover:underline"
         >
-          MAILTO:ARIAPERO@MIT.EDU
+          MAILTO:PEROARIAN@GMAIL.COM
         </a>
       </footer>
     </div>

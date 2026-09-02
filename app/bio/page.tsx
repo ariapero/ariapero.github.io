@@ -216,7 +216,7 @@ const App: React.FC = () => {
                 <p>
                   Ari's research spans impactful projects that use technology to
                   tackle environmental and urban challenges. As a researcher in
-                  MIT Computer Science & Artificial Intelligence Laboratory
+                  the MIT Computer Science & Artificial Intelligence Laboratory
                   (CSAIL) under{" "}
                   <a href="https://beerys.github.io/#:~:text=David%20Fang%20(Alumni)-,Ari%20Pero%20(Alumni),-Avi%20Sundaresan%20(Caltech">
                     <b>
@@ -296,9 +296,8 @@ const App: React.FC = () => {
                 <p>
                   Beyond research and engineering, Ari grounded their MIT
                   experience in community work: coordinating social justice
-                  programming for the{" "}
-                  <b>Active Community Engagement</b> pre-orientation program,
-                  teaching in the{" "}
+                  programming for the <b>Active Community Engagement</b>{" "}
+                  pre-orientation program, teaching in the{" "}
                   <a href="https://mites.mit.edu/discover-mites/mites-summer/">
                     <b>
                       <u>MITES Summer</u>
@@ -482,7 +481,7 @@ const App: React.FC = () => {
                   ))}
                 </div>
               </div>
-              {/* ADD EMBED OF AWARDS ARTICLE LINK? */}
+              {/* TODO: ADD EMBED OF AWARDS ARTICLE LINK? */}
             </motion.div>
             <div className="h-[.1%] w-full flex items-center justify-center absolute bottom-0 left-0">
               <motion.div
@@ -504,15 +503,24 @@ const App: React.FC = () => {
                       }}
                     />
                   </Link>
-                  <div className="text-xs sm:text-sm">
+                  <div className="text-xs sm:text-sm ml-20">
                     © {new Date().getFullYear()} Ari Peró. All rights reserved.
                   </div>
+                  <div>
                   <a
                     href="mailto:ariapero@mit.edu"
+                    className="text-xs hover:underline mr-0.5"
+                  >
+                    ariapero@mit{' '}
+                  </a>
+                  /{' '}
+                  <a
+                    href="mailto:peroarian@gmail.com"
                     className="text-xs hover:underline"
                   >
-                    ariapero@mit.edu
+                    peroarian@gmail
                   </a>
+                  </div>
                 </footer>
               </motion.div>
             </div>

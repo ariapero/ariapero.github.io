@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {ArrowLeft, ArrowUp } from "lucide-react";
-import { ImageViewer } from "@/components/ImageViewer"
+import { ArrowLeft, ArrowUp } from "lucide-react";
+import { ImageViewer } from "@/components/ImageViewer";
 
 // TODO: Add YoungArts links
 // TODO: reuse audio players, scroll-to-top buttons, instead of recreating on each page
@@ -27,10 +27,22 @@ const poems: PoemProject[] = [
     // HOMECOMING
     title: "Homecoming",
     images: [
-      { src: "/poetry/homecoming/page-1.png", alt: "'Homecoming' poem, page 1" },
-      { src: "/poetry/homecoming/page-2.png", alt: "'Homecoming' poem, page 2" },
-      { src: "/poetry/homecoming/page-3.png", alt: "'Homecoming' poem, page 3" },
-      { src: "/poetry/homecoming/page-4.png", alt: "'Homecoming' poem, page 4" },
+      {
+        src: "/poetry/homecoming/page-1.png",
+        alt: "'Homecoming' poem, page 1",
+      },
+      {
+        src: "/poetry/homecoming/page-2.png",
+        alt: "'Homecoming' poem, page 2",
+      },
+      {
+        src: "/poetry/homecoming/page-3.png",
+        alt: "'Homecoming' poem, page 3",
+      },
+      {
+        src: "/poetry/homecoming/page-4.png",
+        alt: "'Homecoming' poem, page 4",
+      },
     ],
   },
   {
@@ -460,7 +472,7 @@ export default function Page() {
         </Link>
         <span className="lg:hidden">©&thinsp;2025</span>
         <a
-          href="mailto:ariapero@mit.edu"
+          href="mailto:peroarian@gmail.com"
           className="hover:underline pointer-events-none md:pointer-events-auto opacity-0 md:opacity-100"
         >
           MAILTO:
