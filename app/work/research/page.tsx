@@ -1,5 +1,4 @@
-// TODO: fix footnote stuff
-// add meltem VR guide?
+// TODO: add meltem VR guide?
 
 "use client";
 
@@ -360,7 +359,7 @@ const ScrollToTopButton = () => {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className="fixed bottom-8 right-8 bg-teal-600 text-white p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors z-40"
+      className="fixed bottom-9 right-8 bg-teal-600 text-white p-3 rounded-full shadow-lg hover:bg-teal-500 transition-colors z-[60]"
       aria-label="Scroll to top"
     >
       <ChevronUp size={24} />
@@ -481,4 +480,3 @@ export default function ResearchPage() {
     </div>
   );
 }
-// TODO: footnote fix

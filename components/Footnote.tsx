@@ -3,9 +3,29 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+
+/** Pages whose surface isn't the default teal body gradient. The global footer
+ *  sits outside page wrappers, so it must use the same fill or a teal strip shows. */
+const PAGE_SURFACE: Record<string, { className: string; color: string }> = {
+  "/work/research": { className: "bg-neutral-950", color: "#0a0a0a" },
+  "/work/video": { className: "bg-neutral-900", color: "#171717" },
+};
 
 export default function Footnote() {
   const pathname = usePathname();
+  const surface = PAGE_SURFACE[pathname];
+
+  useEffect(() => {
+    if (!surface) return;
+    const { background, backgroundImage } = document.body.style;
+    document.body.style.background = surface.color;
+    document.body.style.backgroundImage = "none";
+    return () => {
+      document.body.style.background = background;
+      document.body.style.backgroundImage = backgroundImage;
+    };
+  }, [surface]);
 
   if (pathname === "/")
     return (
@@ -66,7 +86,9 @@ export default function Footnote() {
     );
 
   return (
-    <footer className="bg-transparent z-50 pt-2 pb-4 pl-4 pr-4 font-zen">
+    <footer
+      className={`${surface?.className ?? "bg-transparent"} w-full z-50 pt-2 pb-4 pl-4 pr-4 font-zen`}
+    >
       <div className="flex justify-between items-center">
         <Link href="/" className="text-white hover:underline w-1/3">
           <Image
